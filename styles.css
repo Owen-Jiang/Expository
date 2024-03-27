@@ -1,0 +1,293 @@
+/* Font for website majority */
+
+* {
+  font-family: "Urbanist", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+em {
+  font-family: "Urbanist", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: italic;
+}
+
+/* Body requirements */
+body {
+  background-color: #31343a;
+  background-image: var(--bs-gradient);
+  color: #fffdff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-text, .card-title {
+  color: #fffdff;
+}
+
+/* Navbar requirements */
+nav {
+  font-size: 18px;
+  background-color: none;
+  text-align: right;
+}
+
+.navbar-toggler {
+  border: none;
+}
+
+/* Change hyperlink color/style */
+a {
+  color: #d63384;
+  font-weight: 600;
+}
+
+/* Change hyperlink, navbar-link, and dropdown-item hover color */
+a:hover, .navbar-brand:hover, .nav-link:hover, .dropdown-item:hover {
+  color: #ffc107;
+}
+
+/* Position the dropdown menu */
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  min-width: 160px;
+  z-index: 1;
+  border-color: #1a1d20;
+  text-align: right;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-toggle::after {
+  display: none;
+}
+
+/* Break apart nav-items */
+.nav-item {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+/* Color of dropdown option and nav-links on click and when active */
+.dropdown-item:active {
+  background-color: #247ba0!important;
+}
+
+.text-oscillation1::before {
+  content: "Owen Jiang";
+  animation-name: oscillation1;
+  animation-duration: 15s;
+  animation-iteration-count: infinite;
+}
+
+.text-oscillation2::before {
+  content: "";
+  animation-name: oscillation2;
+  animation-duration: 15s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes oscillation1 {
+  0% {content: " "}
+  32% {content: " "}
+  33% {content: "₈O"}
+  35% {content: "₈O ₇₄W"}
+  36% {content: "₈O ₇₄W  e⁻"}
+  37% {content: "₈O ₇₄W  e⁻ ₇N"}
+  65% {content: "₈O ₇₄W  e⁻ ₇N"}
+  66% {content: "O"}
+  68% {content: "Ow"}
+  69% {content: "Owe"}
+  70% {content: "Owen"}
+  71% {content: "Owen"}
+  72% {content: "Owen J"}
+  73% {content: "Owen Ji"}
+  74% {content: "Owen Jia"}
+  75% {content: "Owen Jian"}
+  76% {content: "Owen Jiang"}
+  100% {content: "Owen Jiang"}
+}
+
+@keyframes oscillation2 {
+  0% {content: "<"}
+  1% {content: "<O"}
+  2% {content: "<Ow"}
+  3% {content: "<Owe"}
+  4% {content: "<Owen"}
+  5% {content: "<Owen J"}
+  6% {content: "<Owen Ji"}
+  7% {content: "<Owen Jia"}
+  8% {content: "<Owen Jian"}
+  9% {content: "<Owen Jiang"}
+  10% {content: "<Owen Jiang>"}
+  32% {content: "<Owen Jiang>"}
+  33% {content: " "}
+  100% {content: " "}
+}
+
+/* Customized colors */
+.gold {
+  color: #cbd4c2;
+}
+
+.jet {
+  color: #1a1d20;
+}
+
+.blue {
+  color: #247ba0;
+}
+
+.green {
+  color: #6aaa61;
+}
+
+.silver {
+  color: #c9c9c9;
+}
+
+.fuchsia {
+  color: #cd9fcc;
+}
+
+.purple {
+  color: #631a86;
+}
+
+.indigo {
+  color: #3234a8;
+}
+
+.red {
+  color: #a52a2a;
+}
+
+.link-hover-color {
+  color: #abdf75;
+  /* ONLY FOR LINKS! */
+}
+
+.bg-gold {
+  background-color: #cbd4c2;
+}
+
+.bg-jet {
+  background-color: #1a1d20;
+  color: #fffdff;
+}
+
+.bg-blue {
+  background-color: #247ba0;
+  color: #fffdff;
+}
+
+.bg-silver {
+  background-color: #c9c9c9;
+}
+
+.bg-fuchsia {
+  background-color: #cd9fcc;
+  color: #fffdff;
+}
+
+.bg-purple {
+  background-color: #631a86;
+  color: #fffdff;
+}
+
+.bg-green {
+  background-color: #6aaa61;
+  color: #fffdff;
+}
+
+.bg-indigo {
+  background-color: #3234a8;
+  color: #fffdff;
+}
+
+.bg-red {
+  background-color: #a52a2a;
+  color: #fffdff;
+}
+
+.bg-gold-gradient {
+  background-color: #cbd4c2;
+  background-image: var(--bs-gradient);
+}
+
+.bg-jet-gradient {
+  background-color: #1a1d20;
+  background-image: var(--bs-gradient);
+  color: #fffdff;
+}
+
+.bg-blue-gradient {
+  background-color: #247ba0;
+  background-image: var(--bs-gradient);
+  color: #fffdff;
+}
+
+.bg-green-gradient {
+  background-color: #6aaa61;
+  background-image: var(--bs-gradient);
+  color: #fffdff;
+}
+
+.bg-silver-gradient {
+  background-color: #c9c9c9;
+  background-image: var(--bs-gradient);
+}
+
+.bg-fuchsia-gradient {
+  background-color: #cd9fcc;
+  background-image: var(--bs-gradient);
+  color: #fffdff;
+}
+
+.bg-purple-gradient {
+  background-color: #631a86;
+  background-image: var(--bs-gradient);
+  color: #fffdff;
+}
+
+.bg-indigo-gradient {
+  background-color: #3234a8;
+  background-image: var(--bs-gradient);
+  color: #fffdff;
+}
+
+.bg-red-gradient {
+  background-color: #a52a2a;
+  background-image: var(--bs-gradient);
+  color: #fffdff;
+}
+
+/* For body and footer positioning */
+.body-container {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+footer {
+  margin-top: auto;
+  color: #fffdff;
+}
+
+/* Footer stuff */
+.footercol {
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+  margin-right: -5px;
+  border-color: #ffffff;
+  border-width: 0;
+  border-left-width: medium;
+  border-right-width: medium;
+  border-radius: 0;
+  background-color: inherit;
+}

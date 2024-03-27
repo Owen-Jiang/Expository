@@ -3,11 +3,373 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+    <title>Owen Jiang</title>
+
+    <!-- Structure Substitution -->
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <!-- Personal Stylesheet -->
+    <link href="styles.css" rel="stylesheet">
+
+    <!-- Animation CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="expository-ico.jpeg">
+
   </head>
   <body>
-    <h1>Hello, world!</h1>
+    <nav class="navbar navbar-expand-lg" data-bs-theme="dark">
+      <div class="container-fluid">
+        <span class="navbar-brand"><span class="text-oscillation1"></span><code class="text-oscillation2"></code></span>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="bi bi-list"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mb-2 mb-lg-0 ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#home"><code>home</code></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#introduction"><code>introduction</code></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#stats&skills"><code>stats & skills</code></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#interests"><code>interests</code></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#courses"><code>courses</code></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#competitions"><code>competitions</code></a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <code>projects ▾</code>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="https://allthesprouts.org"><img src="ats_logo.png" width="32px" class="img-thumbnail border border-0" alt="AtS Logo"> All the Sprouts</a></li>
+                <li><a class="dropdown-item" href="https://hands-on-deck.vercel.app">Hands-On Deck</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#projects">About the projects</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#work"><code>work</code></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="body-container">
+      <div class="container">
+        <h1 class="text-center">Hello, world!</h1>
+
+        <h2 id="introduction" class="text-info">introduction</h2>
+        <div class="card border-primary mb-3 bg-transparent">
+          <div class="card-body">
+            <p class="card-text">I am <strong>Owen Jiang</strong>, a junior student at <em>Lexington High School</em>.</p>
+          </div>
+        </div>
+
+        <h2 id="stats&skills" class="text-warning">stats & skills</h2>
+        <div class="col-lg-3">
+          <div class="card border-warning mb-3 bg-transparent">
+            <div class="card-body">
+              <h5 class="card-title">Advanced Placement Exams</h5>
+              <ul class="card-text">
+                <li>
+                  Freshman Year (2021-2022)
+                  <ul>
+                    <li>Calculus BC: <strong>5</strong></li>
+                    <li>Computer Science A: <strong>5</strong></li>
+                    <li>Music Theory: <strong>5</strong></li>
+                  </ul>
+                </li>
+                <li>
+                  Sophomore Year (2022-2023)
+                  <ul>
+                    <li>Biology: <strong>5</strong></li>
+                    <li>Computer Science Principles: <strong>5 (perfect score)</strong></li>
+                    <li>World History: <strong>5</strong></li>
+                  </ul>
+                </li>
+                <li>
+                  Junior Year (2023-2024)
+                  <ul>
+                    <li><em>Chemistry</em></li>
+                    <li><em>Physics C: Mechanics (self-study)</em></li>
+                    <li><em>Physics C: E&M (self-study)</em></li>
+                    <li><em>Statistics</em></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="card border-warning mb-3 bg-transparent">
+            <div class="card-body">
+              <h5 class="card-title">SAT</h5>
+              <p class="card-text">
+                TOTAL SCORE: <strong>1570</strong><br>
+                Reading and Writing: <strong>770 (99th)</strong><br>
+                Math: <strong>800 (99th)</strong>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="card border-warning mb-3 bg-transparent">
+            <div class="card-body">
+              <h5 class="card-title">PSAT</h5>
+              <p class="card-text">
+                TOTAL SCORE: <strong>1500</strong><br>
+                Reading and Writing: <strong>740 (99th)</strong><br>
+                Math: <strong>760 (>99th)</strong><br>
+                NMSC Selection Index Score: <strong>224</strong>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="card border-warning mb-3 bg-transparent">
+            <div class="card-body">
+              <h5 class="card-title">Skills</h5>
+              <ul class="card-text">
+                <li>Extensive knowledge and skills in <code>Python</code>, <code>Julia</code>, <code>C++</code>, <code>Java</code>, <code>HTML</code>, <code>CSS</code>, <code>JavaScript</code>, and <code>Linux/Unix</code></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <h2 id="interests" class="text-success">interests</h2>
+        <div class="col-lg-4">
+          <div class="card border-success mb-3 bg-transparent">
+            <div class="card-body">
+              <h5 class="card-title">Chemistry & Physics</h5>
+              <p class="card-text">Took the F=ma and the USNCO Local tests</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="card border-success mb-3 bg-transparent">
+            <div class="card-body">
+              <h5 class="card-title">Mountaineering</h5>
+              <p class="card-text">Scaled Mt. Washington in 2 hours and 10 minutes</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="card border-success mb-3 bg-transparent">
+            <div class="card-body">
+              <h5 class="card-title">Piloting</h5>
+              <p class="card-text">Currently studying for the written test</p>
+            </div>
+          </div>
+        </div>
+
+        <h2 id="courses">courses</h2>
+        <div class="col-lg-6">
+          <div class="card border-light mb-3 bg-transparent">
+            <div class="card-body">
+              <h5 class="card-title">Courses</h5>
+              <ul class="card-text">
+                <li>MITx / Circuits and Electronics 1: Basic Circuit Analysis (6.002.1x)</li>
+                <li>Yau Mathcamp 2023 / Linear Algebra, Analysis and Topology, Physics</li>
+                <li>Stanford Summer School / Structure and Reactivity of Organic Molecules (CHEM 33)</li>
+                <li>Euler Circle / Independent Research and Paper Writing</li>
+                <li>Harvard Summer School / Linear Algebra and Differential Equations (S21B)</li>
+                <li>MITx / General Chemistry I & II: Atoms, Molecules, and Bonding (5.01x) & Chemical Equilibrium, Kinetics, and Transition Metals (5.02x)</li>
+                <li>Harvard Extension School / Multivariable Calculus (E21A)</li>
+                <li>John Hopkins Center for Talented Youth / Making the Case: Effective Legal Arguments (22W.LEGA.W7P.3A)</li>
+                <li>MITx / Introduction to Aerospace Engineering: Astronautics and Human Spaceflight (16.00x)</li>
+                <li>PrincetonX / HOPE: Human Odyssey to Political Existentialism (HOPEx)</li>
+                <li>BerkeleyX / How to Write an Essay (ColWri2.1x)</li>
+                <li>John Hopkins Center for Talented Youth / High School Competitive Math Club (21W.CLHM.CDE.8)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="card border-light mb-3 bg-transparent">
+            <div class="card-body">
+              <h5 class="card-title"><a href="https://www.lexingtonma.org/lhs/">Lexington High School</a></h5>
+              <h6 class="card-subtitle"><a href="https://reportcards.doe.mass.edu/2023/01550505">School District Report Card</a></h6>
+              <p class="card-text">GPA: <strong>4.08/4.33</strong> or <strong>4.71/5</strong> or <strong>3.77/4</strong></p>
+              <ul class="card-text">
+                <li>Junior Year (2023-2024) (30)
+                  <ul>
+                    <li><em>AP Chemistry (6)</em></li>
+                    <li><em>French IV Honors (4)</em></li>
+                    <li><em>AP Statistics (4)</em></li>
+                    <li><em>Latin III Honors (4)</em></li>
+                    <li><em>AP United States History (4)</em></li>
+                    <li><em>American Literature Honors (4)</em></li>
+                    <li><em>Coop Team and Group Activities (1)</em></li>
+                    <li>Public Speaking 1 (2)</li>
+                    <li>Adolescent Health Issues II (1)</li>
+                  </ul>
+                </li>
+                <li>Sophomore Year (2022-2023) (30)
+                  <ul>
+                    <li>Literature and Composition II Honors (4)</li>
+                    <li>AP World History II (4)</li>
+                    <li>AP Computer Science Principles (4)</li>
+                    <li>Introductory Python Programming (2)</li>
+                    <li>AP Biology (6)</li>
+                    <li>French III Honors (4)</li>
+                    <li>Latin II (4)</li>
+                    <li>Tennis/Games/Fitness/Strength (1)</li>
+                    <li>Fencing/Badminton (1)</li>
+                  </ul>
+                </li>
+                <li>Freshman Year (2021-2022) (31)
+                  <ul>
+                    <li>Literature and Composition I (4)</li>
+                    <li>World History I (4)</li>
+                    <li>Precalculus Honors (4)</li>
+                    <li>Computer Programming in C++ (2)</li>
+                    <li>(Advanced) Environmental Earth Science Honors (5)</li>
+                    <li>French II Honors (4)</li>
+                    <li>Latin I (4)</li>
+                    <li>Jazz Big Band (2)</li>
+                    <li>Athletic Training/CPR/AED (1)</li>
+                    <li>Adolescent Health Issues I (1)</li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <h2 id="competitions" class="text-gray">competitions</h2>
+        <div class="col-lg-3">
+          <div class="card border-dark mb-3 bg-transparent">
+            <div class="card-body">
+              <h5 class="card-title">Deparment of Energy (DOE) Science Bowl</h5>
+              <ul class="card-text">
+                <li>
+                  <strong>Department of Energy (DOE) Science Bowl 2023 Regional 2nd Place</strong><br>
+                  With Lexington High School B Team<br>
+                  2nd Place at the Northeast Regional High School Science Bowl in 2023 at UConn
+                </li>
+                <li>
+                  <strong>Department of Energy (DOE) Science Bowl 2021 National Champion</strong><br>
+                  With Jonas Clarke Middle School A Team<br>
+                  1st Place at the Northeast Regional Middle School Science Bowl in 2021
+                </li>
+                <li>
+                  <strong>Department of Energy (DOE) Science Bowl 2020 2nd Place</strong><br>
+                  With Jonas Clarke Middle School B Team<br>
+                  1st Place at the Northeast Regional Middle School Science Bowl in 2020
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="card border-dark mb-3 bg-transparent">
+            <div class="card-body">
+              <h5 class="card-title">Science Olympiad</h5>
+              <ul class="card-text">
+                <li>
+                  <strong>Massachusetts State Science Olympiad Tournament (2023 Division C, 66 teams)</strong><br>
+                  MARCH 4, 2023,  Wentworth Institute of Technology<br>
+                  1st in Experimental Design<br>
+                  2nd Place Team
+                </li>
+                <li>
+                  <strong>BirdSO Satellite Tournament (2023 Division C, 226 teams)</strong><br>
+                  FEBRUARY 11—18, 2023<br>
+                  1st in Experimental Design<br>
+                  6th Place Team
+                </li>
+                <li>
+                  <strong>Harvard Science Olympiad (2023 Division C, 41 teams)</strong><br>
+                  FEBRUARY 4, 2023,  Harvard University<br>
+                  1st Place Team
+                </li>
+                <li>
+                  <strong>Centerville Science Olympiad (2022 Division C, 48 teams)</strong><br>
+                  1st Place Team
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="card border-dark mb-3 bg-transparent">
+            <div class="card-body">
+              <h5 class="card-title">Mathematics Competitions</h5>
+              <ul class="card-text">
+                <li>
+                  <strong>AMC 10: 103.5</strong><br>
+                  AMC8 and AIME Participant
+                </li>
+                <li>
+                  <strong>2020 MATHCOUNTS Chapter: Full Score</strong>
+                </li>
+                <li>
+                  <strong>New England Math League</strong><br>
+                  3 full scores<br>
+                </li>
+                <li>
+                  <strong>Massachusetts Mathematics League (MML)</strong><br>
+                  Lexington High School Team Member
+                </li>
+                <li>
+                  <strong>Massachusetts Association of Mathematics Leagues (MAML)</strong><br>
+                  5th Place in 2023
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="card border-dark mb-3 bg-transparent">
+            <div class="card-body">
+              <h5 class="card-title">Miscellaneous</h5>
+              <ul class="card-text">
+                <li>
+                  <strong>WGBH: High School Quiz Show</strong><br>
+                  State Champion in 2024<br>
+                  Semifinalist in 2023
+                </li>
+                <li>
+                  
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <h2 id="projects">about the projects</h2>
+
+      </div>
+    </div>
+    <footer>
+      <div class="container text-center">
+        © Copyright 2024, Owen Jiang
+        <br>
+        Website made possible by <a href="https://getbootstrap.com">Bootstrap</a> and <a href="https://animate.style/">Animate.style</a>
+      </div>
+    </footer>
+
+    <!-- Bootstrap JS/Popper -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
   </body>
