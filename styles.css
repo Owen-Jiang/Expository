@@ -80,54 +80,36 @@ a:hover, .navbar-brand:hover, .nav-link:hover, .dropdown-item:hover {
 }
 
 .text-oscillation1::before {
-  content: "Owen Jiang";
+  content: "Expository";
   animation-name: oscillation1;
-  animation-duration: 15s;
-  animation-iteration-count: infinite;
-}
-
-.text-oscillation2::before {
-  content: "";
-  animation-name: oscillation2;
   animation-duration: 15s;
   animation-iteration-count: infinite;
 }
 
 @keyframes oscillation1 {
   0% {content: " "}
-  32% {content: " "}
-  33% {content: "₈O"}
-  35% {content: "₈O ₇₄W"}
-  36% {content: "₈O ₇₄W  e⁻"}
-  37% {content: "₈O ₇₄W  e⁻ ₇N"}
-  65% {content: "₈O ₇₄W  e⁻ ₇N"}
-  66% {content: "O"}
-  68% {content: "Ow"}
-  69% {content: "Owe"}
-  70% {content: "Owen"}
-  71% {content: "Owen"}
-  72% {content: "Owen J"}
-  73% {content: "Owen Ji"}
-  74% {content: "Owen Jia"}
-  75% {content: "Owen Jian"}
-  76% {content: "Owen Jiang"}
-  100% {content: "Owen Jiang"}
-}
-
-@keyframes oscillation2 {
-  0% {content: "<"}
-  1% {content: "<O"}
-  2% {content: "<Ow"}
-  3% {content: "<Owe"}
-  4% {content: "<Owen"}
-  5% {content: "<Owen J"}
-  6% {content: "<Owen Ji"}
-  7% {content: "<Owen Jia"}
-  8% {content: "<Owen Jian"}
-  9% {content: "<Owen Jiang"}
-  10% {content: "<Owen Jiang>"}
-  32% {content: "<Owen Jiang>"}
-  33% {content: " "}
+  1% {content: " "}
+  2% {content: "e"}
+  3% {content: "ex"}
+  4% {content: "exp"}
+  5% {content: "expo"}
+  6% {content: "expos"}
+  7% {content: "exposi"}
+  8% {content: "exposit"}
+  9% {content: "exposito"}
+  10% {content: "expositor"}
+  11% {content: "expository"}
+  12% {content: "expository"}
+  90% {content: "expository"}
+  91% {content: "expositor"}
+  92% {content: "exposito"}
+  93% {content: "exposit"}
+  94% {content: "exposi"}
+  95% {content: "expos"}
+  96% {content: "expo"}
+  97% {content: "exp"}
+  98% {content: "ex"}
+  99% {content: "e"}
   100% {content: " "}
 }
 
