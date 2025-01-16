@@ -16,7 +16,7 @@ em {
 
 /* Body requirements */
 body {
-  background-color: #31343a;
+  background-color: #ef2b7c;
   background-image: var(--bs-gradient);
   color: #fffdff;
   min-height: 100vh;
@@ -79,37 +79,38 @@ a:hover, .navbar-brand:hover, .nav-link:hover, .dropdown-item:hover {
   background-color: #247ba0!important;
 }
 
-.text-oscillation1::before {
+.text-oscillation::before {
   content: "Expository";
-  animation-name: oscillation1;
-  animation-duration: 15s;
+  animation-name: oscillation;
+  animation-duration: 3s;
   animation-iteration-count: infinite;
 }
 
-@keyframes oscillation1 {
+@keyframes oscillation {
   0% {content: " "}
   1% {content: " "}
-  2% {content: "e"}
-  3% {content: "ex"}
-  4% {content: "exp"}
-  5% {content: "expo"}
-  6% {content: "expos"}
-  7% {content: "exposi"}
-  8% {content: "exposit"}
-  9% {content: "exposito"}
-  10% {content: "expositor"}
-  11% {content: "expository"}
-  12% {content: "expository"}
-  90% {content: "expository"}
-  91% {content: "expositor"}
-  92% {content: "exposito"}
-  93% {content: "exposit"}
-  94% {content: "exposi"}
-  95% {content: "expos"}
-  96% {content: "expo"}
-  97% {content: "exp"}
-  98% {content: "ex"}
-  99% {content: "e"}
+  2% {content: "s"}
+  3% {content: "su"}
+  4% {content: "sum"}
+  5% {content: "summ"}
+  6% {content: "summe"}
+  7% {content: "summer"}
+  8% {content: "summer a"}
+  9% {content: "summer ag"}
+  10% {content: "summer aga"}
+  11% {content: "summer agai"}
+  12% {content: "summer again"}
+  89% {content: "summer again"}
+  90% {content: "ummer again"}
+  91% {content: "mmer again"}
+  92% {content: "mer again"}
+  93% {content: "er again"}
+  94% {content: "r again"}
+  95% {content: "again"}
+  96% {content: "gain"}
+  97% {content: "ain"}
+  98% {content: "in"}
+  99% {content: "n"}
   100% {content: " "}
 }
 
