@@ -1,22 +1,11 @@
-/* Font for website majority */
-
-* {
-  font-family: "Urbanist", sans-serif;
+/* Body requirements */
+body {
+  font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
-}
 
-em {
-  font-family: "Urbanist", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: italic;
-}
-
-/* Body requirements */
-body {
-  background-color: #ef2b7c;
+  background-color: #990b46;
   background-image: var(--bs-gradient);
   color: #fffdff;
   min-height: 100vh;
@@ -24,15 +13,14 @@ body {
   flex-direction: column;
 }
 
-.card-text, .card-title {
-  color: #fffdff;
+.card {
+  background-color: inherit;
 }
 
 /* Navbar requirements */
 nav {
   font-size: 18px;
   background-color: none;
-  text-align: right;
 }
 
 .navbar-toggler {
@@ -41,7 +29,7 @@ nav {
 
 /* Change hyperlink color/style */
 a {
-  color: #d63384;
+  color: #88d9e6;
   font-weight: 600;
 }
 
@@ -79,39 +67,54 @@ a:hover, .navbar-brand:hover, .nav-link:hover, .dropdown-item:hover {
   background-color: #247ba0!important;
 }
 
+.typing::after {
+  content: " ";
+  position: relative;
+}
+
+.typing::before {
+  content: "_";
+  animation: blink 1s step-end infinite;
+}
+
+/* cursor blink */
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
 .text-oscillation::before {
-  content: "Expository";
+  content: "summer again";
   animation-name: oscillation;
-  animation-duration: 3s;
+  animation-duration: 5s;
   animation-iteration-count: infinite;
 }
 
 @keyframes oscillation {
-  0% {content: " "}
-  1% {content: " "}
-  2% {content: "s"}
-  3% {content: "su"}
-  4% {content: "sum"}
-  5% {content: "summ"}
-  6% {content: "summe"}
-  7% {content: "summer"}
-  8% {content: "summer a"}
-  9% {content: "summer ag"}
-  10% {content: "summer aga"}
-  11% {content: "summer agai"}
-  12% {content: "summer again"}
-  89% {content: "summer again"}
-  90% {content: "ummer again"}
-  91% {content: "mmer again"}
-  92% {content: "mer again"}
-  93% {content: "er again"}
-  94% {content: "r again"}
-  95% {content: "again"}
-  96% {content: "gain"}
-  97% {content: "ain"}
-  98% {content: "in"}
-  99% {content: "n"}
-  100% {content: " "}
+  0% { content: " " }
+  1% { content: "" }
+  2% { content: "s" }
+  3% { content: "su" }
+  4% { content: "sum" }
+  5% { content: "summ" }
+  6% { content: "summe" }
+  7% { content: "summer" }
+  8% { content: "summer a" }
+  9% { content: "summer ag" }
+  10% { content: "summer aga" }
+  11% { content: "summer agai" }
+  12% { content: "summer again" }
+  90% { content: "summer again" }
+  91% { content: "ummer again" }
+  92% { content: "mmer again" }
+  93% { content: "mer again" }
+  94% { content: "er again" }
+  95% { content: "r again" }
+  96% { content: "again" }
+  97% { content: "gain" }
+  98% { content: "ain" }
+  99% { content: "in" }
+  100% { content: "n" }
 }
 
 /* Customized colors */
