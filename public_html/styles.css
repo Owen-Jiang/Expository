@@ -1,11 +1,211 @@
+/* Fonts */
+@font-face {
+  font-family: CMU;
+  src: url(./font/CMU\ Serif\,\ Roman.ttf);
+}
+
+@font-face {
+  font-family: HelveticaNL;
+  src: url(./font/HelveticaNeue-Light.otf);
+}
+
+@font-face {
+  font-family: Space;
+  src: url(./font/SpaceMono-Regular.ttf);
+}
+
+/* Customized colors and their classes */
+.gold {
+	color: var(--gold);
+}
+
+.jet {
+	color: var(--jet);
+}
+
+.blue {
+	color: var(--blue);
+}
+
+.green {
+	color: var(--green);
+}
+
+.silver {
+	color: var(--silver);
+}
+
+.fuchsia {
+	color: var(--fuchsia);
+}
+
+.purple {
+	color: var(--purple);
+}
+
+.indigo {
+	color: var(--indigo);
+}
+
+.red {
+	color: var(--red);
+}
+
+.california-gold {
+	color: var(--california-gold);
+}
+
+.link-hover-color {
+	color: #abdf75;
+	/* ONLY FOR LINKS! */
+}
+
+.bg-gold {
+	background-color: var(--gold);
+}
+
+.bg-jet {
+	background-color: var(--jet);
+	color: #fffdff;
+}
+
+.bg-blue {
+	background-color: var(--blue);
+	color: #fffdff;
+}
+
+.bg-silver {
+	background-color: var(--silver);
+}
+
+.bg-fuchsia {
+	background-color: var(--fuchsia);
+	color: #fffdff;
+}
+
+.bg-purple {
+	background-color: var(--purple);
+	color: #fffdff;
+}
+
+.bg-green {
+	background-color: var(--green);
+	color: #fffdff;
+}
+
+.bg-indigo {
+	background-color: var(--indigo);
+	color: #fffdff;
+}
+
+.bg-red {
+	background-color: var(--red);
+	color: #fffdff;
+}
+
+.bg-gold-gradient {
+	background-color: var(--gold);
+	background-image: var(--bs-gradient);
+}
+
+.bg-jet-gradient {
+	background-color: var(--jet);
+	background-image: var(--bs-gradient);
+	color: #fffdff;
+}
+
+.bg-blue-gradient {
+	background-color: var(--blue);
+	background-image: var(--bs-gradient);
+	color: #fffdff;
+}
+
+.bg-green-gradient {
+	background-color: var(--green);
+	background-image: var(--bs-gradient);
+	color: #fffdff;
+}
+
+.bg-silver-gradient {
+	background-color: var(--silver);
+	background-image: var(--bs-gradient);
+}
+
+.bg-fuchsia-gradient {
+	background-color: var(--fuchsia);
+	background-image: var(--bs-gradient);
+	color: #fffdff;
+}
+
+.bg-purple-gradient {
+	background-color: var(--purple);
+	background-image: var(--bs-gradient);
+	color: #fffdff;
+}
+
+.bg-indigo-gradient {
+	background-color: var(--indigo);
+	background-image: var(--bs-gradient);
+	color: #fffdff;
+}
+
+.bg-red-gradient {
+	background-color: var(--red);
+	background-image: var(--bs-gradient);
+	color: #fffdff;
+}
+
 /* Body requirements */
+:root {
+
+	--gold: #cbd4c2;
+	--jet: #1a1d20;
+	--blue: #247ba0;
+	--green: #6aaa61;
+	--silver: #c9c9c9;
+	--fuchsia: #cd9fcc;
+	--purple: #631a86;
+	--indigo: #3234a8;
+	--red: #a52a2a;
+
+	--california-gold: #fdb515;
+	--berkeley-blue: #003262;
+	--metallic-gold: #bc9b6a;
+
+	--gradient1: repeating-linear-gradient(
+		135deg,
+		#e28c00 0%,
+		#a7d379 20%,
+		#ffffff 40%,
+		#62aedc 60%,
+		#203856 80%,
+		#e28c00 100%
+	);
+	--gradient2: repeating-linear-gradient(
+		90deg,
+		#fcf434 0%,
+		#ffffff 25%,
+		#9c59d1 50%,
+		#2c2c2c 75%,
+		#fcf434 100%
+	);
+	--gradient3: repeating-linear-gradient(
+		45deg,
+		#003262 0%,
+		#bc9b6a 25%,
+		#fdb515 50%,
+		#bc9b6a 75%,
+		#003262 100%
+	);
+}
+
 body {
-	font-family: "Inter", sans-serif;
+	font-family: "Inter";
 	font-optical-sizing: auto;
-	font-weight: 400;
+	font-size: 1rem;
 	font-style: normal;
 
-	background-color: #55286f;
+	background-color: #00000f;
 	background-image: var(--bs-gradient);
 	color: #fffdff;
 	min-height: 100vh;
@@ -13,9 +213,11 @@ body {
 	flex-direction: column;
 }
 
-.card {
-	background-color: inherit;
+.body-container {
+	margin-left: 0;
+	margin-right: 0;
 }
+
 
 /* Navbar requirements */
 nav {
@@ -26,6 +228,82 @@ nav {
 .navbar-toggler {
 	border: none;
 }
+
+/* Title header in navbar-brand */
+#title {
+	display: inline-block;
+	white-space: pre;
+	animation: flicker 5s steps(1, end) infinite, gradient-left 4s linear infinite;
+	font-size: 1.25rem;
+	opacity: 0.75;
+	transform: scale(3);
+	transform-origin: left center;
+	text-align: left;
+	margin-left: 0;
+	margin-top: 1rem;
+	text-shadow: 0 2px 8px rgba(255, 255, 255, 0.35);
+	background-image: var(--gradient1);
+	background-size: 200% 100%;
+	background-position: 0% 50%;
+	background-repeat: repeat-x;
+	
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+	color: transparent;
+	
+	font-family: "HelveticaNL", serif;
+	font-weight: 600;
+	transition: all 0.3s ease;
+}
+
+#title:hover, #title.title-paused:hover {
+	animation-play-state: paused;
+}
+
+#title.title-paused {
+	animation: gradient-right 4s linear infinite;
+	background-image: var(--gradient2);
+	text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+}
+
+@keyframes flicker {
+	0%, 2%, 4%, 6%, 8%, 100% {
+		opacity: 1;
+	}
+
+	1%, 3%, 5%, 7% {
+		opacity: 0;
+	}
+}
+
+@keyframes gradient-left {
+	0% {
+		background-position: 0% 50%;
+	}
+	100% {
+		background-position: 200% 50%;
+	}
+}
+
+@keyframes gradient-right {
+	0% {
+		background-position: 200% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+/* Code block styling */
+pre {
+	font-family: "Space", monospace;
+	overflow: visible;
+}
+
+/* .card {
+	background-color: inherit;
+} */
 
 /* Change hyperlink color/style */
 a {
@@ -78,193 +356,21 @@ a:hover, .navbar-brand:hover, .nav-link:hover, .dropdown-item:hover {
 }
 
 /* cursor blink */
-@keyframes blink {
-	0%, 50% { opacity: 1; }
-	51%, 100% { opacity: 0; }
-}
-
 .text-blink {
 	animation-name: blink;
 	animation-duration: 1s;
 	animation-iteration-count: infinite;
 }
 
-.text-oscillation::before {
-	content: "summer again";
-	animation-name: oscillation;
-	animation-duration: 5s;
-	animation-iteration-count: infinite;
-}
-
-@keyframes oscillation {
-	0% { content: "Owen Jiang" }
-	1% { content: "" }
-	2% { content: "Owen Jiang" }
-	3% { content: "" }
-	4% { content: "Owen Jiang" }
-	5% { content: "" }
-	6% { content: "Owen Jiang" }
-	7% { content: " " }
-	8% { content: "Owen Jiang" }
-	90% { content: "Owen Jiang" }
-	91% { content: "wen JiangO" }
-	92% { content: "en JiangOw" }
-	93% { content: "n JiangOwe" }
-	94% { content: " JiangOwen" }
-	95% { content: "JiangOwen " }
-	96% { content: "iangOwen J" }
-	97% { content: "angOwen Ji" }
-	98% { content: "ngOwen Jia" }
-	99% { content: "gOwen Jian" }
-	100% { content: "Owen Jiang" }
-}
-
-/* Customized colors */
-.gold {
-	color: #cbd4c2;
-}
-
-.jet {
-	color: #1a1d20;
-}
-
-.blue {
-	color: #247ba0;
-}
-
-.green {
-	color: #6aaa61;
-}
-
-.silver {
-	color: #c9c9c9;
-}
-
-.fuchsia {
-	color: #cd9fcc;
-}
-
-.purple {
-	color: #631a86;
-}
-
-.indigo {
-	color: #3234a8;
-}
-
-.red {
-	color: #a52a2a;
-}
-
-.link-hover-color {
-	color: #abdf75;
-	/* ONLY FOR LINKS! */
-}
-
-.bg-gold {
-	background-color: #cbd4c2;
-}
-
-.bg-jet {
-	background-color: #1a1d20;
-	color: #fffdff;
-}
-
-.bg-blue {
-	background-color: #247ba0;
-	color: #fffdff;
-}
-
-.bg-silver {
-	background-color: #c9c9c9;
-}
-
-.bg-fuchsia {
-	background-color: #cd9fcc;
-	color: #fffdff;
-}
-
-.bg-purple {
-	background-color: #631a86;
-	color: #fffdff;
-}
-
-.bg-green {
-	background-color: #6aaa61;
-	color: #fffdff;
-}
-
-.bg-indigo {
-	background-color: #3234a8;
-	color: #fffdff;
-}
-
-.bg-red {
-	background-color: #a52a2a;
-	color: #fffdff;
-}
-
-.bg-gold-gradient {
-	background-color: #cbd4c2;
-	background-image: var(--bs-gradient);
-}
-
-.bg-jet-gradient {
-	background-color: #1a1d20;
-	background-image: var(--bs-gradient);
-	color: #fffdff;
-}
-
-.bg-blue-gradient {
-	background-color: #247ba0;
-	background-image: var(--bs-gradient);
-	color: #fffdff;
-}
-
-.bg-green-gradient {
-	background-color: #6aaa61;
-	background-image: var(--bs-gradient);
-	color: #fffdff;
-}
-
-.bg-silver-gradient {
-	background-color: #c9c9c9;
-	background-image: var(--bs-gradient);
-}
-
-.bg-fuchsia-gradient {
-	background-color: #cd9fcc;
-	background-image: var(--bs-gradient);
-	color: #fffdff;
-}
-
-.bg-purple-gradient {
-	background-color: #631a86;
-	background-image: var(--bs-gradient);
-	color: #fffdff;
-}
-
-.bg-indigo-gradient {
-	background-color: #3234a8;
-	background-image: var(--bs-gradient);
-	color: #fffdff;
-}
-
-.bg-red-gradient {
-	background-color: #a52a2a;
-	background-image: var(--bs-gradient);
-	color: #fffdff;
-}
-
-/* For body and footer positioning */
-.body-container {
-	/* margin-left: auto;
-	margin-right: auto; */
+@keyframes blink {
+	0%, 50% { opacity: 1; }
+	51%, 100% { opacity: 0; }
 }
 
 footer {
 	margin-top: auto;
 	color: #fffdff;
+	font-size: 0.75rem;
 }
 
 /* Footer stuff */
@@ -283,10 +389,16 @@ footer {
 .list-group-item-action {
 	background-color: #003262;
 	border-color: #003262;
-	color: silver;
+	color: white;
 }
 
 .list-group-item.active {
+	background-color: #fdb515;
+	border-color: #fdb515;
+	color: black;
+}
+
+.list-group-item-action:not(.active):hover {
 	background-color: #fdb515;
 	border-color: #fdb515;
 }

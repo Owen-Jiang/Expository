@@ -33,7 +33,58 @@
 	<body>
 		<nav class="navbar navbar-expand-lg" data-bs-theme="dark">
 			<div class="container-fluid">
-				<span class="navbar-brand"><span class="text-oscillation text-warning"></span></span>
+				<span class="navbar-brand"><span id="title" aria-label="Owen Jiang"></span></span>
+				<!-- Title JS animation and control -->
+				<script>
+					const el = document.getElementById("title");
+					const name = "Owen Jiang ";
+					let titlePaused = false;
+					el.textContent = name;
+
+					let i = 0;
+					let seconds = 5;
+					let titleIntervalId;
+
+					function runTitleAnimation() {
+						const progress = (Date.now() % (seconds * 1000)) / (seconds * 1000);
+
+						if (progress < 0.9) {
+							el.textContent = name;
+							return;
+						}
+
+						i = Math.floor((progress - 0.9) * 100);
+
+						const offset = i % name.length;
+						el.textContent = name.slice(offset) + name.slice(0, offset);
+					}
+
+					function startTitleAnimation() {
+						if (titleIntervalId) {
+							return;
+						}
+
+						titlePaused = false;
+						el.classList.remove("title-paused");
+						titleIntervalId = setInterval(runTitleAnimation, 50);
+
+						el.style.fontFamily = "HelveticaNL";
+						el.style.fontStyle = "normal";
+					}
+
+					function stopTitleAnimation(text) {
+						titlePaused = true;
+						clearInterval(titleIntervalId);
+						titleIntervalId = null;
+						el.classList.add("title-paused");
+						el.textContent = text;
+
+						el.style.fontFamily = "Inter";
+						el.style.fontStyle = "italic";
+					}
+
+					startTitleAnimation();
+				</script>
 				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 					<i class="bi bi-list"></i>
 				</button>
@@ -43,7 +94,7 @@
 							<a class="nav-link" href="#home">Home</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="#">Contact</a>
+							<a class="nav-link" href="#contact">Contact</a>
 						</li>
 					</ul>
 				</div>
@@ -78,12 +129,16 @@
 		<div class="body-container">
 			<div class="container">
 				<div id="entrance" class="text-center">
-					<h1><pre>$ cd ~/expository<span class="text-blink">█</span></pre></h1>
-					<sub>Press [enter] to continue...</sub>
+					<h1><pre>$ ssh Owen-Jiang@expository<span class="text-blink">█</span></pre></h1>
+					<sub>Press [enter] to enter website expository...</sub>
 				</div>
 				<div id="house" style="display: none;" class="animate__animated animate__fadeIn">
-					<h1>Owen Jiang</h1>
-					<h3>Fall 2025</h3>
+					<h1><pre><span class="indigo">Owen-Jiang</span><span class="california-gold">@</span><span class="red">expository</span><span class="california-gold">:</span><span class="green">~/home</span><span class="california-gold">$</span> <span class="text-blink">█</span></pre></h1>
+					<ul>
+						<li><a href="#home">Home</a></li>
+						<li><a href="#contact">Contact</a></li>
+					</ul>
+					<h3>UC Berkeley: Fall 2025</h3>
 					<div class="row">
 						<div class="col-4">
 							<div class="list-group" id="list-tab" role="tablist">
@@ -150,9 +205,9 @@
 		</div>
 		<footer>
 			<div class="container text-center">
-				© Copyright 2025
+				© Copyright <script>document.write(new Date().getFullYear())</script>
 				<br>
-				<a href="https://getbootstrap.com">Bootstrap</a> and <a href="https://animate.style/">Animate.style</a> were used in the making of this website.
+				Made with <a href="https://getbootstrap.com">Bootstrap</a> and <a href="https://animate.style/">Animate.style</a>
 			</div>
 		</footer>
 
@@ -162,6 +217,7 @@
 				var entrance = document.getElementById("entrance");
 				if (event.key === "Enter") {
 					event.preventDefault();
+					stopTitleAnimation("Expository");
 					if (house.style.display === "none") {
 						house.style.display = "block";
 						entrance.style.display = "none";
@@ -169,6 +225,7 @@
 				}
 				if (event.ctrlKey && event.key === 'x') {
 					event.preventDefault();
+					startTitleAnimation();
 					if (house.style.display != "none") {
 						entrance.style.display = "block";
 						house.style.display = "none";
@@ -178,7 +235,6 @@
 		</script>
 
 		<!-- Bootstrap JS/Popper -->
-		<!-- <script>document.write(new Date().getFullYear())</script> -->
 		<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js" integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y" crossorigin="anonymous"></script>
 	</body>
