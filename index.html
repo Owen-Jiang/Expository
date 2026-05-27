@@ -85,10 +85,10 @@
 
 					startTitleAnimation();
 				</script>
-				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 					<i class="bi bi-list"></i>
-				</button>
-				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				</button> -->
+				<!-- <div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav mb-2 mb-lg-0 ms-auto">
 						<li class="nav-item">
 							<a class="nav-link" href=".">Home</a>
@@ -97,7 +97,7 @@
 							<a class="nav-link" href="#contact">Contact</a>
 						</li>
 					</ul>
-				</div>
+				</div> -->
 			</div>
 		</nav>
 		<script>
@@ -131,17 +131,36 @@
 				<div id="entrance" class="text-center animate__animated animate__fadeIn">
 					<h1><pre>$ ssh Owen-Jiang@expository<span class="text-blink">█</span></pre></h1>
 					<sub class="keyboard">Press [ENTER] to enter website expository...</sub>
-					<button id="enter-button" class="btn btn-outline-light touch-button" type="button"><i class="bi bi-arrow-return-left"></i></button>
-					<button id="reload-button" class="btn btn-outline-light touch-button" type="button"><i class="bi bi-arrow-clockwise"></i></button>
+					<button id="enter-button" class="btn btn-outline-light touch-button" type="button"><i class="bi bi-arrow-return-left"></i><br><span class="menu-button-text">Enter Expo</span></button>
+					<button id="reload-button" class="btn btn-outline-light touch-button" type="button"><i class="bi bi-arrow-clockwise"></i><br><span class="menu-button-text">Reload</span></button>
+					<br>
+					<br>
+					<button id="status-button" class="btn btn-outline-light touch-button" type="button"><i class="bi bi-bar-chart-line-fill"></i><br><span class="menu-button-text">Status</span></button>
+					<button id="about-button" class="btn btn-outline-light touch-button" type="button"><i class="bi bi-info-circle"></i><br><span class="menu-button-text">About</span></button>
+					<button id="contact-button" class="btn btn-outline-light touch-button" type="button"><i class="bi bi-person-circle"></i><br><span class="menu-button-text">Contact</span></button>
 				</div>
 				<div id="house" style="display: none;" class="animate__animated animate__fadeIn">
 					<h1><pre><span class="indigo">Owen-Jiang</span><span class="california-gold">@</span><span class="red">expository</span><span class="california-gold">:</span><span class="green">~</span><span class="california-gold">$</span> <span class="text-blink">█</span></pre></h1>
-					<ul>
-						<li><a href="#status">Status</a></li>
-						<li><a href="#past">Past</a></li> <!-- On Hover: (Resume/CV/Projects)-->
-						<li><a href="#thoughts">Thoughts</a></li>
-						<li><a href="#contact">Contact</a></li>
-					</ul>
+					<nav class="ls-nav">
+						<ul>
+							<li class="nav-item">
+								<button type="button" class="btn touch-button">Resume</button>
+							</li>
+							<li class="nav-item">
+								<button type="button" class="btn touch-button">CV</button>
+							</li>
+							<li class="nav-item">
+								<button type="button" class="btn touch-button">Journey</button>
+							</li>
+							<li class="nav-item">
+								<button type="button" class="btn touch-button">Projects</button>
+							</li>
+							<li class="nav-item">
+								<button type="button" class="btn touch-button">Thoughts</button>
+							</li>
+						</ul>
+					</nav>
+					<br>
 					<h3>UC Berkeley: Fall 2025</h3>
 					<div class="row">
 						<div class="col-4">
