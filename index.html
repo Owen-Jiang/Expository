@@ -13,7 +13,7 @@
 		<link href="bootstrap.min.css" rel="stylesheet">
 
 		<!-- Bootstrap Icons -->
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 
 		<!-- Fonts -->
 		<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -91,7 +91,7 @@
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav mb-2 mb-lg-0 ms-auto">
 						<li class="nav-item">
-							<a class="nav-link" href="#home">Home</a>
+							<a class="nav-link" href=".">Home</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" href="#contact">Contact</a>
@@ -128,17 +128,19 @@
 		</script>
 		<div class="body-container">
 			<div class="container">
-				<div id="entrance" class="text-center">
+				<div id="entrance" class="text-center animate__animated animate__fadeIn">
 					<h1><pre>$ ssh Owen-Jiang@expository<span class="text-blink">█</span></pre></h1>
-					<sub>Press [enter] to enter website expository...</sub>
+					<sub class="keyboard">Press [ENTER] to enter website expository...</sub>
+					<button id="enter-button" class="btn btn-outline-light touch-button" type="button"><i class="bi bi-arrow-return-left"></i></button>
+					<button id="reload-button" class="btn btn-outline-light touch-button" type="button"><i class="bi bi-arrow-clockwise"></i></button>
 				</div>
 				<div id="house" style="display: none;" class="animate__animated animate__fadeIn">
-					<h1><pre><span class="indigo">Owen-Jiang</span><span class="california-gold">@</span><span class="red">expository</span><span class="california-gold">:</span><span class="green">~/home</span><span class="california-gold">$</span> <span class="text-blink">█</span></pre></h1>
+					<h1><pre><span class="indigo">Owen-Jiang</span><span class="california-gold">@</span><span class="red">expository</span><span class="california-gold">:</span><span class="green">~</span><span class="california-gold">$</span> <span class="text-blink">█</span></pre></h1>
 					<ul>
-						<li><a href="#home">Home</a></li>
-						<li><a href="#blog">Blog</a></li>
-						<li><a href="#contact">Contact</a></li>
 						<li><a href="#status">Status</a></li>
+						<li><a href="#past">Past</a></li> <!-- On Hover: (Resume/CV/Projects)-->
+						<li><a href="#thoughts">Thoughts</a></li>
+						<li><a href="#contact">Contact</a></li>
 					</ul>
 					<h3>UC Berkeley: Fall 2025</h3>
 					<div class="row">
@@ -199,13 +201,29 @@
 							</div>
 						</div>
 					</div>
-					<div style="position: absolute; bottom: 0;">
-						<pre><mark style="background-color: white;" class="text-black">^X</mark> Exit</pre>
+					<div class="shortcuts">
+						<pre class="shortcut-line"><span class="keyboard" data-bs-toggle="tooltip" data-bs-title="Ctrl+D to exit"><mark >^D</mark> Exit</span><button type="button" id="exit-button" class="btn btn-outline-light shortcut-button touch-button">Exit</button></pre>
 					</div>
+					<br>
 				</div>
 			</div>
 		</div>
 		<footer>
+			<button type="button" class="btn btn-primary" id="liveToastBtn" data-bs-toggle="toast" data-bs-target="#liveToast">Show live toast</button>
+
+			<div class="toast-container position-fixed bottom-0 end-0 p-3">
+				<div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+					<div class="toast-header">
+					<img src="..." class="rounded me-2" alt="...">
+					<strong class="me-auto">Bootstrap</strong>
+					<small>11 mins ago</small>
+					<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+					</div>
+					<div class="toast-body">
+					Hello, world! This is a toast message.
+					</div>
+				</div>
+			</div>
 			<div class="container text-center">
 				© Copyright <script>document.write(new Date().getFullYear())</script>
 				<br>
@@ -213,19 +231,44 @@
 			</div>
 		</footer>
 
+		<!-- Mobile and Desktop Interactive Response -->
 		<script>
+			function enterWebsite() {
+				var house = document.getElementById("house");
+				var entrance = document.getElementById("entrance");
+				stopTitleAnimation("Expository");
+				if (house.style.display === "none") {
+					house.style.display = "block";
+					entrance.style.display = "none";
+				}
+			}
+
+			function reloadWebsite() {
+				window.location.reload();
+			}
+
+			function exitWebsite() {
+				var house = document.getElementById("house");
+				var entrance = document.getElementById("entrance");
+				startTitleAnimation();
+				if (house.style.display != "none") {
+					entrance.style.display = "block";
+					house.style.display = "none";
+				}
+			}
+
+			document.getElementById("enter-button").addEventListener("click", enterWebsite);
+			document.getElementById("reload-button").addEventListener("click", reloadWebsite);
+			document.getElementById("exit-button").addEventListener("click", exitWebsite);
+
 			document.body.addEventListener("keydown", function(event) {
 				var house = document.getElementById("house");
 				var entrance = document.getElementById("entrance");
 				if (event.key === "Enter") {
 					event.preventDefault();
-					stopTitleAnimation("Expository");
-					if (house.style.display === "none") {
-						house.style.display = "block";
-						entrance.style.display = "none";
-					}
+					enterWebsite();
 				}
-				if (event.ctrlKey && event.key === 'x') {
+				if (event.ctrlKey && event.key === 'd') {
 					event.preventDefault();
 					startTitleAnimation();
 					if (house.style.display != "none") {
@@ -239,5 +282,81 @@
 		<!-- Bootstrap JS/Popper -->
 		<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js" integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y" crossorigin="anonymous"></script>
+
+		<!-- Bootstrap component initialization -->
+		<script>
+			const tooltipMediaQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
+
+			function shouldEnableTooltips() {
+				return tooltipMediaQuery.matches;
+			}
+
+			function initializeTooltip(tooltipTriggerEl) {
+				if (!shouldEnableTooltips()) {
+					return;
+				}
+
+				if (bootstrap.Tooltip.getInstance(tooltipTriggerEl)) {
+					return;
+				}
+
+				new bootstrap.Tooltip(tooltipTriggerEl, {
+					container: "body",
+					trigger: "hover"
+				});
+			}
+
+			function initializeTooltips(root) {
+				root.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(initializeTooltip);
+			}
+
+			function refreshTooltips() {
+				document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(function(tooltipTriggerEl) {
+					const tooltip = bootstrap.Tooltip.getInstance(tooltipTriggerEl);
+
+					if (tooltip) {
+						tooltip.dispose();
+					}
+
+					initializeTooltip(tooltipTriggerEl);
+				});
+			}
+
+			initializeTooltips(document);
+
+			tooltipMediaQuery.addEventListener("change", refreshTooltips);
+
+			new MutationObserver(function(mutations) {
+				mutations.forEach(function(mutation) {
+					mutation.addedNodes.forEach(function(node) {
+						if (node.nodeType !== Node.ELEMENT_NODE) {
+							return;
+						}
+
+						if (node.matches('[data-bs-toggle="tooltip"]')) {
+							initializeTooltip(node);
+						}
+
+						initializeTooltips(node);
+					});
+				});
+			}).observe(document.body, { childList: true, subtree: true });
+
+			const toastElementList = document.querySelectorAll('.toast');
+			const toastList = [...toastElementList].map(function(toastElement) {
+				return bootstrap.Toast.getOrCreateInstance(toastElement);
+			});
+
+			document.querySelectorAll('[data-bs-toggle="toast"]').forEach(function(toastTrigger) {
+				toastTrigger.addEventListener("click", function() {
+					const targetSelector = toastTrigger.getAttribute("data-bs-target") || toastTrigger.getAttribute("href");
+					const toastElement = targetSelector ? document.querySelector(targetSelector) : null;
+
+					if (toastElement) {
+						bootstrap.Toast.getOrCreateInstance(toastElement).show();
+					}
+				});
+			});
+		</script>
 	</body>
 </html>
