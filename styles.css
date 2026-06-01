@@ -14,6 +14,11 @@
   src: url(./font/SpaceMono-Regular.ttf);
 }
 
+@font-face {
+  font-family: ITC;
+  src: url(./font/ITC\ Franklin\ Gothic\ Std\ Book.otf);
+}
+
 /* Customized colors and their classes */
 .gold {
 	color: var(--gold);
@@ -176,7 +181,7 @@
 		135deg,
 		#e28c00 0%,
 		#a7d379 20%,
-		#ffffff 40%,
+		#6b6b6b 40%,
 		#62aedc 60%,
 		#203856 80%,
 		#e28c00 100%
@@ -230,17 +235,22 @@ h6 {
 }
 
 body {
-	font-family: "Inter";
+	font-family: "HelveticaNL";
 	font-optical-sizing: auto;
 	font-size: 1rem;
 	font-style: normal;
 
-	background-color: #00000f;
+	background-color: #000001;
 	background-image: var(--bs-gradient);
 	color: #fffdff;
 	min-height: 100vh;
 	display: flex;
 	flex-direction: column;
+}
+
+body > :not(nav) {
+	position: relative;
+	z-index: 1;
 }
 
 
@@ -263,16 +273,23 @@ nav {
 /* Title header in navbar-brand */
 #title {
 	display: inline-block;
+	position: fixed;
+	top: 2em;
+	left: 2em;
+	z-index: 0;
+	transform: scale(10);
+	transform-origin: top left;
+
+	font-size: min(2rem, 1.6vw);
+	opacity: 0.35;
+	text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+
+	line-height: normal;
+	pointer-events: auto;
 	white-space: pre;
+
 	animation: flicker 5s steps(1, end) infinite, gradient-left 4s linear infinite;
-	font-size: 1.25rem;
-	opacity: 0.75;
-	transform: scale(3);
-	transform-origin: left center;
-	text-align: left;
-	margin-left: 0;
-	margin-top: 1rem;
-	text-shadow: 0 2px 8px rgba(255, 255, 255, 0.35);
+
 	background-image: var(--gradient1);
 	background-size: 200% 100%;
 	background-position: 0% 50%;
@@ -288,26 +305,43 @@ nav {
 	transition: all 0.3s ease;
 }
 
-#title:hover, #title.title-paused:hover {
-	animation-play-state: paused;
-}
-
 #title.title-paused {
 	animation: gradient-right 4s linear infinite;
 	background-image: var(--gradient2);
-	text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+	text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+#title:hover {
+	animation-play-state: paused;
+	opacity: 1;
+}
+
+.navbar-brand:has(#title:hover) {
+	animation: title-pulse 2s ease-in-out infinite;
+}
+
+@keyframes title-pulse {
+	0%, 100% {
+		opacity: 1;
+		text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+	}
+	50% {
+		opacity: 0.5;
+		text-shadow: 0 2px 8px rgba(255, 255, 255, 0.5);
+	}
 }
 
 @keyframes flicker {
 	0%, 2%, 4%, 6%, 8%, 100% {
-		opacity: 1;
+		visibility: visible;
 	}
 
 	1%, 3%, 5%, 7% {
-		opacity: 0;
+		visibility: hidden;
 	}
 }
 
+/* Gradient directions */
 @keyframes gradient-left {
 	0% {
 		background-position: 0% 50%;
@@ -361,21 +395,23 @@ pre {
 	margin-top: 0.1rem;
 }
 
-.touch-button {
+.touch-button, .both-button {
 	font-family: "Space", monospace;
 	font-size: 0.75rem;
+}
+
+.touch-button {
 	display: none!important;
 }
 
-.touch-button > i {
+.touch-button > i, .both-button > i {
 	display: block;
 	line-height: 1;
 }
 
-.touch-button > i + br {
+.touch-button > i + br, .both-button > i + br {
 	display: none;
 }
-
 
 @media (hover: none) and (pointer: coarse) {
 	.keyboard {
@@ -409,6 +445,22 @@ pre {
 	}
 }
 
+.both-button {
+	display: inline-block!important;
+}
+
+/* Toasts */
+.toast {
+	width: max-content;
+	max-width: calc(100vw - 2rem);
+}
+
+.toast .toast-header {
+	align-items: center;
+	gap: 0.5rem;
+	white-space: nowrap;
+}
+
 /* Bottom-of-page shortcut styling */
 mark {
 	background-color: white;
@@ -423,15 +475,12 @@ mark {
 	margin-bottom: 0;
 }
 
-.shortcut-align {
-	display: inline-flex;
-	align-items: center;
+mark, .shortcut-button {
+	font-size: inherit!important;
+	vertical-align: middle;
 }
 
 .shortcut-button {
-	display: inline-flex;
-	align-items: center;
-	min-height: 0;
 	padding: 0.25rem 0.5rem;
 }
 

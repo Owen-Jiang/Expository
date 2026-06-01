@@ -33,11 +33,11 @@
 	<body>
 		<nav class="navbar navbar-expand-lg" data-bs-theme="dark">
 			<div class="container-fluid">
-				<span class="navbar-brand"><span id="title" aria-label="Owen Jiang"></span></span>
+				<span class="navbar-brand"><span id="title" aria-label=""></span></span>
 				<!-- Title JS animation and control -->
 				<script>
 					const el = document.getElementById("title");
-					const name = "Owen Jiang ";
+					const name = "Owen Jiang";
 					let titlePaused = false;
 					el.textContent = name;
 
@@ -59,7 +59,7 @@
 						el.textContent = name.slice(offset) + name.slice(0, offset);
 					}
 
-					function startTitleAnimation() {
+					function restartTitleAnimation() {
 						if (titleIntervalId) {
 							return;
 						}
@@ -72,7 +72,7 @@
 						el.style.fontStyle = "normal";
 					}
 
-					function stopTitleAnimation(text) {
+					function swapTitleAnimation(text) {
 						titlePaused = true;
 						clearInterval(titleIntervalId);
 						titleIntervalId = null;
@@ -83,7 +83,7 @@
 						el.style.fontStyle = "italic";
 					}
 
-					startTitleAnimation();
+					restartTitleAnimation();
 				</script>
 				<!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 					<i class="bi bi-list"></i>
@@ -130,15 +130,38 @@
 			<div class="container">
 				<div id="entrance" class="text-center animate__animated animate__fadeIn">
 					<h1><pre>$ ssh Owen-Jiang@expository<span class="text-blink">█</span></pre></h1>
-					<sub class="keyboard">Press [ENTER] to enter website expository...</sub>
+					<sub class="keyboard">Press [ENTER] to log in and view website expository...</sub>
 					<button id="enter-button" class="btn btn-outline-light touch-button" type="button"><i class="bi bi-arrow-return-left"></i><br><span class="menu-button-text">Enter Expo</span></button>
 					<button id="reload-button" class="btn btn-outline-light touch-button" type="button"><i class="bi bi-arrow-clockwise"></i><br><span class="menu-button-text">Reload</span></button>
 					<br>
 					<br>
-					<button id="status-button" class="btn btn-outline-light touch-button" type="button"><i class="bi bi-bar-chart-line-fill"></i><br><span class="menu-button-text">Status</span></button>
-					<button id="about-button" class="btn btn-outline-light touch-button" type="button"><i class="bi bi-info-circle"></i><br><span class="menu-button-text">About</span></button>
-					<button id="contact-button" class="btn btn-outline-light touch-button" type="button"><i class="bi bi-person-circle"></i><br><span class="menu-button-text">Contact</span></button>
+					<button id="status-button" class="btn btn-outline-light both-button" type="button" data-bs-toggle="toast" data-bs-target="#status-toast"><i class="bi bi-bar-chart-line-fill"></i><br><span class="menu-button-text">Status</span></button>
+					<button id="about-button" class="btn btn-outline-light both-button" type="button"><i class="bi bi-info-circle"></i><br><span class="menu-button-text">About</span></button>
+					<button id="contact-button" class="btn btn-outline-light both-button" type="button"><i class="bi bi-person-circle"></i><br><span class="menu-button-text">Contact</span></button>
 				</div>
+
+				<div class="toast-container position-relative top-50 start-50 translate-middle" id="status">
+					<div id="status-toast" class="toast align-items-center text-bg-dark border-0" role="alert" aria-live="assertive" aria-atomic="true">
+						<div class="toast-header">
+							<strong class="me-auto">status: 
+								<i class="bi bi-door-closed-fill"></i>
+							</strong><br>
+							<small>local time: <span id="unix_ts" data-bs-toggle="tooltip"></span></small>
+							<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+						</div>
+						<div class="toast-body">
+							gone out<br>
+							it's summer again<br>
+							back soon<br>
+							previous journeys are in repository
+						</div>
+					</div>
+				</div>
+
+				<div id="about">
+					
+				</div>
+
 				<div id="house" style="display: none;" class="animate__animated animate__fadeIn">
 					<h1><pre><span class="indigo">Owen-Jiang</span><span class="california-gold">@</span><span class="red">expository</span><span class="california-gold">:</span><span class="green">~</span><span class="california-gold">$</span> <span class="text-blink">█</span></pre></h1>
 					<nav class="ls-nav">
@@ -221,28 +244,13 @@
 						</div>
 					</div>
 					<div class="shortcuts">
-						<pre class="shortcut-line"><span class="keyboard" data-bs-toggle="tooltip" data-bs-title="Ctrl+D to exit"><mark >^D</mark> Exit</span><button type="button" id="exit-button" class="btn btn-outline-light shortcut-button touch-button">Exit</button></pre>
+						<pre class="shortcut-line"><span class="keyboard" data-bs-toggle="tooltip" data-bs-title="Ctrl+D to exit"><mark>^D</mark> </span><button type="button" id="exit-button" class="btn btn-outline-light shortcut-button both-button">Exit</button></pre>
 					</div>
 					<br>
 				</div>
 			</div>
 		</div>
 		<footer>
-			<button type="button" class="btn btn-primary" id="liveToastBtn" data-bs-toggle="toast" data-bs-target="#liveToast">Show live toast</button>
-
-			<div class="toast-container position-fixed bottom-0 end-0 p-3">
-				<div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-					<div class="toast-header">
-					<img src="..." class="rounded me-2" alt="...">
-					<strong class="me-auto">Bootstrap</strong>
-					<small>11 mins ago</small>
-					<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-					</div>
-					<div class="toast-body">
-					Hello, world! This is a toast message.
-					</div>
-				</div>
-			</div>
 			<div class="container text-center">
 				© Copyright <script>document.write(new Date().getFullYear())</script>
 				<br>
@@ -250,53 +258,61 @@
 			</div>
 		</footer>
 
-		<!-- Mobile and Desktop Interactive Response -->
-		<script>
-			function enterWebsite() {
-				var house = document.getElementById("house");
-				var entrance = document.getElementById("entrance");
-				stopTitleAnimation("Expository");
-				if (house.style.display === "none") {
-					house.style.display = "block";
-					entrance.style.display = "none";
+			<!-- Mobile and Desktop Interactive Response -->
+			<script>
+				function closeToasts() {
+					document.querySelectorAll(".toast").forEach(function(toastElement) {
+						const toast = window.bootstrap ? bootstrap.Toast.getInstance(toastElement) : null;
+
+						if (toast) {
+							toast.hide();
+						} else {
+							toastElement.classList.remove("show");
+						}
+					});
 				}
-			}
 
-			function reloadWebsite() {
-				window.location.reload();
-			}
-
-			function exitWebsite() {
-				var house = document.getElementById("house");
-				var entrance = document.getElementById("entrance");
-				startTitleAnimation();
-				if (house.style.display != "none") {
-					entrance.style.display = "block";
-					house.style.display = "none";
+				function enterWebsite() {
+					var house = document.getElementById("house");
+					var entrance = document.getElementById("entrance");
+					closeToasts();
+					swapTitleAnimation("Expository");
+					if (house.style.display === "none") {
+						house.style.display = "block";
+						entrance.style.display = "none";
+					}
 				}
-			}
 
-			document.getElementById("enter-button").addEventListener("click", enterWebsite);
-			document.getElementById("reload-button").addEventListener("click", reloadWebsite);
-			document.getElementById("exit-button").addEventListener("click", exitWebsite);
-
-			document.body.addEventListener("keydown", function(event) {
-				var house = document.getElementById("house");
-				var entrance = document.getElementById("entrance");
-				if (event.key === "Enter") {
-					event.preventDefault();
-					enterWebsite();
+				function reloadWebsite() {
+					window.location.reload();
 				}
-				if (event.ctrlKey && event.key === 'd') {
-					event.preventDefault();
-					startTitleAnimation();
+
+				function exitWebsite() {
+					var house = document.getElementById("house");
+					var entrance = document.getElementById("entrance");
+					closeToasts();
+					restartTitleAnimation();
 					if (house.style.display != "none") {
 						entrance.style.display = "block";
 						house.style.display = "none";
 					}
 				}
-			});
-		</script>
+
+				document.getElementById("enter-button").addEventListener("click", enterWebsite);
+				document.getElementById("reload-button").addEventListener("click", reloadWebsite);
+				document.getElementById("exit-button").addEventListener("click", exitWebsite);
+
+				document.body.addEventListener("keydown", function(event) {
+					if (event.key === "Enter") {
+						event.preventDefault();
+						enterWebsite();
+					}
+					if (event.ctrlKey && event.key === 'd') {
+						event.preventDefault();
+						exitWebsite();
+					}
+				});
+			</script>
 
 		<!-- Bootstrap JS/Popper -->
 		<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
@@ -341,6 +357,43 @@
 				});
 			}
 
+				const unixTimestampTimeZone = "America/Los_Angeles";
+
+				function updateUnixTS() {
+					const element = document.getElementById("unix_ts");
+
+					if (!element) {
+					return;
+				}
+
+					const now = new Date();
+					const unixTimestamp = Math.floor(now.getTime() / 1000).toString();
+					const dateText = now.toLocaleDateString(undefined, {
+						timeZone: unixTimestampTimeZone,
+						year: "numeric",
+						month: "numeric",
+						day: "numeric"
+					});
+					const timeText = now.toLocaleTimeString(undefined, {
+						timeZone: unixTimestampTimeZone,
+						hour: "2-digit",
+						minute: "2-digit",
+						second: "2-digit",
+						hourCycle: "h23",
+						timeZoneName: "shortOffset"
+					});
+					element.textContent = dateText + " " + timeText;
+				element.setAttribute("data-bs-title", unixTimestamp);
+
+				const tooltip = bootstrap.Tooltip.getInstance(element);
+
+				if (tooltip) {
+					tooltip.setContent({ ".tooltip-inner": unixTimestamp });
+				}
+			}
+
+			updateUnixTS();
+			setInterval(updateUnixTS, 1000);
 			initializeTooltips(document);
 
 			tooltipMediaQuery.addEventListener("change", refreshTooltips);
@@ -376,6 +429,18 @@
 					}
 				});
 			});
+
+			document.addEventListener("click", function(event) {
+				const displayChangeTrigger = event.target.closest("a[href], button, [data-bs-toggle='list'], [data-bs-toggle='tab'], [data-bs-toggle='pill'], [data-display-change]");
+
+				if (
+					displayChangeTrigger &&
+					!displayChangeTrigger.closest(".toast") &&
+					displayChangeTrigger.getAttribute("data-bs-toggle") !== "toast"
+				) {
+					closeToasts();
+				}
+			}, true);
 		</script>
 	</body>
 </html>
