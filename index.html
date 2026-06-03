@@ -27,64 +27,13 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
 		<!-- Favicon -->
-		<link rel="icon" type="image/x-icon" href="expository-ico.jpeg">
+		<link rel="icon" type="image/x-icon" href="ico.jpeg">
 
 	</head>
 	<body>
 		<nav class="navbar navbar-expand-lg" data-bs-theme="dark">
 			<div class="container-fluid">
 				<span class="navbar-brand"><span id="title" aria-label=""></span></span>
-				<!-- Title JS animation and control -->
-				<script>
-					const el = document.getElementById("title");
-					const name = "Owen Jiang";
-					let titlePaused = false;
-					el.textContent = name;
-
-					let i = 0;
-					let seconds = 5;
-					let titleIntervalId;
-
-					function runTitleAnimation() {
-						const progress = (Date.now() % (seconds * 1000)) / (seconds * 1000);
-
-						if (progress < 0.9) {
-							el.textContent = name;
-							return;
-						}
-
-						i = Math.floor((progress - 0.9) * 100);
-
-						const offset = i % name.length;
-						el.textContent = name.slice(offset) + name.slice(0, offset);
-					}
-
-					function restartTitleAnimation() {
-						if (titleIntervalId) {
-							return;
-						}
-
-						titlePaused = false;
-						el.classList.remove("title-paused");
-						titleIntervalId = setInterval(runTitleAnimation, 50);
-
-						el.style.fontFamily = "HelveticaNL";
-						el.style.fontStyle = "normal";
-					}
-
-					function swapTitleAnimation(text) {
-						titlePaused = true;
-						clearInterval(titleIntervalId);
-						titleIntervalId = null;
-						el.classList.add("title-paused");
-						el.textContent = text;
-
-						el.style.fontFamily = "Inter";
-						el.style.fontStyle = "italic";
-					}
-
-					restartTitleAnimation();
-				</script>
 				<!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 					<i class="bi bi-list"></i>
 				</button> -->
@@ -136,17 +85,18 @@
 					<br>
 					<br>
 					<button id="status-button" class="btn btn-outline-light both-button" type="button" data-bs-toggle="toast" data-bs-target="#status-toast"><i class="bi bi-bar-chart-line-fill"></i><br><span class="menu-button-text">Status</span></button>
-					<button id="about-button" class="btn btn-outline-light both-button" type="button"><i class="bi bi-info-circle"></i><br><span class="menu-button-text">About</span></button>
-					<button id="contact-button" class="btn btn-outline-light both-button" type="button"><i class="bi bi-person-circle"></i><br><span class="menu-button-text">Contact</span></button>
+					<button id="about-button" class="btn btn-outline-light both-button" type="button" aria-pressed="false"><i class="bi bi-info-circle"></i><br><span class="menu-button-text">About</span></button>
+					<button id="contact-button" class="btn btn-outline-light both-button" type="button" aria-pressed="false"><i class="bi bi-person-circle"></i><br><span class="menu-button-text">Contact</span></button>
 				</div>
 
 				<div class="toast-container position-relative top-50 start-50 translate-middle" id="status">
 					<div id="status-toast" class="toast align-items-center text-bg-dark border-0" role="alert" aria-live="assertive" aria-atomic="true">
-						<div class="toast-header">
+						<div class="toast-header bg-dark text-light border-0">
 							<strong class="me-auto">status: 
 								<i class="bi bi-door-closed-fill"></i>
+								<!-- <i class="bi bi-moon-stars-fill"></i> -->
 							</strong><br>
-							<small>local time: <span id="unix_ts" data-bs-toggle="tooltip"></span></small>
+							<small><em>local time</em>: <mark id="unix_ts" data-bs-toggle="tooltip"></mark></small>
 							<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
 						</div>
 						<div class="toast-body">
@@ -158,11 +108,45 @@
 					</div>
 				</div>
 
-				<div id="about">
-					
+				<div id="about" style="display: none; font-size: 1.25rem;" class="transient">
+					<br>
+					<div class="row">
+						<div class="col-lg-6">
+							<pre><strong>Name</strong>: <mark data-bs-toggle="tooltip" data-bs-title="ˈə͡ʊɪn t͡ɕiaŋ" data-bs-placement="right">Owen Jiang</mark></pre>
+							<pre>Undergraduate Class of <mark data-bs-toggle="tooltip" data-bs-title="Rising Sophomore" data-bs-placement="right">2029</mark></pre>
+							<pre><strong>University</strong>: <mark data-bs-toggle="tooltip" data-bs-title="Until September 2026" data-bs-placement="right"><a href="https://berkeley.edu" rel="noopener noreferrer">UC Berkeley</a></mark></pre>
+							<!-- <pre>Intended Major: Electrical Engineering + Geological and Planetary Sciences</pre>
+							<pre>Intended Minor: Aerospace Engineering</pre> -->
+							<pre><strong>Website</strong>: <a href="https://ocf.berkeley.edu/~owenj" rel="noopener noreferrer">ocf.berkeley.edu/~owenj</a> <button type="button" class="btn btn-link p-0 ms-1 align-baseline text-reset" aria-label="Copy ocf.berkeley.edu/~owenj" data-bs-toggle="tooltip" data-bs-title="Click to copy" data-copy-text="ocf.berkeley.edu/~owenj"><i class="bi bi-copy"></i></button></pre>
+							<span id="cy-effective-orcid-url" target="orcid.widget" rel="me noopener noreferrer" style="vertical-align: top" class="position-relative">
+								<a class="stretched-link" href="https://orcid.org/0009-0004-5304-6237" target="_blank" rel="noopener noreferrer"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" style="width: 1em; margin-inline-start: 0.5em" alt="ORCID iD icon"/></a>
+								<a href="https://orcid.org/0009-0004-5304-6237" target="orcid.widget" rel="me noopener noreferrer">ORCID</a>
+							</span><br>
+							<span class="position-relative">
+								<a class="stretched-link" href="https://scholar.google.com/citations?user=zsNvzXgAAAAJ" target="_blank" rel="noopener noreferrer"><img src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Google_Scholar_logo.svg" style="width: 1em; margin-inline-start: 0.5em" alt="Google Scholar icon"/></a>
+								<a href="https://scholar.google.com/citations?user=zsNvzXgAAAAJ" target="_blank" rel="noopener noreferrer">Google Scholar</a>
+							</span>
+						</div>
+						<div class="col-lg-6">
+							<pre><strong>Portrait</strong>: <img class="img-fluid" src="./images/me.jpeg" alt="What I look like" style="border-radius: 100%;"></pre>
+						</div>
+					</div>
 				</div>
 
-				<div id="house" style="display: none;" class="animate__animated animate__fadeIn">
+				<div id="contact" style="display: none;" class="transient">
+					<address class="d-inline-flex align-items-start">
+						<i class="bi bi-envelope-at me-2"></i>
+						<div class="vr me-2"></div>
+						<div class="d-flex flex-column align-items-start">
+							<span><a href="mailto:owen.jiang@berkeley.edu">owen (dot) jiang (at) berkeley (dot) edu</a><!-- <em>(deleting September 2026)</em>--> <button type="button" class="btn btn-link p-0 ms-1 align-baseline text-reset" aria-label="Copy owen.jiang@berkeley.edu" data-bs-toggle="tooltip" data-bs-title="Click to copy" data-copy-text="owen.jiang@berkeley.edu"><i class="bi bi-copy"></i></button></span>
+							<!-- <span><br></span>
+							<span><a href="mailto:ojiang@caltech.edu">ojiang (at) caltech (dot) edu</a> <button type="button" class="btn btn-link p-0 ms-1 align-baseline text-reset" aria-label="Copy ojiang@caltech.edu" data-bs-toggle="tooltip" data-bs-title="Click to copy" data-copy-text="ojiang@caltech.edu"><i class="bi bi-copy"></i></button></span> -->
+							<span><a href="mailto:projecthandsondeck@gmail.com">projecthandsondeck (at) gmail (dot) com</a> <em>(engineering projects)</em> <button type="button" class="btn btn-link p-0 ms-1 align-baseline text-reset" aria-label="Copy projecthandsondeck@gmail.com" data-bs-toggle="tooltip" data-bs-title="Click to copy" data-copy-text="projecthandsondeck@gmail.com"><i class="bi bi-copy"></i></button></span>
+						</div>
+					</address>
+				</div>
+
+				<div id="house" style="display: none;" class="transient">
 					<h1><pre><span class="indigo">Owen-Jiang</span><span class="california-gold">@</span><span class="red">expository</span><span class="california-gold">:</span><span class="green">~</span><span class="california-gold">$</span> <span class="text-blink">█</span></pre></h1>
 					<nav class="ls-nav">
 						<ul>
@@ -243,14 +227,15 @@
 							</div>
 						</div>
 					</div>
-					<div class="shortcuts">
-						<pre class="shortcut-line"><span class="keyboard" data-bs-toggle="tooltip" data-bs-title="Ctrl+D to exit"><mark>^D</mark> </span><button type="button" id="exit-button" class="btn btn-outline-light shortcut-button both-button">Exit</button></pre>
-					</div>
-					<br>
 				</div>
 			</div>
 		</div>
 		<footer>
+			<div class="container">
+				<div class="shortcuts">
+					<pre class="shortcut-line"><span class="keyboard" data-bs-toggle="tooltip" data-bs-title="Ctrl+D to go back or exit"><mark>^D</mark> </span><button type="button" id="exit-button" class="btn btn-outline-light shortcut-button both-button">Exit</button></pre>
+				</div>
+			</div>
 			<div class="container text-center">
 				© Copyright <script>document.write(new Date().getFullYear())</script>
 				<br>
@@ -260,6 +245,157 @@
 
 			<!-- Mobile and Desktop Interactive Response -->
 			<script>
+				const titleElement = document.getElementById("title");
+				const titleNames = [
+					"Owen Jiang  ",
+					"Expository  ",
+					"Welcome  ",
+					"Hello World  ",
+					"おゑん じあんぐ  ",
+					"オヱン ジアング  ",
+					"오웬 지앙  ",
+					"Ωϝεν τσιανγ  ",
+					"ㄛㄨㄣ ㄐㄧㄤ  "
+				];
+				let titleName = titleNames[0];
+				const titleSeconds = 15;
+				const entrance = document.getElementById("entrance");
+				const house = document.getElementById("house");
+				const about = document.getElementById("about");
+				const contact = document.getElementById("contact");
+				const aboutButton = document.getElementById("about-button");
+				const contactButton = document.getElementById("contact-button");
+				const infoViews = {
+					about: {
+						button: aboutButton,
+						panel: about,
+						title: "About"
+					},
+					contact: {
+						button: contactButton,
+						panel: contact,
+						title: "Contact"
+					}
+				};
+				const titleThemes = {
+					entrance: {
+						gradient: "var(--title-gradient-entrance)",
+						animation: "flicker 10s steps(1, end) infinite, gradient-left 8s linear infinite",
+						shadow: "0 2px 8px rgba(0, 0, 0, 0.01)",
+						fontFamily: "HelveticaNL",
+						fontStyle: "normal"
+					},
+					about: {
+						gradient: "var(--title-gradient-about)",
+						animation: "gradient-left 4s linear infinite",
+						shadow: "0 2px 8px rgba(0, 0, 0, 0.5)",
+						fontFamily: "Inter",
+						fontStyle: "bold"
+					},
+					contact: {
+						gradient: "var(--title-gradient-contact)",
+						animation: "gradient-right 4s linear infinite",
+						shadow: "0 2px 8px rgba(0, 0, 0, 0.5)",
+						fontFamily: "Inter",
+						fontStyle: "normal"
+					},
+					house: {
+						gradient: "var(--title-gradient-house)",
+						animation: "gradient-right 4s linear infinite",
+						shadow: "0 2px 8px rgba(0, 0, 0, 0.5)",
+						fontFamily: "Inter",
+						fontStyle: "bold"
+					}
+				};
+				let titleIntervalId;
+
+				function applyTitleTheme(themeName) {
+					const theme = titleThemes[themeName] || titleThemes.entrance;
+
+					titleElement.style.setProperty("--title-gradient", theme.gradient);
+					titleElement.style.setProperty("--title-animation", theme.animation);
+					titleElement.style.setProperty("--title-shadow", theme.shadow);
+					titleElement.style.fontFamily = theme.fontFamily;
+					titleElement.style.fontStyle = theme.fontStyle;
+				}
+
+				function runTitleAnimation() {
+					const progress = (Date.now() % (titleSeconds * 1000)) / (titleSeconds * 1000);
+
+					if (progress < 0.6) {
+						titleElement.textContent = titleName;
+						return;
+					}
+
+					const offset = Math.floor((progress - 0.6) * 100) % titleName.length;
+					titleElement.textContent = titleName.slice(offset) + titleName.slice(0, offset);
+				}
+
+				function restartTitleAnimation(themeName = "entrance") {
+					if (titleIntervalId) {
+						return;
+					}
+
+					applyTitleTheme(themeName);
+					titleElement.textContent = titleName;
+					titleIntervalId = setInterval(runTitleAnimation, 50);
+				}
+
+				function swapTitleAnimation(text, themeName) {
+					applyTitleTheme(themeName);
+					clearInterval(titleIntervalId);
+					titleIntervalId = null;
+					titleElement.textContent = text;
+				}
+
+				restartTitleAnimation();
+
+				function randomizeTitleName() {
+					titleName = titleNames[Math.floor(Math.random() * titleNames.length)];
+				}
+
+				function setInfoButtonState(activeViewName) {
+					Object.entries(infoViews).forEach(function([viewName, view]) {
+						const isActive = viewName === activeViewName;
+
+						view.button.classList.toggle("active", isActive);
+						view.button.setAttribute("aria-pressed", isActive.toString());
+					});
+				}
+
+				function hideInfoPanels() {
+					Object.values(infoViews).forEach(function(view) {
+						view.panel.style.display = "none";
+					});
+				}
+
+				function returnToEntrance() {
+					closeToasts();
+					hideInfoPanels();
+					setInfoButtonState(null);
+					randomizeTitleName();
+					restartTitleAnimation();
+					entrance.style.display = "block";
+					house.style.display = "none";
+				}
+
+				function showInfoView(viewName) {
+					const view = infoViews[viewName];
+
+					if (view.button.classList.contains("active")) {
+						returnToEntrance();
+						return;
+					}
+
+					closeToasts();
+					hideInfoPanels();
+					setInfoButtonState(viewName);
+					swapTitleAnimation(view.title, viewName);
+					view.panel.style.display = "block";
+					entrance.style.display = "block";
+					house.style.display = "none";
+				}
+
 				function closeToasts() {
 					document.querySelectorAll(".toast").forEach(function(toastElement) {
 						const toast = window.bootstrap ? bootstrap.Toast.getInstance(toastElement) : null;
@@ -272,44 +408,47 @@
 					});
 				}
 
-				function enterWebsite() {
-					var house = document.getElementById("house");
-					var entrance = document.getElementById("entrance");
+				function enterHouse() {
 					closeToasts();
-					swapTitleAnimation("Expository");
+					hideInfoPanels();
+					setInfoButtonState(null);
+					swapTitleAnimation("Expository", "house");
 					if (house.style.display === "none") {
 						house.style.display = "block";
 						entrance.style.display = "none";
 					}
 				}
 
+				function enterAbout() {
+					showInfoView("about");
+				}
+
+				function enterContact() {
+					showInfoView("contact");
+				}
+
 				function reloadWebsite() {
 					window.location.reload();
 				}
 
-				function exitWebsite() {
-					var house = document.getElementById("house");
-					var entrance = document.getElementById("entrance");
-					closeToasts();
-					restartTitleAnimation();
-					if (house.style.display != "none") {
-						entrance.style.display = "block";
-						house.style.display = "none";
-					}
+				function exitHouse() {
+					returnToEntrance();
 				}
 
-				document.getElementById("enter-button").addEventListener("click", enterWebsite);
+				document.getElementById("enter-button").addEventListener("click", enterHouse);
 				document.getElementById("reload-button").addEventListener("click", reloadWebsite);
-				document.getElementById("exit-button").addEventListener("click", exitWebsite);
+				document.getElementById("about-button").addEventListener("click", enterAbout);
+				document.getElementById("contact-button").addEventListener("click", enterContact);
+				document.getElementById("exit-button").addEventListener("click", exitHouse);
 
 				document.body.addEventListener("keydown", function(event) {
 					if (event.key === "Enter") {
 						event.preventDefault();
-						enterWebsite();
+						enterHouse();
 					}
 					if (event.ctrlKey && event.key === 'd') {
 						event.preventDefault();
-						exitWebsite();
+						exitHouse();
 					}
 				});
 			</script>
@@ -337,7 +476,7 @@
 
 				new bootstrap.Tooltip(tooltipTriggerEl, {
 					container: "body",
-					trigger: "hover"
+					trigger: "hover",
 				});
 			}
 
@@ -395,6 +534,68 @@
 			updateUnixTS();
 			setInterval(updateUnixTS, 1000);
 			initializeTooltips(document);
+
+			function copyTextToClipboard(text) {
+				if (navigator.clipboard && window.isSecureContext) {
+					return navigator.clipboard.writeText(text);
+				}
+
+				const textarea = document.createElement("textarea");
+				textarea.value = text;
+				textarea.setAttribute("readonly", "");
+				textarea.style.position = "fixed";
+				textarea.style.opacity = "0";
+				document.body.appendChild(textarea);
+				textarea.select();
+				document.execCommand("copy");
+				textarea.remove();
+
+				return Promise.resolve();
+			}
+
+			function setCopyTooltipTitle(copyButton, title) {
+				copyButton.setAttribute("data-bs-title", title);
+
+				const tooltip = bootstrap.Tooltip.getInstance(copyButton);
+
+				if (tooltip) {
+					tooltip.setContent({ ".tooltip-inner": title });
+				}
+			}
+
+			function setCopyIconCopied(copyButton, isCopied) {
+				const copyIcon = copyButton.querySelector("i");
+
+				if (!copyIcon) {
+					return;
+				}
+
+				copyIcon.className = isCopied ? "bi bi-clipboard-check-fill" : "bi bi-copy";
+			}
+
+			function resetCopyButton(copyButton) {
+				setCopyTooltipTitle(copyButton, "Click to copy");
+				setCopyIconCopied(copyButton, false);
+			}
+
+			document.querySelectorAll("[data-copy-text]").forEach(function(copyButton) {
+				copyButton.addEventListener("click", function() {
+					copyTextToClipboard(copyButton.getAttribute("data-copy-text")).then(function() {
+						const tooltip = bootstrap.Tooltip.getInstance(copyButton);
+
+						setCopyTooltipTitle(copyButton, "Copied!");
+						setCopyIconCopied(copyButton, true);
+
+						if (tooltip) {
+							tooltip.show();
+						}
+					});
+				});
+
+				copyButton.addEventListener("mouseleave", function() {
+					resetCopyButton(copyButton);
+				});
+			});
 
 			tooltipMediaQuery.addEventListener("change", refreshTooltips);
 

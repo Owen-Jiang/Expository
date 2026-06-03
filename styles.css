@@ -177,24 +177,39 @@
 	--berkeley-blue: #003262;
 	--metallic-gold: #bc9b6a;
 
-	--gradient1: repeating-linear-gradient(
+	--title-gradient-entrance: repeating-linear-gradient(
 		135deg,
-		#e28c00 0%,
-		#a7d379 20%,
-		#6b6b6b 40%,
-		#62aedc 60%,
-		#203856 80%,
-		#e28c00 100%
+		#ffffff 0%,
+		#a3a3a3 16.7%,
+		#262626 33.3%,
+		#800080 50%,
+		#262626 66.7%,
+		#a3a3a3 83.3%,
+		#ffffff 100%
 	);
-	--gradient2: repeating-linear-gradient(
+	--title-gradient-about: repeating-linear-gradient(
 		90deg,
 		#fcf434 0%,
-		#ffffff 25%,
-		#9c59d1 50%,
-		#2c2c2c 75%,
+		#ffffff 16.7%,
+		#9c59d1 33.3%,
+		#2c2c2c 50%,
+		#9c59d1 66.7%,
+		#ffffff 83.3%,
 		#fcf434 100%
 	);
-	--gradient3: repeating-linear-gradient(
+	--title-gradient-contact: repeating-linear-gradient(
+		90deg,
+		#3da542 0%,
+		#a7d379 12.5%,
+		#ffffff 25%,
+		#a9a9a9 37.5%,
+		#000000 50%,
+		#a9a9a9 62.5%,
+		#ffffff 75%,
+		#a7d379 87.5%,
+		#3da542 100%
+	);
+	--title-gradient-house: repeating-linear-gradient(
 		45deg,
 		#003262 0%,
 		#bc9b6a 25%,
@@ -202,6 +217,9 @@
 		#bc9b6a 75%,
 		#003262 100%
 	);
+	--title-gradient: var(--title-gradient-entrance);
+	--title-animation: flicker 10s steps(1, end) infinite, gradient-left 8s linear infinite;
+	--title-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 	--h1-size: min(5.1vw, 2.5rem);
 	--h2-size: min(max(0.75rem, calc(var(--h1-size) * 0.8)), 2rem);
 	--h3-size: min(max(0.7rem, calc(var(--h1-size) * 0.7)), 1.75rem);
@@ -241,8 +259,8 @@ body {
 	font-style: normal;
 
 	background-color: #000001;
-	background-image: var(--bs-gradient);
-	color: #fffdff;
+	/* background-image: var(--bs-gradient); */
+	color: #ffffff;
 	min-height: 100vh;
 	display: flex;
 	flex-direction: column;
@@ -282,15 +300,17 @@ nav {
 
 	font-size: min(2rem, 1.6vw);
 	opacity: 0.35;
-	text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+	text-shadow: var(--title-shadow);
 
-	line-height: normal;
+	line-height: 1.2;
 	pointer-events: auto;
+	padding-top: 0.08em;
+	user-select: none;
 	white-space: pre;
 
-	animation: flicker 5s steps(1, end) infinite, gradient-left 4s linear infinite;
+	animation: var(--title-animation);
 
-	background-image: var(--gradient1);
+	background-image: var(--title-gradient);
 	background-size: 200% 100%;
 	background-position: 0% 50%;
 	background-repeat: repeat-x;
@@ -303,12 +323,6 @@ nav {
 	font-family: "HelveticaNL";
 	font-weight: 600;
 	transition: all 0.3s ease;
-}
-
-#title.title-paused {
-	animation: gradient-right 4s linear infinite;
-	background-image: var(--gradient2);
-	text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
 #title:hover {
@@ -360,12 +374,26 @@ nav {
 	}
 }
 
+/* Transient displaying */
+.transient {
+	animation-duration: var(--animate-duration, 1s);
+	animation-fill-mode: both;
+	animation-name: fadeIn;
+}
+
 /* Code block styling */
 pre {
 	font-family: "Space", monospace;
 	overflow: visible;
 	font-size: inherit;
 	max-width: 100%;
+}
+
+/* Highlighted text styling */
+
+mark {
+	background-color: #dee2e6;
+	line-height: inherit;
 }
 
 /* Touch button styling */
@@ -462,9 +490,6 @@ pre {
 }
 
 /* Bottom-of-page shortcut styling */
-mark {
-	background-color: white;
-}
 
 .shortcuts {
 	margin-top: 0.5rem;
@@ -475,13 +500,26 @@ mark {
 	margin-bottom: 0;
 }
 
-mark, .shortcut-button {
+.shortcut-line mark, .shortcut-button {
 	font-size: inherit!important;
 	vertical-align: middle;
 }
 
+/* For cases where shortcut lines need to be aligned according to the baseline */
+
+pre mark {
+	vertical-align: baseline;
+}
+
 .shortcut-button {
 	padding: 0.25rem 0.5rem;
+}
+
+/* Tooltip text settings */
+.tooltip {
+	font-family: inherit;
+	--bs-tooltip-bg: #ffffff;
+	--bs-tooltip-color: #000000;
 }
 
 /* .card {
@@ -490,13 +528,17 @@ mark, .shortcut-button {
 
 /* Change hyperlink color/style */
 a {
-	color: #88d9e6;
+	color: #77c0cc;
 	font-weight: 600;
 }
 
 /* Change hyperlink, navbar-link, and dropdown-item hover color */
 a:hover, .navbar-brand:hover, .nav-link:hover, .dropdown-item:hover {
 	color: #ffc107;
+}
+
+mark > a:hover {
+	color: #906d04;
 }
 
 /* Position the dropdown menu */
@@ -553,7 +595,7 @@ a:hover, .navbar-brand:hover, .nav-link:hover, .dropdown-item:hover {
 footer {
 	margin-top: auto;
 	color: #fffdff;
-	font-size: 0.75rem;
+	font-size: 0.9rem;
 }
 
 /* Footer stuff */
