@@ -322,12 +322,12 @@
 				function runTitleAnimation() {
 					const progress = (Date.now() % (titleSeconds * 1000)) / (titleSeconds * 1000);
 
-					if (progress < 0.6) {
+					if (progress < 0.9) {
 						titleElement.textContent = titleName;
 						return;
 					}
 
-					const offset = Math.floor((progress - 0.6) * 100) % titleName.length;
+					const offset = Math.floor((progress - 0.9) * 100) % titleName.length;
 					titleElement.textContent = titleName.slice(offset) + titleName.slice(0, offset);
 				}
 
