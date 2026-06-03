@@ -253,7 +253,7 @@ h6 {
 }
 
 body {
-	font-family: "HelveticaNL";
+	font-family: "HelveticaNL"!important;
 	font-optical-sizing: auto;
 	font-size: 1rem;
 	font-style: normal;
