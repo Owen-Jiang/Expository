@@ -498,6 +498,7 @@ mark {
 
 .shortcut-line {
 	margin-bottom: 0;
+	white-space: normal;
 }
 
 .shortcut-line mark, .shortcut-button {
@@ -526,15 +527,17 @@ pre mark {
 	background-color: inherit;
 } */
 
+/* link-underline-opacity-100-hover */
+
 /* Change hyperlink color/style */
-a {
-	color: #77c0cc;
+a, .btn-link {
+	color: #ffc107;
 	font-weight: 600;
 }
 
 /* Change hyperlink, navbar-link, and dropdown-item hover color */
-a:hover, .navbar-brand:hover, .nav-link:hover, .dropdown-item:hover {
-	color: #ffc107;
+a:hover, .btn-link:hover, .navbar-brand:hover, .nav-link:hover, .dropdown-item:hover {
+	color: #77c0cc;
 }
 
 mark > a:hover {
