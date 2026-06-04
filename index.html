@@ -31,6 +31,9 @@
 
 	</head>
 	<body>
+		<video class="background-video" autoplay muted loop playsinline aria-hidden="true">
+			<source src="./images/background.mp4" type="video/mp4">
+		</video>
 		<nav class="navbar navbar-expand-lg" data-bs-theme="dark">
 			<div class="container-fluid">
 				<span class="navbar-brand"><span id="title" aria-label=""></span></span>
@@ -103,6 +106,8 @@
 							gone out<br>
 							back soon<br>
 							previous journeys are in repository
+							<br>
+							btw, you are visitor number <span id="visitor-count">...</span>
 						</div>
 					</div>
 				</div>
@@ -138,6 +143,16 @@
 							<pre><strong>Portrait</strong>: <a href="https://maps.app.goo.gl/gk73h5mzzT3T7tvs9" target="_blank" rel="noopener noreferrer"><img class="img-fluid" src="./images/me.jpeg" alt="What I look like" style="border-radius: 100%;" data-bs-toggle="tooltip" data-bs-title="Springer Gateway"></a></pre>
 						</div>
 					</div>
+					<figure>
+						<blockquote class="blockquote">
+							<p>I used to wonder about what I didn't know. I still do, but I used to, too.</p>
+						</blockquote>
+						<figcaption class="blockquote-footer">
+							Me, a long time ago, thinking about what to write here
+						</figcaption>
+					</figure>
+					<blockquote class="blockquote">
+					</blockquote>
 				</div>
 
 				<div id="contact" style="display: none;" class="transient">
@@ -154,7 +169,7 @@
 				</div>
 
 				<div id="house" style="display: none;" class="transient">
-					<h1><pre><span class="indigo">Owen-Jiang</span><span class="california-gold">@</span><span class="red">expository</span><span class="california-gold">:</span><span class="green">~</span><span class="california-gold">$</span> <span class="text-blink">█</span></pre></h1>
+					<h1 class="directory-heading"><pre><span class="indigo">Owen-Jiang</span><span class="california-gold">@</span><span class="red">expository</span><span class="california-gold">:</span><span class="green" id="directory-path">~</span><span class="california-gold">$</span><span class="text-white" id="cd-path"></span> <span class="text-blink">█</span></pre></h1>
 					<nav class="ls-nav">
 						<ul>
 							<li class="nav-item">
@@ -177,11 +192,11 @@
 					<br>
 					<div class="shortcuts">
 						<pre class="shortcut-line">
-							<span class="keyboard" data-bs-toggle="tooltip" data-bs-title="Press Ctrl+G to see Resume"><mark>^G</mark> </span><button type="button" id="resume-button" class="btn btn-link shortcut-button both-button" aria-pressed="false">Resume</button>
-							<span class="keyboard" data-bs-toggle="tooltip" data-bs-title="Press Ctrl+H to see CV"><mark>^H</mark> </span><button type="button" id="cv-button" class="btn btn-link shortcut-button both-button" aria-pressed="false">CV</button>
-							<span class="keyboard" data-bs-toggle="tooltip" data-bs-title="Press Ctrl+J to see Journey"><mark>^J</mark> </span><button type="button" id="journey-button" class="btn btn-link shortcut-button both-button" aria-pressed="false">Journey</button>
-							<span class="keyboard" data-bs-toggle="tooltip" data-bs-title="Press Ctrl+K to see Projects"><mark>^K</mark> </span><button type="button" id="projects-button" class="btn btn-link shortcut-button both-button" aria-pressed="false">Projects</button>
-							<span class="keyboard" data-bs-toggle="tooltip" data-bs-title="Press Ctrl+L to see Thoughts"><mark>^L</mark> </span><button type="button" id="thoughts-button" class="btn btn-link shortcut-button both-button" aria-pressed="false">Thoughts</button>
+							<span class="keyboard" data-bs-toggle="tooltip" data-bs-title="Press Ctrl+G to toggle Resume"><mark>^G</mark> </span><button type="button" id="resume-button" class="btn btn-link shortcut-button keyboard" aria-pressed="false">Resume</button>
+							<span class="keyboard" data-bs-toggle="tooltip" data-bs-title="Press Ctrl+H to toggle CV"><mark>^H</mark> </span><button type="button" id="cv-button" class="btn btn-link shortcut-button keyboard" aria-pressed="false">CV</button>
+							<span class="keyboard" data-bs-toggle="tooltip" data-bs-title="Press Ctrl+J to toggle Journey"><mark>^J</mark> </span><button type="button" id="journey-button" class="btn btn-link shortcut-button keyboard" aria-pressed="false">Journey</button>
+							<span class="keyboard" data-bs-toggle="tooltip" data-bs-title="Press Ctrl+K to toggle Projects"><mark>^K</mark> </span><button type="button" id="projects-button" class="btn btn-link shortcut-button keyboard" aria-pressed="false">Projects</button>
+							<span class="keyboard" data-bs-toggle="tooltip" data-bs-title="Press Ctrl+L to toggle Thoughts"><mark>^L</mark> </span><button type="button" id="thoughts-button" class="btn btn-link shortcut-button keyboard" aria-pressed="false">Thoughts</button>
 						</pre>
 					</div>
 				</div>
@@ -189,30 +204,35 @@
 				<div id="resume" style="display: none;" class="transient">
 					<br>
 					<h2>Resume</h2>
-					<p>Coming soon...</p>
+					<form class="d-flex protected-document-form" data-document="resume">
+						<input class="form-control me-2" type="password" placeholder="Password" aria-label="Resume password" autocomplete="current-password">
+						<button class="btn btn-light" type="submit">Open</button>
+					</form>
+					<div class="form-text text-light protected-document-message" aria-live="polite"></div>
 				</div>
 
 				<div id="cv" style="display: none;" class="transient">
 					<br>
 					<h2>CV</h2>
-					<p>Coming soon...</p>
+					<form class="d-flex protected-document-form" data-document="cv">
+						<input class="form-control me-2" type="password" placeholder="Password" aria-label="CV password" autocomplete="current-password">
+						<button class="btn btn-light" type="submit">Open</button>
+					</form>
+					<div class="form-text text-light protected-document-message" aria-live="polite"></div>
 				</div>
 
 				<div id="journey" style="display: none;" class="transient">
 					<br>
-					<h2>Journey</h2>
 					<p>Coming soon...</p>
 				</div>
 
 				<div id="projects" style="display: none;" class="transient">
 					<br>
-					<h2>Projects</h2>
 					<p>Coming soon...</p>
 				</div>
 
 				<div id="thoughts" style="display: none;" class="transient">
 					<br>
-					<h2>Thoughts</h2>
 					<p>Coming soon...</p>
 				</div>
 			</div>
@@ -251,6 +271,10 @@
 				const house = document.getElementById("house");
 				const about = document.getElementById("about");
 				const contact = document.getElementById("contact");
+				const directoryPath = document.getElementById("directory-path");
+				const cdPath = document.getElementById("cd-path");
+				const baseDirectoryPath = directoryPath.textContent;
+				const cdCommand = "cd";
 				const aboutButton = document.getElementById("about-button");
 				const contactButton = document.getElementById("contact-button");
 				const infoViews = {
@@ -269,26 +293,41 @@
 					resume: {
 						panel: document.getElementById("resume"),
 						buttonIds: ["resume-button", "resume-touch-button"],
+						directory: "Resume",
+						title: "Resume",
+						titleTheme: "resume",
 						key: "g"
 					},
 					cv: {
 						panel: document.getElementById("cv"),
 						buttonIds: ["cv-button", "cv-touch-button"],
+						directory: "CV",
+						title: "CV",
+						titleTheme: "cv",
 						key: "h"
 					},
 					journey: {
 						panel: document.getElementById("journey"),
 						buttonIds: ["journey-button", "journey-touch-button"],
+						directory: "Journey",
+						title: "Journey",
+						titleTheme: "journey",
 						key: "j"
 					},
 					projects: {
 						panel: document.getElementById("projects"),
 						buttonIds: ["projects-button", "projects-touch-button"],
+						directory: "Projects",
+						title: "Projects",
+						titleTheme: "projects",
 						key: "k"
 					},
 					thoughts: {
 						panel: document.getElementById("thoughts"),
 						buttonIds: ["thoughts-button", "thoughts-touch-button"],
+						directory: "Thoughts",
+						title: "Thoughts",
+						titleTheme: "thoughts",
 						key: "l"
 					}
 				};
@@ -320,10 +359,46 @@
 						shadow: "0 2px 8px rgba(0, 0, 0, 0.5)",
 						fontFamily: "Inter",
 						fontStyle: "bold"
+					},
+					resume: {
+						gradient: "var(--title-gradient-resume)",
+						animation: "gradient-right 4s linear infinite",
+						shadow: "0 2px 8px rgba(0, 0, 0, 0.5)",
+						fontFamily: "Inter",
+						fontStyle: "bold"
+					},
+					cv: {
+						gradient: "var(--title-gradient-cv)",
+						animation: "gradient-left 4s linear infinite",
+						shadow: "0 2px 8px rgba(0, 0, 0, 0.5)",
+						fontFamily: "Inter",
+						fontStyle: "normal"
+					},
+					journey: {
+						gradient: "var(--title-gradient-journey)",
+						animation: "gradient-right 6s linear infinite",
+						shadow: "0 2px 8px rgba(0, 0, 0, 0.5)",
+						fontFamily: "HelveticaNL",
+						fontStyle: "normal"
+					},
+					projects: {
+						gradient: "var(--title-gradient-projects)",
+						animation: "gradient-left 3s linear infinite",
+						shadow: "0 2px 8px rgba(0, 0, 0, 0.5)",
+						fontFamily: "Inter",
+						fontStyle: "bold"
+					},
+					thoughts: {
+						gradient: "var(--title-gradient-thoughts)",
+						animation: "gradient-right 8s linear infinite",
+						shadow: "0 2px 8px rgba(0, 0, 0, 0.5)",
+						fontFamily: "HelveticaNL",
+						fontStyle: "normal"
 					}
 				};
 				let titleIntervalId;
 				let titleAnimationStartedAt;
+				let activeHouseViewName = null;
 
 				function applyTitleTheme(themeName) {
 					const theme = titleThemes[themeName] || titleThemes.entrance;
@@ -411,12 +486,36 @@
 					});
 				}
 
+				function updateCdPreview(viewName) {
+					const view = houseViews[viewName];
+
+					if (!view) {
+						cdPath.textContent = "";
+						return;
+					}
+
+					if (!activeHouseViewName) {
+						cdPath.textContent = " " + cdCommand + " " + view.directory + "/";
+						return;
+					}
+
+					cdPath.textContent = " " + cdCommand + " " + (activeHouseViewName === viewName ? "../" : "../" + view.directory + "/");
+				}
+
+				function updateDirectoryPath(viewName) {
+					const view = houseViews[viewName];
+					directoryPath.textContent = view ? baseDirectoryPath + "/" + view.directory : baseDirectoryPath;
+				}
+
 				function returnToEntrance() {
 					closeToasts();
 					hideInfoPanels();
 					setInfoButtonState(null);
 					hideHousePanels();
 					setHouseButtonState(null);
+					activeHouseViewName = null;
+					updateCdPreview(null);
+					updateDirectoryPath(null);
 					randomizeTitleName();
 					restartTitleAnimation();
 					entrance.style.display = "block";
@@ -436,6 +535,9 @@
 					setInfoButtonState(viewName);
 					hideHousePanels();
 					setHouseButtonState(null);
+					activeHouseViewName = null;
+					updateCdPreview(null);
+					updateDirectoryPath(null);
 					swapTitleAnimation(view.title, viewName);
 					view.panel.style.display = "block";
 					entrance.style.display = "block";
@@ -456,6 +558,9 @@
 					if (view.panel.style.display !== "none") {
 						hideHousePanels();
 						setHouseButtonState(null);
+						activeHouseViewName = null;
+						updateDirectoryPath(null);
+						swapTitleAnimation("Expository", "house");
 						entrance.style.display = "none";
 						house.style.display = "block";
 						return;
@@ -463,7 +568,10 @@
 
 					hideHousePanels();
 					setHouseButtonState(viewName);
-					swapTitleAnimation("Expository", "house");
+					activeHouseViewName = viewName;
+					updateCdPreview(viewName);
+					updateDirectoryPath(viewName);
+					swapTitleAnimation(view.title, view.titleTheme);
 					view.panel.style.display = "block";
 					entrance.style.display = "none";
 					house.style.display = "block";
@@ -487,6 +595,9 @@
 					setInfoButtonState(null);
 					hideHousePanels();
 					setHouseButtonState(null);
+					activeHouseViewName = null;
+					updateCdPreview(null);
+					updateDirectoryPath(null);
 					swapTitleAnimation("Expository", "house");
 					if (house.style.display === "none") {
 						house.style.display = "block";
@@ -521,6 +632,14 @@
 						const button = document.getElementById(buttonId);
 
 						if (button) {
+							button.addEventListener("mouseenter", function() {
+								updateCdPreview(viewName);
+							});
+
+							button.addEventListener("mouseleave", function() {
+								updateCdPreview(null);
+							});
+
 							button.addEventListener("click", function() {
 								showHouseView(viewName);
 							});
@@ -528,9 +647,22 @@
 					});
 				});
 
+				function getVisibleProtectedDocumentForm() {
+					return Array.from(document.querySelectorAll(".protected-document-form")).find(function(form) {
+						return form.offsetParent !== null;
+					});
+				}
+
 				document.body.addEventListener("keydown", function(event) {
 					if (event.key === "Enter") {
 						event.preventDefault();
+						const protectedDocumentForm = getVisibleProtectedDocumentForm();
+
+						if (protectedDocumentForm) {
+							protectedDocumentForm.requestSubmit(protectedDocumentForm.querySelector("button[type='submit']"));
+							return;
+						}
+
 						enterHouse();
 					}
 					if (event.ctrlKey && event.key === 'd') {
@@ -544,6 +676,82 @@
 						}
 					});
 				});
+
+				const protectedDocumentPasswordHash = "c0425ff3d1a770e5c0a3248eccc3529011dc593ce6f77d748964699976cb420f";
+				const protectedDocuments = {
+					resume: "./files/Resume_2026-06-03_1927.pdf",
+					cv: "./files/CV_2026-06-03_1933.pdf"
+				};
+
+				function bytesToHex(bytes) {
+					return Array.from(bytes).map(function(byte) {
+						return byte.toString(16).padStart(2, "0");
+					}).join("");
+				}
+
+				function hashPassword(password) {
+					const encodedPassword = new TextEncoder().encode(password);
+					return crypto.subtle.digest("SHA-256", encodedPassword).then(function(hashBuffer) {
+						return bytesToHex(new Uint8Array(hashBuffer));
+					});
+				}
+
+				document.querySelectorAll(".protected-document-form").forEach(function(form) {
+					form.addEventListener("submit", function(event) {
+						event.preventDefault();
+
+						const documentPath = protectedDocuments[form.dataset.document];
+						const passwordInput = form.querySelector("input[type='password']");
+						const message = form.parentElement.querySelector(".protected-document-message");
+
+						if (!crypto.subtle) {
+							message.textContent = "Password check requires HTTPS or localhost.";
+							return;
+						}
+
+						const documentWindow = window.open("about:blank", "_blank");
+
+						hashPassword(passwordInput.value).then(function(passwordHash) {
+							if (passwordHash !== protectedDocumentPasswordHash) {
+								message.textContent = "Incorrect password.";
+								passwordInput.select();
+								if (documentWindow) {
+									documentWindow.close();
+								}
+								return;
+							}
+
+							message.textContent = "";
+							passwordInput.value = "";
+							if (documentWindow) {
+								documentWindow.opener = null;
+								documentWindow.location = documentPath;
+							}
+						});
+					});
+				});
+
+				const backgroundMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+				function updateBackgroundTilt(event) {
+					if (backgroundMotionQuery.matches) {
+						return;
+					}
+
+					const x = (event.clientX / window.innerWidth - 0.5) * 2;
+					const y = (event.clientY / window.innerHeight - 0.5) * 2;
+
+					document.documentElement.style.setProperty("--background-tilt-x", (x * 4).toFixed(2) + "deg");
+					document.documentElement.style.setProperty("--background-tilt-y", (y * -4).toFixed(2) + "deg");
+				}
+
+				function resetBackgroundTilt() {
+					document.documentElement.style.setProperty("--background-tilt-x", "0deg");
+					document.documentElement.style.setProperty("--background-tilt-y", "0deg");
+				}
+
+				document.addEventListener("pointermove", updateBackgroundTilt);
+				document.addEventListener("pointerleave", resetBackgroundTilt);
 			</script>
 
 		<!-- Bootstrap JS/Popper -->
@@ -553,6 +761,32 @@
 		<!-- Bootstrap component initialization -->
 		<script>
 			const tooltipMediaQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
+			const visitorCount = document.getElementById("visitor-count");
+
+			if (visitorCount) {
+				const visitorCountCacheKey = "expositoryVisitorCount";
+				const cachedVisitorCount = sessionStorage.getItem(visitorCountCacheKey);
+
+				if (cachedVisitorCount) {
+					visitorCount.textContent = cachedVisitorCount;
+				} else {
+					fetch("./visitor-count.php", {
+						method: "POST",
+						cache: "no-store"
+					})
+						.then(function(response) {
+							return response.ok ? response.json() : Promise.reject();
+						})
+						.then(function(data) {
+							const count = Number(data.count).toLocaleString();
+							sessionStorage.setItem(visitorCountCacheKey, count);
+							visitorCount.textContent = count;
+						})
+						.catch(function() {
+							visitorCount.textContent = "unknown";
+						});
+				}
+			}
 
 			function shouldEnableTooltips() {
 				return tooltipMediaQuery.matches;
@@ -589,7 +823,7 @@
 				});
 			}
 
-				const unixTimestampTimeZone = "America/Los_Angeles";
+				const unixTSTimeZone = "America/Los_Angeles";
 
 				function updateUnixTS() {
 					const element = document.getElementById("unix_ts");
@@ -599,15 +833,19 @@
 				}
 
 					const now = new Date();
-					const unixTimestamp = Math.floor(now.getTime() / 1000).toString();
-					const dateText = now.toLocaleDateString(undefined, {
-						timeZone: unixTimestampTimeZone,
+					const unixTS = Math.floor(now.getTime() / 1000).toString();
+					const dateParts = new Intl.DateTimeFormat("en-US", {
+						timeZone: unixTSTimeZone,
 						year: "numeric",
-						month: "numeric",
-						day: "numeric"
-					});
+						month: "2-digit",
+						day: "2-digit"
+					}).formatToParts(now).reduce(function(parts, part) {
+						parts[part.type] = part.value;
+						return parts;
+					}, {});
+					const dateText = dateParts.year + "-" + dateParts.month + "-" + dateParts.day;
 					const timeText = now.toLocaleTimeString(undefined, {
-						timeZone: unixTimestampTimeZone,
+						timeZone: unixTSTimeZone,
 						hour: "2-digit",
 						minute: "2-digit",
 						second: "2-digit",
@@ -615,12 +853,12 @@
 						timeZoneName: "shortOffset"
 					});
 					element.textContent = dateText + " " + timeText;
-				element.setAttribute("data-bs-title", unixTimestamp);
+				element.setAttribute("data-bs-title", unixTS);
 
 				const tooltip = bootstrap.Tooltip.getInstance(element);
 
 				if (tooltip) {
-					tooltip.setContent({ ".tooltip-inner": unixTimestamp });
+					tooltip.setContent({ ".tooltip-inner": unixTS });
 				}
 			}
 

@@ -217,6 +217,38 @@
 		#bc9b6a 75%,
 		#003262 100%
 	);
+	--title-gradient-resume: repeating-linear-gradient(
+		45deg,
+		rgb(0, 0, 255) 0%,
+		rgb(255, 215, 0) 50%,
+		rgb(0, 0, 255) 100%
+	);
+	--title-gradient-cv: repeating-linear-gradient(
+		45deg,
+		#8c1515 0%,
+		#ffffff 50%,
+		#8c1515 100%
+	);
+	--title-gradient-journey: repeating-linear-gradient(
+		45deg,
+		#0000ff 0%,
+		#ffffff 50%,
+		#0000ff 100%
+	);
+	--title-gradient-projects: repeating-linear-gradient(
+		45deg,
+		#a31f36 0%,
+		#ffffff 25%,
+		#2c2a29 50%,
+		#ffffff 75%,
+		#a31f36 100%
+	);
+	--title-gradient-thoughts: repeating-linear-gradient(
+		45deg,
+		#a31f34 0%,
+		#8a8b8c 50%,
+		#a31f34 100%
+	);
 	--title-gradient: var(--title-gradient-entrance);
 	--title-animation: flicker 10s steps(1, end) infinite, gradient-left 8s linear infinite;
 	--title-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
@@ -252,6 +284,10 @@ h6 {
 	font-size: var(--h6-size);
 }
 
+.directory-heading {
+	font-size: min(var(--h1-size), 2.8vw);
+}
+
 body {
 	font-family: "HelveticaNL"!important;
 	font-optical-sizing: auto;
@@ -264,11 +300,26 @@ body {
 	min-height: 100vh;
 	display: flex;
 	flex-direction: column;
+	isolation: isolate;
+	overflow-x: hidden;
 }
 
 body > :not(nav) {
 	position: relative;
 	z-index: 1;
+}
+
+.background-video {
+	position: fixed;
+	inset: -6vh -6vw;
+	z-index: -1;
+	width: 112vw;
+	height: 112vh;
+	object-fit: cover;
+	opacity: 0.55;
+	pointer-events: none;
+	transform: perspective(900px) rotateX(var(--background-tilt-y, 0deg)) rotateY(var(--background-tilt-x, 0deg)) scale(1.04);
+	transition: transform 120ms ease-out;
 }
 
 
@@ -392,7 +443,7 @@ pre {
 /* Highlighted text styling */
 
 mark {
-	background-color: #dee2e6;
+	background-color: #ffffff;
 	line-height: inherit;
 }
 
@@ -531,17 +582,19 @@ pre mark {
 
 /* Change hyperlink color/style */
 a, .btn-link {
-	color: #ffc107;
-	font-weight: 600;
+	color: var(--california-gold);
+	text-decoration: none;
 }
 
 /* Change hyperlink, navbar-link, and dropdown-item hover color */
 a:hover, .btn-link:hover, .navbar-brand:hover, .nav-link:hover, .dropdown-item:hover {
 	color: #77c0cc;
+	text-decoration: underline;
 }
 
-mark > a:hover {
-	color: #906d04;
+.btn-link.active {
+	color: #77c0cc;
+	font-weight: 900;
 }
 
 /* Position the dropdown menu */
