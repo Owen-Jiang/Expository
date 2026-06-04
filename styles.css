@@ -574,9 +574,9 @@ pre mark {
 	--bs-tooltip-color: #000000;
 }
 
-/* .card {
-	background-color: inherit;
-} */
+.card {
+	background-color: rgba(255, 255, 255, 0.2);
+}
 
 /* link-underline-opacity-100-hover */
 
