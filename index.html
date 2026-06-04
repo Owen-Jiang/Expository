@@ -108,6 +108,53 @@
 							previous journeys are in repository
 							<br>
 							btw, you are visitor number <span id="visitor-count">...</span>
+							<script>
+								(function() {
+									const visitorCount = document.getElementById("visitor-count");
+									const visitorCountCacheKey = "expositoryVisitorCount";
+
+									function getCachedVisitorCount() {
+										try {
+											return sessionStorage.getItem(visitorCountCacheKey);
+										} catch (error) {
+											return null;
+										}
+									}
+
+									function setCachedVisitorCount(count) {
+										try {
+											sessionStorage.setItem(visitorCountCacheKey, count);
+										} catch (error) {
+										}
+									}
+
+									if (!visitorCount) {
+										return;
+									}
+
+									const cachedVisitorCount = getCachedVisitorCount();
+
+									if (cachedVisitorCount) {
+										visitorCount.textContent = cachedVisitorCount;
+										return;
+									}
+
+									fetch("https://api.counterapi.dev/v1/owenj-expository/home/up", {
+										cache: "no-store"
+									})
+									.then(function(response) {
+										return response.ok ? response.json() : Promise.reject();
+									})
+									.then(function(data) {
+										const count = Number(data.count).toLocaleString();
+										setCachedVisitorCount(count);
+										visitorCount.textContent = count;
+									})
+									.catch(function() {
+										visitorCount.textContent = "unknown";
+									});
+								})();
+							</script>
 						</div>
 					</div>
 				</div>
@@ -761,32 +808,6 @@
 		<!-- Bootstrap component initialization -->
 		<script>
 			const tooltipMediaQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
-			const visitorCount = document.getElementById("visitor-count");
-
-			if (visitorCount) {
-				const visitorCountCacheKey = "expositoryVisitorCount";
-				const cachedVisitorCount = sessionStorage.getItem(visitorCountCacheKey);
-
-				if (cachedVisitorCount) {
-					visitorCount.textContent = cachedVisitorCount;
-				} else {
-					fetch("./visitor-count.php", {
-						method: "POST",
-						cache: "no-store"
-					})
-						.then(function(response) {
-							return response.ok ? response.json() : Promise.reject();
-						})
-						.then(function(data) {
-							const count = Number(data.count).toLocaleString();
-							sessionStorage.setItem(visitorCountCacheKey, count);
-							visitorCount.textContent = count;
-						})
-						.catch(function() {
-							visitorCount.textContent = "unknown";
-						});
-				}
-			}
 
 			function shouldEnableTooltips() {
 				return tooltipMediaQuery.matches;
