@@ -592,6 +592,10 @@ a:hover, .btn-link:hover, .navbar-brand:hover, .nav-link:hover, .dropdown-item:h
 	text-decoration: underline;
 }
 
+.btn-outline-light:hover {
+	text-decoration: none;
+}
+
 .btn-link.active {
 	color: #77c0cc;
 	font-weight: 900;

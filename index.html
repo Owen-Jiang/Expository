@@ -32,7 +32,7 @@
 	</head>
 	<body>
 		<video class="background-video" autoplay muted loop playsinline aria-hidden="true">
-			<source src="./images/background.mp4" type="video/mp4">
+			<source src="./media/background.mp4" type="video/mp4">
 		</video>
 		<nav class="navbar navbar-expand-lg" data-bs-theme="dark">
 			<div class="container-fluid">
@@ -107,7 +107,54 @@
 							back soon<br>
 							previous journeys are in repository<br>
 							<br>
-							btw, you are visitor number [not yet implemented ;)]
+							btw, you are visitor number <span id="visitor-count">...</span>
+							<script>
+								(function() {
+									const visitorCount = document.getElementById("visitor-count");
+									const visitorCountCacheKey = "expositoryVisitorCount";
+
+									function getCachedVisitorCount() {
+										try {
+											return sessionStorage.getItem(visitorCountCacheKey);
+										} catch (error) {
+											return null;
+										}
+									}
+
+									function setCachedVisitorCount(count) {
+										try {
+											sessionStorage.setItem(visitorCountCacheKey, count);
+										} catch (error) {
+										}
+									}
+
+									if (!visitorCount) {
+										return;
+									}
+
+									const cachedVisitorCount = getCachedVisitorCount();
+
+									if (cachedVisitorCount) {
+										visitorCount.textContent = cachedVisitorCount;
+										return;
+									}
+
+									fetch("https://abacus.jasoncameron.dev/hit/ocf.berkeley.edu/owenj", {
+										cache: "no-store"
+									})
+										.then(function(response) {
+											return response.ok ? response.json() : Promise.reject();
+										})
+										.then(function(data) {
+											const count = Number(data.value).toLocaleString();
+											setCachedVisitorCount(count);
+											visitorCount.textContent = count;
+										})
+										.catch(function() {
+											visitorCount.textContent = "unknown";
+										});
+								})();
+							</script>
 						</div>
 					</div>
 				</div>
@@ -123,7 +170,7 @@
 							<pre>Intended Minor: Aerospace Engineering</pre> -->
 							<pre><strong>Website</strong>: <a href="https://ocf.berkeley.edu/~owenj" rel="noopener noreferrer">ocf.berkeley.edu/~owenj</a> <button type="button" class="btn btn-link p-0 ms-1 align-baseline text-reset" aria-label="Copy ocf.berkeley.edu/~owenj" data-bs-toggle="tooltip" data-bs-title="Click to copy" data-copy-text="ocf.berkeley.edu/~owenj"><i class="bi bi-copy"></i></button></pre>
 							<span class="position-relative">
-								<a class="stretched-link" href="https://github.com/Owen-Jiang" target="_blank" rel="noopener noreferrer"><img src="./images/GitHub.svg" style="width: 1em; margin-inline-start: 0.5em" alt="GitHub icon"/></a>
+								<a class="stretched-link" href="https://github.com/Owen-Jiang" target="_blank" rel="noopener noreferrer"><img src="./media/GitHub.svg" style="width: 1em; margin-inline-start: 0.5em" alt="GitHub icon"/></a>
 								<a href="https://github.com/Owen-Jiang" target="_blank" rel="noopener noreferrer">GitHub</a>
 							</span><br>
 							<span class="position-relative">
@@ -140,7 +187,7 @@
 							</span><br>
 						</div>
 						<div class="col-lg-6">
-							<pre><strong>Portrait</strong>: <a href="https://maps.app.goo.gl/gk73h5mzzT3T7tvs9" target="_blank" rel="noopener noreferrer"><img class="img-fluid" src="./images/me.jpeg" alt="What I look like" style="border-radius: 100%;" data-bs-toggle="tooltip" data-bs-title="Springer Gateway"></a></pre>
+							<pre><strong>Portrait</strong>: <a href="https://maps.app.goo.gl/gk73h5mzzT3T7tvs9" target="_blank" rel="noopener noreferrer"><img class="img-fluid" src="./media/me.jpeg" alt="What I look like" style="border-radius: 100%;" data-bs-toggle="tooltip" data-bs-title="Springer Gateway"></a></pre>
 						</div>
 					</div>
 					<figure>
@@ -232,9 +279,18 @@
 						<div class="col">
 							<div class="card border-light">
 								<div class="card-body text-white">
-									<h5 class="card-title">Special title treatment</h5>
-									<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-									<a href="#" class="btn btn-primary">Go somewhere</a>
+									<h5 class="card-title"><img src="https://handsondeck.vercel.app/images/logo.png" class="img-thumbnail" width="32" height="32" alt="Hands On Deck Logo"> Hands On Deck</h5>
+									<p class="card-text">Blog and other engineering projects</p>
+									<a href="https://handsondeck.vercel.app" class="btn btn-outline-light stretched-link">Go see it</a>
+								</div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="card border-light">
+								<div class="card-body text-white">
+									<h5 class="card-title"><i class="bi bi-arrows-move"></i> Manim</h5>
+									<p class="card-text">Simulations and videos from a mathematical animation package</p>
+									<a href="./media/InnerSSRender.mp4" class="btn btn-outline-light stretched-link">A fun simulation I made</a>
 								</div>
 							</div>
 						</div>
@@ -243,7 +299,7 @@
 								<div class="card-body text-white">
 									<h5 class="card-title">Special title treatment</h5>
 									<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-									<a href="#" class="btn btn-primary">Go somewhere</a>
+									<a href="#" class="btn btn-outline-light stretched-link">Go somewhere</a>
 								</div>
 							</div>
 						</div>
@@ -252,7 +308,7 @@
 								<div class="card-body text-white">
 									<h5 class="card-title">Special title treatment</h5>
 									<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-									<a href="#" class="btn btn-primary">Go somewhere</a>
+									<a href="#" class="btn btn-outline-light stretched-link">Go somewhere</a>
 								</div>
 							</div>
 						</div>
@@ -261,25 +317,16 @@
 								<div class="card-body text-white">
 									<h5 class="card-title">Special title treatment</h5>
 									<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-									<a href="#" class="btn btn-primary">Go somewhere</a>
+									<a href="#" class="btn btn-outline-light stretched-link">Go somewhere</a>
 								</div>
 							</div>
 						</div>
 						<div class="col">
 							<div class="card border-light">
 								<div class="card-body text-white">
-									<h5 class="card-title">Special title treatment</h5>
-									<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-									<a href="#" class="btn btn-primary">Go somewhere</a>
-								</div>
-							</div>
-						</div>
-						<div class="col">
-							<div class="card border-light">
-								<div class="card-body text-white">
-									<h5 class="card-title">Special title treatment</h5>
-									<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-									<a href="#" class="btn btn-primary">Go somewhere</a>
+									<h5 class="card-title"><img src="https://allthesprouts.org/images/logo.png" class="img-thumbnail" width="32" height="32" alt="All the Sprouts Logo"> All the Sprouts</h5>
+									<p class="card-text">A elementary and middle school summer STEAM education program I helped cofound</p>
+									<a href="https://allthesprouts.org" class="btn btn-outline-light stretched-link">See the associated website</a>
 								</div>
 							</div>
 						</div>
