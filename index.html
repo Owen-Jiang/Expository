@@ -174,8 +174,8 @@
 								<a href="https://github.com/Owen-Jiang" target="_blank" rel="noopener noreferrer">GitHub</a>
 							</span><br>
 							<span class="position-relative">
-								<a class="stretched-link" href="https://www.linkedin.com/in/owen-jiang-761472380/" target="_blank" rel="noopener noreferrer"><img src="https://upload.wikimedia.org/wikipedia/commons/8/81/LinkedIn_icon.svg" style="width: 1em; margin-inline-start: 0.5em" alt="LinkedIn icon"/></a>
-								<a href="https://www.linkedin.com/in/owen-jiang-761472380/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+								<a class="stretched-link" href="https://www.linkedin.com/in/owenwjiang/" target="_blank" rel="noopener noreferrer"><img src="https://upload.wikimedia.org/wikipedia/commons/8/81/LinkedIn_icon.svg" style="width: 1em; margin-inline-start: 0.5em" alt="LinkedIn icon"/></a>
+								<a href="https://www.linkedin.com/in/owenwjiang/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
 							</span><br>
 							<span class="position-relative">
 								<a class="stretched-link" href="https://scholar.google.com/citations?user=zsNvzXgAAAAJ" target="_blank" rel="noopener noreferrer"><img src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Google_Scholar_logo.svg" style="width: 1em; margin-inline-start: 0.5em" alt="Google Scholar icon"/></a>
@@ -192,10 +192,10 @@
 					</div>
 					<figure>
 						<blockquote class="blockquote">
-							<p>I used to wonder about what I didn't know. I still do, but I used to, too.</p>
+							<p>I used to want to know what I didn't know. I still do, but I used to, too.</p>
 						</blockquote>
 						<figcaption class="blockquote-footer">
-							Me, a long time ago, thinking about what to write here
+							Me, just now
 						</figcaption>
 					</figure>
 					<blockquote class="blockquote">
@@ -203,6 +203,8 @@
 				</div>
 
 				<div id="contact" style="display: none;" class="transient">
+					If you want to get in touch, the best way to reach me is via email or <a href="https://www.linkedin.com/in/owenwjiang/" target="_blank" rel="noopener noreferrer">LinkedIn</a>.
+					<br><br>
 					<address class="d-inline-flex align-items-start">
 						<i class="bi bi-envelope-at me-2"></i>
 						<div class="vr me-2"></div>
@@ -210,7 +212,7 @@
 							<span><a href="mailto:owen.jiang@berkeley.edu">owen (dot) jiang (at) berkeley (dot) edu</a><!-- <em>(deleting September 2026)</em>--> <button type="button" class="btn btn-link p-0 ms-1 align-baseline text-reset" aria-label="Copy owen.jiang@berkeley.edu" data-bs-toggle="tooltip" data-bs-title="Click to copy" data-copy-text="owen.jiang@berkeley.edu"><i class="bi bi-copy"></i></button></span>
 							<!-- <span><br></span>
 							<span><a href="mailto:ojiang@caltech.edu">ojiang (at) caltech (dot) edu</a> <button type="button" class="btn btn-link p-0 ms-1 align-baseline text-reset" aria-label="Copy ojiang@caltech.edu" data-bs-toggle="tooltip" data-bs-title="Click to copy" data-copy-text="ojiang@caltech.edu"><i class="bi bi-copy"></i></button></span> -->
-							<span><a href="mailto:projecthandsondeck@gmail.com">projecthandsondeck (at) gmail (dot) com</a> <em>(engineering projects)</em> <button type="button" class="btn btn-link p-0 ms-1 align-baseline text-reset" aria-label="Copy projecthandsondeck@gmail.com" data-bs-toggle="tooltip" data-bs-title="Click to copy" data-copy-text="projecthandsondeck@gmail.com"><i class="bi bi-copy"></i></button></span>
+							<span><a href="mailto:projecthandsondeck@gmail.com">projecthandsondeck (at) gmail (dot) com</a> <em>(for engineering projects only)</em> <button type="button" class="btn btn-link p-0 ms-1 align-baseline text-reset" aria-label="Copy projecthandsondeck@gmail.com" data-bs-toggle="tooltip" data-bs-title="Click to copy" data-copy-text="projecthandsondeck@gmail.com"><i class="bi bi-copy"></i></button></span>
 						</div>
 					</address>
 				</div>
@@ -270,7 +272,38 @@
 
 				<div id="journey" style="display: none;" class="transient">
 					<br>
-					<p>Coming soon...</p>
+					<h2><label for="range" class="form-label">Where I've been</label></h2>
+					<input type="range" class="form-range journey-range" min="2020" max="2026" value="2026" id="range">
+					<h2><output for="range" id="rangeValue" aria-hidden="true"></output></h2>
+					<h4 id="journey-description" aria-live="polite"></h4>
+
+					<script>
+						const rangeInput = document.getElementById('range');
+						const rangeOutput = document.getElementById('rangeValue');
+						const journeyDescription = document.getElementById('journey-description');
+						const journeyEntries = {
+							2020: "Coming soon",
+							2021: "Coming soon",
+							2022: "Coming soon",
+							2023: "Coming soon",
+							2024: "Coming soon",
+							2025: "Coming soon",
+							2026: "Coming soon",
+						};
+
+						function updateJourney() {
+							const year = rangeInput.value;
+
+							rangeOutput.textContent = year;
+							journeyDescription.textContent = journeyEntries[year] || "Can't know yet...";
+						}
+
+						rangeInput.addEventListener('input', function() {
+							updateJourney();
+						});
+
+						updateJourney();
+					</script>
 				</div>
 
 				<div id="projects" style="display: none;" class="transient">
@@ -280,7 +313,7 @@
 							<div class="card border-light">
 								<div class="card-body text-white">
 									<h5 class="card-title"><img src="https://handsondeck.vercel.app/images/logo.png" class="img-thumbnail" width="32" height="32" alt="Hands On Deck Logo"> Hands On Deck</h5>
-									<p class="card-text">Blog and other engineering projects</p>
+									<p class="card-text">Blog and other engineering projects. Moving here soon.</p>
 									<a href="https://handsondeck.vercel.app" class="btn btn-outline-light stretched-link">Go see it</a>
 								</div>
 							</div>
@@ -288,8 +321,39 @@
 						<div class="col">
 							<div class="card border-light">
 								<div class="card-body text-white">
-									<h5 class="card-title"><i class="bi bi-arrows-move"></i> Manim</h5>
-									<p class="card-text">Simulations and videos from a mathematical animation package</p>
+									<h5 class="card-title"><i class="bi bi-newspaper"></i> Paper collection</h5>
+									<p class="card-text">Some research papers and articles I've written.</p>
+									<a href="https://ieeexplore.ieee.org/document/11104654" class="btn btn-outline-light">OCEANS 2025 Brest</a>
+									<a href="https://ieeexplore.ieee.org/document/10765669" class="btn btn-outline-light">IEEE MetroSea 2024</a>
+									<a href="https://www.oxjournal.org/human-centred-design-improvements-for-avs/" class="btn btn-outline-light">Human-Centred Design Improvements for Autonomous Self-Driving Vehicles</a>
+									<a href="https://www.dropbox.com/scl/fi/k5muue8xggu8qbl36t2dr/Invariant_properties_of_inertial_reference_frames.pdf?rlkey=gcissiuq4h71g46a462ozovhp&st=umbo3ec5&dl=0" class="btn btn-outline-light">Invariant properties of inertial reference frames</a>
+									<a href="https://www.dropbox.com/scl/fi/jez0vaj33old95yr1h6xu/On_results_provable_with_ordinals_but_unprovable_with_Peano_arithmetic.pdf?rlkey=mpva0yf8mcpd1ai0d92mqf7wu&st=n3a1tizi&dl=0" class="btn btn-outline-light">On results provable with ordinals but unprovable with Peano arithmetic</a>
+								</div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="card border-light">
+								<div class="card-body text-white">
+									<h5 class="card-title"><i class="bi bi-globe"></i> Earther</h5>
+									<p class="card-text">A project to visualize and analyze Earth's climate data. Like <a href="https://earth.nullschool.com">nullschool</a>, but you can put your own data in and train models.</p>
+									<a href="#" class="btn btn-outline-light stretched-link disabled">Coming soon...</a>
+								</div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="card border-light">
+								<div class="card-body text-white">
+									<h5 class="card-title"><i class="bi bi-bar-chart-line-fill"></i> ICOADS Dataset</h5>
+									<p class="card-text">A framework to pull out NOAA data from FORTRAN to something more usable and accessible. Stepping stone to the Earther project.</p>
+									<a href="https://github.com/Owen-Jiang/ICOADS-Parser" class="btn btn-outline-light stretched-link">See the database in GitHub</a>
+								</div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="card border-light">
+								<div class="card-body text-white">
+									<h5 class="card-title"><i class="bi bi-play-btn"></i> Manim</h5>
+									<p class="card-text">Simulations and videos from a mathematical animation package.</p>
 									<a href="./media/InnerSSRender.mp4" class="btn btn-outline-light stretched-link">A fun simulation I made</a>
 								</div>
 							</div>
@@ -297,35 +361,8 @@
 						<div class="col">
 							<div class="card border-light">
 								<div class="card-body text-white">
-									<h5 class="card-title">Special title treatment</h5>
-									<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-									<a href="#" class="btn btn-outline-light stretched-link">Go somewhere</a>
-								</div>
-							</div>
-						</div>
-						<div class="col">
-							<div class="card border-light">
-								<div class="card-body text-white">
-									<h5 class="card-title">Special title treatment</h5>
-									<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-									<a href="#" class="btn btn-outline-light stretched-link">Go somewhere</a>
-								</div>
-							</div>
-						</div>
-						<div class="col">
-							<div class="card border-light">
-								<div class="card-body text-white">
-									<h5 class="card-title">Special title treatment</h5>
-									<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-									<a href="#" class="btn btn-outline-light stretched-link">Go somewhere</a>
-								</div>
-							</div>
-						</div>
-						<div class="col">
-							<div class="card border-light">
-								<div class="card-body text-white">
 									<h5 class="card-title"><img src="https://allthesprouts.org/images/logo.png" class="img-thumbnail" width="32" height="32" alt="All the Sprouts Logo"> All the Sprouts</h5>
-									<p class="card-text">A elementary and middle school summer STEAM education program I helped cofound</p>
+									<p class="card-text">A elementary and middle school summer STEAM education program I helped cofound.</p>
 									<a href="https://allthesprouts.org" class="btn btn-outline-light stretched-link">See the associated website</a>
 								</div>
 							</div>
@@ -335,7 +372,23 @@
 
 				<div id="thoughts" style="display: none;" class="transient">
 					<br>
-					<p>Coming soon...</p>
+					<p class="lead">
+						Why not cause things to be?
+					</p>
+					<p>
+						We all have lots of thoughts and ideas and opinions and viewpoints. Every day, we make choices based on these factors, and they occasionally lead to interesting events. I think it's worth it to have novel things. You can watch, make, do, or create them.
+					</p>
+					<p>
+						That is possible.
+					</p>
+					<figure class="text-center">
+						<blockquote class="blockquote" style="font-size: 2.5rem;">
+							<p>Refuse to be what you are.</p>
+						</blockquote>
+						<figcaption class="blockquote-footer" style="font-size: 1.75em;">
+							Albert Camus, paraphrased.
+						</figcaption>
+					</figure>
 				</div>
 			</div>
 		</div>
@@ -348,7 +401,7 @@
 			<div class="container text-center">
 				© Copyright <script>document.write(new Date().getFullYear())</script>
 				<br>
-				Made with <a href="https://getbootstrap.com">Bootstrap</a> and <a href="https://animate.style/">Animate.style</a>
+				Made with <a href="https://getbootstrap.com">Bootstrap</a>, <a href="https://animate.style/">Animate.style</a>, and <a href="https://v2.jasoncameron.dev/abacus/">Abacus</a>
 			</div>
 		</footer>
 

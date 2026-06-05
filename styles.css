@@ -578,7 +578,13 @@ pre mark {
 	background-color: rgba(255, 255, 255, 0.2);
 }
 
-/* link-underline-opacity-100-hover */
+/* Slider */
+
+.journey-range::-webkit-slider-thumb, .journey-range::-moz-range-thumb {
+	width: 1.5rem;
+	height: 1.5rem;
+	background-color: #ffffff;
+}
 
 /* Change hyperlink color/style */
 a, .btn-link {
