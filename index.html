@@ -406,508 +406,514 @@
 		</footer>
 
 			<!-- Mobile and Desktop Interactive Response -->
-			<script>
-				const titleElement = document.getElementById("title");
-				const titleNames = [
-					"Owen Jiang  ",
-					"Expository  ",
-					"Welcome  ",
-					"Hello World  ",
-					"おゑん じあんぐ  ",
-					"オヱン ジアング  ",
-					"오웬 지앙  ",
-					"Ωϝεν τσιανγ  ",
-					"ㄛㄨㄣ ㄐㄧㄤ  "
-				];
-				let titleName = titleNames[0];
-				const titleSeconds = 15;
-				const titleScrollStartProgress = 0.9;
-				const entrance = document.getElementById("entrance");
-				const house = document.getElementById("house");
-				const about = document.getElementById("about");
-				const contact = document.getElementById("contact");
-				const directoryPath = document.getElementById("directory-path");
-				const cdPath = document.getElementById("cd-path");
-				const baseDirectoryPath = directoryPath.textContent;
-				const cdCommand = "cd";
-				const aboutButton = document.getElementById("about-button");
-				const contactButton = document.getElementById("contact-button");
-				const infoViews = {
-					about: {
-						button: aboutButton,
-						panel: about,
-						title: "About"
-					},
-					contact: {
-						button: contactButton,
-						panel: contact,
-						title: "Contact"
-					}
-				};
-				const houseViews = {
-					resume: {
-						panel: document.getElementById("resume"),
-						buttonIds: ["resume-button", "resume-touch-button"],
-						directory: "Resume",
-						title: "Resume",
-						titleTheme: "resume",
-						key: "g"
-					},
-					cv: {
-						panel: document.getElementById("cv"),
-						buttonIds: ["cv-button", "cv-touch-button"],
-						directory: "CV",
-						title: "CV",
-						titleTheme: "cv",
-						key: "h"
-					},
-					journey: {
-						panel: document.getElementById("journey"),
-						buttonIds: ["journey-button", "journey-touch-button"],
-						directory: "Journey",
-						title: "Journey",
-						titleTheme: "journey",
-						key: "j"
-					},
-					projects: {
-						panel: document.getElementById("projects"),
-						buttonIds: ["projects-button", "projects-touch-button"],
-						directory: "Projects",
-						title: "Projects",
-						titleTheme: "projects",
-						key: "k"
-					},
-					thoughts: {
-						panel: document.getElementById("thoughts"),
-						buttonIds: ["thoughts-button", "thoughts-touch-button"],
-						directory: "Thoughts",
-						title: "Thoughts",
-						titleTheme: "thoughts",
-						key: "l"
-					}
-				};
-				const titleThemes = {
-					entrance: {
-						gradient: "var(--title-gradient-entrance)",
-						animation: "flicker 10s steps(1, end) infinite, gradient-left 4s linear infinite",
-						shadow: "0 2px 8px rgba(0, 0, 0, 0.01)",
-						fontFamily: "HelveticaNL",
-						fontStyle: "normal"
-					},
-					about: {
-						gradient: "var(--title-gradient-about)",
-						animation: "gradient-left 4s linear infinite",
-						shadow: "0 2px 8px rgba(0, 0, 0, 0.5)",
-						fontFamily: "Inter",
-						fontStyle: "bold"
-					},
-					contact: {
-						gradient: "var(--title-gradient-contact)",
-						animation: "gradient-right 4s linear infinite",
-						shadow: "0 2px 8px rgba(0, 0, 0, 0.5)",
-						fontFamily: "Inter",
-						fontStyle: "normal"
-					},
-					house: {
-						gradient: "var(--title-gradient-house)",
-						animation: "gradient-right 4s linear infinite",
-						shadow: "0 2px 8px rgba(0, 0, 0, 0.5)",
-						fontFamily: "Inter",
-						fontStyle: "bold"
-					},
-					resume: {
-						gradient: "var(--title-gradient-resume)",
-						animation: "gradient-right 4s linear infinite",
-						shadow: "0 2px 8px rgba(0, 0, 0, 0.5)",
-						fontFamily: "ITC",
-						fontStyle: "normal"
-					},
-					cv: {
-						gradient: "var(--title-gradient-cv)",
-						animation: "gradient-left 4s linear infinite",
-						shadow: "0 2px 8px rgba(0, 0, 0, 0.5)",
-						fontFamily: "ITC",
-						fontStyle: "normal"
-					},
-					journey: {
-						gradient: "var(--title-gradient-journey)",
-						animation: "gradient-right 6s linear infinite",
-						shadow: "0 2px 8px rgba(0, 0, 0, 0.5)",
-						fontFamily: "ITC",
-						fontStyle: "normal"
-					},
-					projects: {
-						gradient: "var(--title-gradient-projects)",
-						animation: "gradient-left 3s linear infinite",
-						shadow: "0 2px 8px rgba(0, 0, 0, 0.5)",
-						fontFamily: "ITC",
-						fontStyle: "normal"
-					},
-					thoughts: {
-						gradient: "var(--title-gradient-thoughts)",
-						animation: "gradient-right 8s linear infinite",
-						shadow: "0 2px 8px rgba(0, 0, 0, 0.5)",
-						fontFamily: "ITC",
-						fontStyle: "normal"
-					}
-				};
-				let titleIntervalId;
-				let titleAnimationStartedAt;
-				let activeHouseViewName = null;
-
-				function applyTitleTheme(themeName) {
-					const theme = titleThemes[themeName] || titleThemes.entrance;
-
-					titleElement.style.setProperty("--title-gradient", theme.gradient);
-					titleElement.style.setProperty("--title-animation", theme.animation);
-					titleElement.style.setProperty("--title-shadow", theme.shadow);
-					titleElement.style.fontFamily = theme.fontFamily;
-					titleElement.style.fontStyle = theme.fontStyle;
+		<script>
+			const titleElement = document.getElementById("title");
+			const titleNames = [
+				"Owen Jiang  ",
+				"Expository  ",
+				"Welcome  ",
+				"Hello World  ",
+				"おゑん じあんぐ  ",
+				"オヱン ジアング  ",
+				"오웬 지앙  ",
+				"Ωϝεν τσιανγ  ",
+				"ㄛㄨㄣ ㄐㄧㄤ  "
+			];
+			let titleName = titleNames[0];
+			const titleSeconds = 15;
+			const titleScrollStartProgress = 0.9;
+			const entrance = document.getElementById("entrance");
+			const house = document.getElementById("house");
+			const about = document.getElementById("about");
+			const contact = document.getElementById("contact");
+			const directoryPath = document.getElementById("directory-path");
+			const cdPath = document.getElementById("cd-path");
+			const baseDirectoryPath = directoryPath.textContent;
+			const cdCommand = "cd";
+			const aboutButton = document.getElementById("about-button");
+			const contactButton = document.getElementById("contact-button");
+			const infoViews = {
+				about: {
+					button: aboutButton,
+					panel: about,
+					title: "About"
+				},
+				contact: {
+					button: contactButton,
+					panel: contact,
+					title: "Contact"
 				}
-
-				function runTitleAnimation() {
-					const cycleMs = titleSeconds * 1000;
-					const progress = ((Date.now() - titleAnimationStartedAt) % cycleMs) / cycleMs;
-
-					if (progress < titleScrollStartProgress) {
-						titleElement.textContent = titleName;
-						return;
-					}
-
-					const scrollProgress = (progress - titleScrollStartProgress) / (1 - titleScrollStartProgress);
-					const offset = Math.round(scrollProgress * titleName.length) % titleName.length;
-					titleElement.textContent = titleName.slice(offset) + titleName.slice(0, offset);
+			};
+			const houseViews = {
+				resume: {
+					panel: document.getElementById("resume"),
+					buttonIds: ["resume-button", "resume-touch-button"],
+					directory: "Resume",
+					title: "Resume",
+					titleTheme: "resume",
+					key: "g"
+				},
+				cv: {
+					panel: document.getElementById("cv"),
+					buttonIds: ["cv-button", "cv-touch-button"],
+					directory: "CV",
+					title: "CV",
+					titleTheme: "cv",
+					key: "h"
+				},
+				journey: {
+					panel: document.getElementById("journey"),
+					buttonIds: ["journey-button", "journey-touch-button"],
+					directory: "Journey",
+					title: "Journey",
+					titleTheme: "journey",
+					key: "j"
+				},
+				projects: {
+					panel: document.getElementById("projects"),
+					buttonIds: ["projects-button", "projects-touch-button"],
+					directory: "Projects",
+					title: "Projects",
+					titleTheme: "projects",
+					key: "k"
+				},
+				thoughts: {
+					panel: document.getElementById("thoughts"),
+					buttonIds: ["thoughts-button", "thoughts-touch-button"],
+					directory: "Thoughts",
+					title: "Thoughts",
+					titleTheme: "thoughts",
+					key: "l"
 				}
+			};
+			const titleThemes = {
+				entrance: {
+					gradient: "var(--title-gradient-entrance)",
+					animation: "flicker 10s steps(1, end) infinite, gradient-left 4s linear infinite",
+					shadow: "0 2px 8px rgba(0, 0, 0, 0.01)",
+					fontFamily: "HelveticaNL",
+					fontStyle: "normal"
+				},
+				about: {
+					gradient: "var(--title-gradient-about)",
+					animation: "gradient-left 4s linear infinite",
+					shadow: "0 2px 8px rgba(0, 0, 0, 0.5)",
+					fontFamily: "Inter",
+					fontStyle: "bold"
+				},
+				contact: {
+					gradient: "var(--title-gradient-contact)",
+					animation: "gradient-right 4s linear infinite",
+					shadow: "0 2px 8px rgba(0, 0, 0, 0.5)",
+					fontFamily: "Inter",
+					fontStyle: "normal"
+				},
+				house: {
+					gradient: "var(--title-gradient-house)",
+					animation: "gradient-right 4s linear infinite",
+					shadow: "0 2px 8px rgba(0, 0, 0, 0.5)",
+					fontFamily: "Inter",
+					fontStyle: "bold"
+				},
+				resume: {
+					gradient: "var(--title-gradient-resume)",
+					animation: "gradient-right 4s linear infinite",
+					shadow: "0 2px 8px rgba(0, 0, 0, 0.5)",
+					fontFamily: "ITC",
+					fontStyle: "normal"
+				},
+				cv: {
+					gradient: "var(--title-gradient-cv)",
+					animation: "gradient-left 4s linear infinite",
+					shadow: "0 2px 8px rgba(0, 0, 0, 0.5)",
+					fontFamily: "ITC",
+					fontStyle: "normal"
+				},
+				journey: {
+					gradient: "var(--title-gradient-journey)",
+					animation: "gradient-right 6s linear infinite",
+					shadow: "0 2px 8px rgba(0, 0, 0, 0.5)",
+					fontFamily: "ITC",
+					fontStyle: "normal"
+				},
+				projects: {
+					gradient: "var(--title-gradient-projects)",
+					animation: "gradient-left 3s linear infinite",
+					shadow: "0 2px 8px rgba(0, 0, 0, 0.5)",
+					fontFamily: "ITC",
+					fontStyle: "normal"
+				},
+				thoughts: {
+					gradient: "var(--title-gradient-thoughts)",
+					animation: "gradient-right 8s linear infinite",
+					shadow: "0 2px 8px rgba(0, 0, 0, 0.5)",
+					fontFamily: "ITC",
+					fontStyle: "normal"
+				}
+			};
+			let titleIntervalId;
+			let titleAnimationStartedAt;
+			let activeHouseViewName = null;
 
-				function restartTitleAnimation(themeName = "entrance") {
-					if (titleIntervalId) {
-						return;
-					}
+			function applyTitle(themeName) {
+				const theme = titleThemes[themeName] || titleThemes.entrance;
 
-					applyTitleTheme(themeName);
-					titleAnimationStartedAt = Date.now();
+				titleElement.style.setProperty("--title-gradient", theme.gradient);
+				titleElement.style.setProperty("--title-animation", theme.animation);
+				titleElement.style.setProperty("--title-shadow", theme.shadow);
+				titleElement.style.fontFamily = theme.fontFamily;
+				titleElement.style.fontStyle = theme.fontStyle;
+			}
+
+			function runTitle() {
+				const cycleMs = titleSeconds * 1000;
+				const progress = ((Date.now() - titleAnimationStartedAt) % cycleMs) / cycleMs;
+
+				if (progress < titleScrollStartProgress) {
 					titleElement.textContent = titleName;
-					titleIntervalId = setInterval(runTitleAnimation, 50);
+					return;
 				}
 
-				function swapTitleAnimation(text, themeName) {
-					applyTitleTheme(themeName);
-					clearInterval(titleIntervalId);
-					titleIntervalId = null;
-					titleElement.textContent = text;
+				const scrollProgress = (progress - titleScrollStartProgress) / (1 - titleScrollStartProgress);
+				const offset = Math.round(scrollProgress * titleName.length) % titleName.length;
+				titleElement.textContent = titleName.slice(offset) + titleName.slice(0, offset);
+			}
+
+			function restartTitle(themeName = "entrance") {
+				if (titleIntervalId) {
+					return;
 				}
 
-				restartTitleAnimation();
+				applyTitle(themeName);
+				titleAnimationStartedAt = Date.now();
+				titleElement.textContent = titleName;
+				titleIntervalId = setInterval(runTitle, 50);
+			}
 
-				function randomizeTitleName() {
-					titleName = titleNames[Math.floor(Math.random() * titleNames.length)];
-				}
+			function swapTitle(text, themeName) {
+				applyTitle(themeName);
+				clearInterval(titleIntervalId);
+				titleIntervalId = null;
+				titleElement.textContent = text;
+			}
 
-				function setInfoButtonState(activeViewName) {
-					Object.entries(infoViews).forEach(function([viewName, view]) {
-						const isActive = viewName === activeViewName;
+			restartTitle();
 
-						view.button.classList.toggle("active", isActive);
-						view.button.setAttribute("aria-pressed", isActive.toString());
-					});
-				}
+			function randomizeTitle() {
+				titleName = titleNames[Math.floor(Math.random() * titleNames.length)];
+			}
 
-				function hideInfoPanels() {
-					Object.values(infoViews).forEach(function(view) {
-						view.panel.style.display = "none";
-					});
-				}
+			function setButtonState(activeViewName) {
+				Object.entries(infoViews).forEach(function([viewName, view]) {
+					const isActive = viewName === activeViewName;
 
-				function setHouseButtonState(activeViewName) {
-					Object.entries(houseViews).forEach(function([viewName, view]) {
-						const isActive = viewName === activeViewName;
+					view.button.classList.toggle("active", isActive);
+					view.button.setAttribute("aria-pressed", isActive.toString());
+				});
+			}
 
-						view.buttonIds.forEach(function(buttonId) {
-							const button = document.getElementById(buttonId);
+			function hidePanels() {
+				Object.values(infoViews).forEach(function(view) {
+					view.panel.style.display = "none";
+				});
+			}
 
-							if (!button) {
-								return;
-							}
-
-							button.classList.toggle("active", isActive);
-							button.setAttribute("aria-pressed", isActive.toString());
-						});
-					});
-				}
-
-				function hideHousePanels() {
-					Object.values(houseViews).forEach(function(view) {
-						view.panel.style.display = "none";
-					});
-				}
-
-				function updateCdPreview(viewName) {
-					const view = houseViews[viewName];
-
-					if (!view) {
-						cdPath.textContent = "";
-						return;
-					}
-
-					if (!activeHouseViewName) {
-						cdPath.textContent = " " + cdCommand + " " + view.directory + "/";
-						return;
-					}
-
-					cdPath.textContent = " " + cdCommand + " " + (activeHouseViewName === viewName ? "../" : "../" + view.directory + "/");
-				}
-
-				function updateDirectoryPath(viewName) {
-					const view = houseViews[viewName];
-					directoryPath.textContent = view ? baseDirectoryPath + "/" + view.directory : baseDirectoryPath;
-				}
-
-				function returnToEntrance() {
-					closeToasts();
-					hideInfoPanels();
-					setInfoButtonState(null);
-					hideHousePanels();
-					setHouseButtonState(null);
-					activeHouseViewName = null;
-					updateCdPreview(null);
-					updateDirectoryPath(null);
-					randomizeTitleName();
-					restartTitleAnimation();
-					entrance.style.display = "block";
-					house.style.display = "none";
-				}
-
-				function showInfoView(viewName) {
-					const view = infoViews[viewName];
-
-					if (view.button.classList.contains("active")) {
-						returnToEntrance();
-						return;
-					}
-
-					closeToasts();
-					hideInfoPanels();
-					setInfoButtonState(viewName);
-					hideHousePanels();
-					setHouseButtonState(null);
-					activeHouseViewName = null;
-					updateCdPreview(null);
-					updateDirectoryPath(null);
-					swapTitleAnimation(view.title, viewName);
-					view.panel.style.display = "block";
-					entrance.style.display = "block";
-					house.style.display = "none";
-				}
-
-				function showHouseView(viewName) {
-					const view = houseViews[viewName];
-
-					if (!view) {
-						return;
-					}
-
-					closeToasts();
-					hideInfoPanels();
-					setInfoButtonState(null);
-
-					if (view.panel.style.display !== "none") {
-						hideHousePanels();
-						setHouseButtonState(null);
-						activeHouseViewName = null;
-						updateDirectoryPath(null);
-						swapTitleAnimation("Expository", "house");
-						entrance.style.display = "none";
-						house.style.display = "block";
-						return;
-					}
-
-					hideHousePanels();
-					setHouseButtonState(viewName);
-					activeHouseViewName = viewName;
-					updateCdPreview(viewName);
-					updateDirectoryPath(viewName);
-					swapTitleAnimation(view.title, view.titleTheme);
-					view.panel.style.display = "block";
-					entrance.style.display = "none";
-					house.style.display = "block";
-				}
-
-				function closeToasts() {
-					document.querySelectorAll(".toast").forEach(function(toastElement) {
-						const toast = window.bootstrap ? bootstrap.Toast.getInstance(toastElement) : null;
-
-						if (toast) {
-							toast.hide();
-						} else {
-							toastElement.classList.remove("show");
-						}
-					});
-				}
-
-				function enterHouse() {
-					closeToasts();
-					hideInfoPanels();
-					setInfoButtonState(null);
-					hideHousePanels();
-					setHouseButtonState(null);
-					activeHouseViewName = null;
-					updateCdPreview(null);
-					updateDirectoryPath(null);
-					swapTitleAnimation("Expository", "house");
-					if (house.style.display === "none") {
-						house.style.display = "block";
-						entrance.style.display = "none";
-					}
-				}
-
-				function enterAbout() {
-					showInfoView("about");
-				}
-
-				function enterContact() {
-					showInfoView("contact");
-				}
-
-				function reloadWebsite() {
-					window.location.reload();
-				}
-
-				function exitHouse() {
-					returnToEntrance();
-				}
-
-				document.getElementById("enter-button").addEventListener("click", enterHouse);
-				document.getElementById("reload-button").addEventListener("click", reloadWebsite);
-				document.getElementById("about-button").addEventListener("click", enterAbout);
-				document.getElementById("contact-button").addEventListener("click", enterContact);
-				document.getElementById("exit-button").addEventListener("click", exitHouse);
-
+			function setHouseButtonState(activeViewName) {
 				Object.entries(houseViews).forEach(function([viewName, view]) {
+					const isActive = viewName === activeViewName;
+
 					view.buttonIds.forEach(function(buttonId) {
 						const button = document.getElementById(buttonId);
 
-						if (button) {
-							button.addEventListener("mouseenter", function() {
-								updateCdPreview(viewName);
-							});
-
-							button.addEventListener("mouseleave", function() {
-								updateCdPreview(null);
-							});
-
-							button.addEventListener("click", function() {
-								showHouseView(viewName);
-							});
-						}
-					});
-				});
-
-				function getVisibleProtectedDocumentForm() {
-					return Array.from(document.querySelectorAll(".protected-document-form")).find(function(form) {
-						return form.offsetParent !== null;
-					});
-				}
-
-				document.body.addEventListener("keydown", function(event) {
-					if (event.key === "Enter") {
-						event.preventDefault();
-						const protectedDocumentForm = getVisibleProtectedDocumentForm();
-
-						if (protectedDocumentForm) {
-							protectedDocumentForm.requestSubmit(protectedDocumentForm.querySelector("button[type='submit']"));
+						if (!button) {
 							return;
 						}
 
-						enterHouse();
+						button.classList.toggle("active", isActive);
+						button.setAttribute("aria-pressed", isActive.toString());
+					});
+				});
+			}
+
+			function hideHousePanels() {
+				Object.values(houseViews).forEach(function(view) {
+					view.panel.style.display = "none";
+				});
+			}
+
+			function isHouseOpen() {
+				return house.style.display !== "none";
+			}
+
+			function updatecdPreview(viewName) {
+				const view = houseViews[viewName];
+
+				if (!view) {
+					cdPath.textContent = "";
+					return;
+				}
+
+				if (!activeHouseViewName) {
+					cdPath.textContent = " " + cdCommand + " " + view.directory + "/";
+					return;
+				}
+
+				cdPath.textContent = " " + cdCommand + " " + (activeHouseViewName === viewName ? "../" : "../" + view.directory + "/");
+			}
+
+			function updateDirectoryPath(viewName) {
+				const view = houseViews[viewName];
+				directoryPath.textContent = view ? baseDirectoryPath + "/" + view.directory : baseDirectoryPath;
+			}
+
+			function returnToEntrance() {
+				closeToasts();
+				hidePanels();
+				setButtonState(null);
+				hideHousePanels();
+				setHouseButtonState(null);
+				activeHouseViewName = null;
+				updatecdPreview(null);
+				updateDirectoryPath(null);
+				randomizeTitle();
+				restartTitle();
+				entrance.style.display = "block";
+				house.style.display = "none";
+			}
+
+			function showInfoView(viewName) {
+				const view = infoViews[viewName];
+
+				if (view.button.classList.contains("active")) {
+					returnToEntrance();
+					return;
+				}
+
+				closeToasts();
+				hidePanels();
+				setButtonState(viewName);
+				hideHousePanels();
+				setHouseButtonState(null);
+				activeHouseViewName = null;
+				updatecdPreview(null);
+				updateDirectoryPath(null);
+				swapTitle(view.title, viewName);
+				view.panel.style.display = "block";
+				entrance.style.display = "block";
+				house.style.display = "none";
+			}
+
+			function showHouseView(viewName) {
+				const view = houseViews[viewName];
+
+				if (!view) {
+					return;
+				}
+
+				closeToasts();
+				hidePanels();
+				setButtonState(null);
+
+				if (view.panel.style.display !== "none") {
+					hideHousePanels();
+					setHouseButtonState(null);
+					activeHouseViewName = null;
+					updateDirectoryPath(null);
+					swapTitle("Expository", "house");
+					entrance.style.display = "none";
+					house.style.display = "block";
+					return;
+				}
+
+				hideHousePanels();
+				setHouseButtonState(viewName);
+				activeHouseViewName = viewName;
+				updatecdPreview(viewName);
+				updateDirectoryPath(viewName);
+				swapTitle(view.title, view.titleTheme);
+				view.panel.style.display = "block";
+				entrance.style.display = "none";
+				house.style.display = "block";
+			}
+
+			function closeToasts() {
+				document.querySelectorAll(".toast").forEach(function(toastElement) {
+					const toast = window.bootstrap ? bootstrap.Toast.getInstance(toastElement) : null;
+
+					if (toast) {
+						toast.hide();
+					} else {
+						toastElement.classList.remove("show");
 					}
-					if (event.ctrlKey && event.key === 'd') {
-						event.preventDefault();
-						exitHouse();
+				});
+			}
+
+			function enterHouse() {
+				closeToasts();
+				hidePanels();
+				setButtonState(null);
+				hideHousePanels();
+				setHouseButtonState(null);
+				activeHouseViewName = null;
+				updatecdPreview(null);
+				updateDirectoryPath(null);
+				swapTitle("Expository", "house");
+				if (house.style.display === "none") {
+					house.style.display = "block";
+					entrance.style.display = "none";
+				}
+			}
+
+			function enterAbout() {
+				showInfoView("about");
+			}
+
+			function enterContact() {
+				showInfoView("contact");
+			}
+
+			function reloadWebsite() {
+				window.location.reload();
+			}
+
+			function exitHouse() {
+				returnToEntrance();
+			}
+
+			document.getElementById("enter-button").addEventListener("click", enterHouse);
+			document.getElementById("reload-button").addEventListener("click", reloadWebsite);
+			document.getElementById("about-button").addEventListener("click", enterAbout);
+			document.getElementById("contact-button").addEventListener("click", enterContact);
+			document.getElementById("exit-button").addEventListener("click", exitHouse);
+
+			Object.entries(houseViews).forEach(function([viewName, view]) {
+				view.buttonIds.forEach(function(buttonId) {
+					const button = document.getElementById(buttonId);
+
+					if (button) {
+						button.addEventListener("mouseenter", function() {
+							updatecdPreview(viewName);
+						});
+
+						button.addEventListener("mouseleave", function() {
+							updatecdPreview(null);
+						});
+
+						button.addEventListener("click", function() {
+							showHouseView(viewName);
+						});
 					}
+				});
+			});
+
+			function getVisibleProtectedDocumentForm() {
+				return Array.from(document.querySelectorAll(".protected-document-form")).find(function(form) {
+					return form.offsetParent !== null;
+				});
+			}
+
+			document.body.addEventListener("keydown", function(event) {
+				if (event.key === "Enter") {
+					event.preventDefault();
+					const protectedDocumentForm = getVisibleProtectedDocumentForm();
+
+					if (protectedDocumentForm) {
+						protectedDocumentForm.requestSubmit(protectedDocumentForm.querySelector("button[type='submit']"));
+						return;
+					}
+
+					enterHouse();
+				}
+				if (event.ctrlKey && event.key === 'd') {
+					event.preventDefault();
+					exitHouse();
+				}
+				if (isHouseOpen()) {
 					Object.entries(houseViews).forEach(function([viewName, view]) {
 						if (event.ctrlKey && event.key.toLowerCase() === view.key) {
 							event.preventDefault();
 							showHouseView(viewName);
 						}
 					});
-				});
-
-				const protectedDocumentPasswordHash = "c0425ff3d1a770e5c0a3248eccc3529011dc593ce6f77d748964699976cb420f";
-				const protectedDocuments = {
-					resume: "./files/Resume_2026-06-03_1927.pdf",
-					cv: "./files/CV_2026-06-03_1933.pdf"
-				};
-
-				function bytesToHex(bytes) {
-					return Array.from(bytes).map(function(byte) {
-						return byte.toString(16).padStart(2, "0");
-					}).join("");
 				}
+			});
 
-				function hashPassword(password) {
-					const encodedPassword = new TextEncoder().encode(password);
-					return crypto.subtle.digest("SHA-256", encodedPassword).then(function(hashBuffer) {
-						return bytesToHex(new Uint8Array(hashBuffer));
-					});
-				}
+			const protectedDocumentPasswordHash = "c0425ff3d1a770e5c0a3248eccc3529011dc593ce6f77d748964699976cb420f";
+			const protectedDocuments = {
+				resume: "./files/Resume_2026-06-03_1927.pdf",
+				cv: "./files/CV_2026-06-03_1933.pdf"
+			};
 
-				document.querySelectorAll(".protected-document-form").forEach(function(form) {
-					form.addEventListener("submit", function(event) {
-						event.preventDefault();
+			function bytesToHex(bytes) {
+				return Array.from(bytes).map(function(byte) {
+					return byte.toString(16).padStart(2, "0");
+				}).join("");
+			}
 
-						const documentPath = protectedDocuments[form.dataset.document];
-						const passwordInput = form.querySelector("input[type='password']");
-						const message = form.parentElement.querySelector(".protected-document-message");
-
-						if (!crypto.subtle) {
-							message.textContent = "Password check requires HTTPS or localhost.";
-							return;
-						}
-
-						const documentWindow = window.open("about:blank", "_blank");
-
-						hashPassword(passwordInput.value).then(function(passwordHash) {
-							if (passwordHash !== protectedDocumentPasswordHash) {
-								message.textContent = "Incorrect password.";
-								passwordInput.select();
-								if (documentWindow) {
-									documentWindow.close();
-								}
-								return;
-							}
-
-							message.textContent = "";
-							passwordInput.value = "";
-							if (documentWindow) {
-								documentWindow.opener = null;
-								documentWindow.location = documentPath;
-							}
-						});
-					});
+			function hashPassword(password) {
+				const encodedPassword = new TextEncoder().encode(password);
+				return crypto.subtle.digest("SHA-256", encodedPassword).then(function(hashBuffer) {
+					return bytesToHex(new Uint8Array(hashBuffer));
 				});
+			}
 
-				const backgroundMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+			document.querySelectorAll(".protected-document-form").forEach(function(form) {
+				form.addEventListener("submit", function(event) {
+					event.preventDefault();
 
-				function updateBackgroundTilt(event) {
-					if (backgroundMotionQuery.matches) {
+					const documentPath = protectedDocuments[form.dataset.document];
+					const passwordInput = form.querySelector("input[type='password']");
+					const message = form.parentElement.querySelector(".protected-document-message");
+
+					if (!crypto.subtle) {
+						message.textContent = "Password check requires HTTPS or localhost.";
 						return;
 					}
 
-					const x = (event.clientX / window.innerWidth - 0.5) * 2;
-					const y = (event.clientY / window.innerHeight - 0.5) * 2;
+					const documentWindow = window.open("about:blank", "_blank");
 
-					document.documentElement.style.setProperty("--background-tilt-x", (x * 4).toFixed(2) + "deg");
-					document.documentElement.style.setProperty("--background-tilt-y", (y * -4).toFixed(2) + "deg");
+					hashPassword(passwordInput.value).then(function(passwordHash) {
+						if (passwordHash !== protectedDocumentPasswordHash) {
+							message.textContent = "Incorrect password.";
+							passwordInput.select();
+							if (documentWindow) {
+								documentWindow.close();
+							}
+							return;
+						}
+
+						message.textContent = "";
+						passwordInput.value = "";
+						if (documentWindow) {
+							documentWindow.opener = null;
+							documentWindow.location = documentPath;
+						}
+					});
+				});
+			});
+
+			const backgroundMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+			function updateBackgroundTilt(event) {
+				if (backgroundMotionQuery.matches) {
+					return;
 				}
 
-				function resetBackgroundTilt() {
-					document.documentElement.style.setProperty("--background-tilt-x", "0deg");
-					document.documentElement.style.setProperty("--background-tilt-y", "0deg");
-				}
+				const x = (event.clientX / window.innerWidth - 0.5) * 2;
+				const y = (event.clientY / window.innerHeight - 0.5) * 2;
 
-				document.addEventListener("pointermove", updateBackgroundTilt);
-				document.addEventListener("pointerleave", resetBackgroundTilt);
-			</script>
+				document.documentElement.style.setProperty("--background-tilt-x", (x * 4).toFixed(2) + "deg");
+				document.documentElement.style.setProperty("--background-tilt-y", (y * -4).toFixed(2) + "deg");
+			}
+
+			function resetBackgroundTilt() {
+				document.documentElement.style.setProperty("--background-tilt-x", "0deg");
+				document.documentElement.style.setProperty("--background-tilt-y", "0deg");
+			}
+
+			document.addEventListener("pointermove", updateBackgroundTilt);
+			document.addEventListener("pointerleave", resetBackgroundTilt);
+		</script>
 
 		<!-- Bootstrap JS/Popper -->
 		<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
