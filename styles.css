@@ -311,14 +311,14 @@ body > :not(nav) {
 
 .background-video {
 	position: fixed;
-	inset: -6vh -6vw;
+	inset: -10vh -10vw;
 	z-index: -1;
-	width: 112vw;
-	height: 112vh;
+	width: 120vw;
+	height: 120vh;
 	object-fit: cover;
-	opacity: 0.55;
+	opacity: 1;
 	pointer-events: none;
-	transform: perspective(900px) rotateX(var(--background-tilt-y, 0deg)) rotateY(var(--background-tilt-x, 0deg)) scale(1.04);
+	transform: perspective(900px) rotateX(var(--background-tilt-y, 0deg)) rotateY(var(--background-tilt-x, 0deg)) scale(1.1);
 	transition: transform 120ms ease-out;
 }
 
