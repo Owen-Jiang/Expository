@@ -116,7 +116,7 @@
 							back soon<br>
 							previous journeys are in repository<br>
 							<br>
-							btw, you are visitor number <span id="visitor-count">...</span>
+							thanks for signing the visitor log, your appointment number is <span id="visitor-count">$$i$$</span>
 							<script>
 								(function() {
 									const visitorCount = document.getElementById("visitor-count");
@@ -284,103 +284,260 @@
 					<div class="form-text text-light protected-document-message" aria-live="polite"></div>
 				</div>
 
-					<div id="journey" style="display: none;" class="transient">
-						<br>
-						<h2><label for="range" class="form-label">Where I've been</label></h2>
-						<input type="range" class="form-range journey-range" min="2020" max="2026" value="2026" id="range">
-						<h2><output for="range" id="rangeValue" aria-hidden="true"></output></h2>
-						<div id="journey-entries" class="d-grid gap-3" aria-live="polite">
-							<div class="journey-entry" data-journey-year="2020" style="display: none;">
-								<div class="card border-light" style="width: 18rem;">
-									<img src="./media/20200606_Jonas Clarke 3.jpg" class="card-img-top" alt="A screenshot of me on Zoom during the 2020 Science Bowl Finals.">
-									<div class="card-body text-white">
-										<p class="card-text mb-0">In which I participated in the 2020 Science Bowl Finals (online due to pandemic) and got 2nd place.</p>
+				<div id="journey" style="display: none;" class="transient">
+					<br>
+					<h2><label for="range" class="form-label">Where I've been</label></h2>
+					<input type="range" class="form-range journey-range" min="2020" max="2026" value="2026" id="range">
+					<h2><output for="range" id="rangeValue" aria-hidden="true"></output></h2>
+					<div id="journey-entries" class="d-grid gap-3" aria-live="polite">
+						<div class="journey-entry" data-journey-year="2020" style="display: none;">
+							<div class="row row-cols-3 g-3 justify-content-center">
+								<div class="col">
+									<div class="card border-light">
+										<img src="./media/2020_3S_substitute.png" class="card-img-top" alt="Lost media of 3S">
+										<div class="card-body text-white">
+											<p class="card-text mb-0">In which the first pandemic-season science education Zoom sessions began.</p>
+										</div>
 									</div>
 								</div>
-								<div class="card border-light" style="width: 18rem;">
-									<img src="./media/20200606_Jonas Clarke 3.jpg" class="card-img-top" alt="A screenshot of me on Zoom during the 2020 Science Bowl Finals.">
-									<div class="card-body text-white">
-										<p class="card-text mb-0">In which I helped create summer Zoom sessions to keep our wits and knowledge sharp, in preparation for Science Bowl Nationals.</p>
+								<div class="col">
+									<div class="card border-light">
+										<div id="carousel2020" class="carousel slide carousel-fade">
+											<div class="carousel-inner">
+												<div class="carousel-item active">
+													<img src="./media/20200304_MIT.jpg" class="card-img-top d-block img-fluid" alt="The team that won the 2020 MIT Regionals.">
+												</div>
+												<div class="carousel-item">
+													<img src="./media/20200606_Jonas Clarke 3.jpg" class="card-img-top d-block img-fluid" alt="A screenshot of me on Zoom during the 2020 Science Bowl Finals.">
+												</div>
+											</div>
+											<button class="carousel-control-prev" type="button" data-bs-target="#carousel2020" data-bs-slide="prev">
+												<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+												<span class="visually-hidden">Previous</span>
+											</button>
+											<button class="carousel-control-next" type="button" data-bs-target="#carousel2020" data-bs-slide="next">
+												<span class="carousel-control-next-icon" aria-hidden="true"></span>
+												<span class="visually-hidden">Next</span>
+											</button>
+										</div>
+										<div class="card-body text-white">
+											<p class="card-text mb-0">In which 2nd place at the National Science Bowl Finals was achieved.</p>
+										</div>
 									</div>
 								</div>
-							</div>
-							<div class="journey-entry" data-journey-year="2021" style="display: none;">
-								<div class="card border-light" style="width: 18rem;">
-									<img src="./media/20210510_Jonas Clarke 2.jpg" class="card-img-top" alt="A screenshot of me on Zoom during the 2021 Science Bowl Finals.">
-									<div class="card-body text-white">
-										<p class="card-text mb-0">In which I participated in the 2021 Science Bowl Finals (online due to pandemic) and got 1st place!</p>
+								<div class="col">
+									<div class="card border-light">
+										<img src="./media/20210128_NatGeoBee.jpg" class="card-img-top" alt="Stuff from the last National Geography Bee">
+										<div class="card-body text-white">
+											<p class="card-text mb-0">In which advancement to the state level of the National Geography Bee was achieved.</p>
+										</div>
 									</div>
-								</div>
-							</div>
-							<div class="journey-entry" data-journey-year="2022" style="display: none;">
-								<div class="card border-light" style="width: 18rem;">
-									<div class="card-body text-white">
-										<p class="card-text mb-0">Coming soon</p>
-									</div>
-								</div>
-							</div>
-							<div class="journey-entry" data-journey-year="2023" style="display: none;">
-								<div class="card border-light" style="width: 18rem;">
-									<div class="card-body text-white">
-										<p class="card-text mb-0">Coming soon</p>
-									</div>
-								</div>
-							</div>
-							<div class="journey-entry" data-journey-year="2024" style="display: none;">
-								<div class="card border-light" style="width: 18rem;">
-									<div class="card-body text-white">
-										<p class="card-text mb-0">Coming soon</p>
-									</div>
-								</div>
-							</div>
-							<div class="journey-entry" data-journey-year="2025" style="display: none;">
-								<div class="card border-light" style="width: 18rem;">
-									<div class="card-body text-white">
-										<p class="card-text mb-0">Coming soon</p>
-									</div>
-								</div>
-							</div>
-							<div class="journey-entry" data-journey-year="2026" style="display: none;">
-								<div class="card border-light" style="width: 18rem;">
-									<div class="card-body text-white">
-										<p class="card-text mb-0">Coming soon</p>
-									</div>
-								</div>
-							</div>
-							<div class="journey-entry card border-light" data-journey-empty style="display: none;">
-								<div class="card-body text-white">
-									<p class="card-text mb-0">$$\text{Year} \in \mathbb{C}$$</p>
 								</div>
 							</div>
 						</div>
-
-						<script>
-							const rangeInput = document.getElementById('range');
-							const rangeOutput = document.getElementById('rangeValue');
-							const journeyEntryBlocks = Array.from(document.querySelectorAll('.journey-entry[data-journey-year]'));
-							const emptyJourneyEntry = document.querySelector('.journey-entry[data-journey-empty]');
-
-							function updateJourney() {
-								const year = rangeInput.value;
-								let hasEntry = false;
-
-								rangeOutput.textContent = year;
-								journeyEntryBlocks.forEach(function(entryBlock) {
-									const isCurrentYear = entryBlock.dataset.journeyYear === year;
-									entryBlock.style.display = isCurrentYear ? "block" : "none";
-									hasEntry = hasEntry || isCurrentYear;
-								});
-
-								emptyJourneyEntry.style.display = hasEntry ? "none" : "block";
-								}
-
-								rangeInput.addEventListener("input", function() {
-									updateJourney();
-								});
-
-								updateJourney();
-							</script>
+						<div class="journey-entry" data-journey-year="2021" style="display: none;">
+							<div class="row row-cols-3 g-3 justify-content-center">
+								<div class="col">
+									<div class="card border-light">
+										<!-- <img src="./media/20210510_Jonas Clarke 2.jpg" class="card-img-top" alt="A screenshot of me on Zoom during the 2021 Science Bowl Finals."> -->
+										<div class="card-body text-white">
+											<p class="card-text mb-0">In which 1st place at the National Science Bowl Finals was achieved.</p>
+										</div>
+									</div>
+								</div>
+								<div class="col">
+									<div class="card border-light">
+										<div id="carousel2021" class="carousel slide carousel-fade">
+											<div class="carousel-inner">
+												<div class="carousel-item active">
+													<img src="./media/2021_3S_Donation.png" class="card-img-top d-block img-fluid" alt="Our donation of funding to pandemic relief.">
+												</div>
+												<div class="carousel-item">
+													<img src="./media/2021_3S_Q&A.png" class="card-img-top d-block img-fluid" alt="Doing a Q&A after a 3S session.">
+												</div>
+											</div>
+											<button class="carousel-control-prev" type="button" data-bs-target="#carousel2021" data-bs-slide="prev">
+												<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+												<span class="visually-hidden">Previous</span>
+											</button>
+											<button class="carousel-control-next" type="button" data-bs-target="#carousel2021" data-bs-slide="next">
+												<span class="carousel-control-next-icon" aria-hidden="true"></span>
+												<span class="visually-hidden">Next</span>
+											</button>
+										</div>
+										<div class="card-body text-white">
+											<p class="card-text mb-0">In which 3S continued to teach during the pandemic</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="journey-entry" data-journey-year="2022" style="display: none;">
+							<div class="row row-cols-3 g-3 justify-content-center">
+								<div class="col">
+									<div class="card border-light">
+										<img src="./media/2022_3S_Demos.png" class="card-img-top" alt="A demonstration of Lenz's law">
+										<div class="card-body text-white">
+											<p class="card-text mb-0">In which the first experimental demonstrations happened in 3S</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="journey-entry" data-journey-year="2023" style="display: none;">
+							<div class="row row-cols-3 g-3 justify-content-center">
+								<div class="col">
+									<div class="card border-light">
+										<img src="./media/20230422_HSQS-S14.png" class="card-img-top" alt="The lightning round against Boston Latin">
+										<div class="card-body text-white">
+											<p class="card-text mb-0">In which Lexington High School reached the semifinals of WGBH's High School Quiz Show for the first time in many years.</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="journey-entry" data-journey-year="2024" style="display: none;">
+							<div class="row row-cols-3 g-3 justify-content-center">
+								<div class="col">
+									<div class="card border-light">
+										<img src="./media/20240308_NOSB.jpg" class="card-img-top" alt="Final team screenshot">
+										<div class="card-body text-white">
+											<p class="card-text mb-0">In which Lexington High School won the National Ocean Sciences Bowl's Blue Lobster Regional.</p>
+										</div>
+									</div>
+								</div>
+								<div class="col">
+									<div class="card border-light">
+										<img src="./media/20240516_HSQS-S15.png" class="card-img-top" alt="The final seconds of the final match against BB&N">
+										<div class="card-body text-white">
+											<p class="card-text mb-0">In which Lexington High School became the first school to win WGBH's High School Quiz Show thrice.</p>
+										</div>
+									</div>
+								</div>
+								<div class="col">
+									<div class="card border-light">
+										<img src="./media/20240620_EV.png" class="card-img-top" alt="Jacking the car up">
+										<div class="card-body text-white">
+											<p class="card-text mb-0">In which the battery of an electric car was swapped in a small garage.</p>
+										</div>
+									</div>
+								</div>
+								<div class="col">
+									<div class="card border-light">
+										<img src="./media/20240808_Scuba.png" class="card-img-top" alt="Just after surfacing from a dive">
+										<div class="card-body text-white">
+											<p class="card-text mb-0">In which a scuba diving license was acquired.</p>
+										</div>
+									</div>
+								</div>
+								<div class="col">
+									<div class="card border-light">
+										<img src="./media/20241018_MetroSea.png" class="card-img-top" alt="Just after surfacing from a dive">
+										<div class="card-body text-white">
+											<p class="card-text mb-0">In which a talk regarding North Atlantic Ocean correlations was given.</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="journey-entry" data-journey-year="2025" style="display: none;">
+							<div class="row row-cols-3 g-3 justify-content-center">
+								<div class="col">
+									<div class="card border-light">
+										<img src="./media/20250426_NSB.jpg" class="card-img-top" alt="Field day at the National Mall">
+										<div class="card-body text-white">
+											<p class="card-text mb-0">In which Lexington High School returned to the National Science Bowl and 2nd place was achieved.</p>
+										</div>
+									</div>
+								</div>
+								<div class="col">
+									<div class="card border-light">
+										<img src="./media/20250515_HSQS-S16.png" class="card-img-top" alt="The final seconds of the final match against BB&N">
+										<div class="card-body text-white">
+											<p class="card-text mb-0">In which Lexington High School became the first school to win WGBH's High School Quiz Show four times.</p>
+										</div>
+									</div>
+								</div>
+								<div class="col">
+									<div class="card border-light">
+										<img src="./media/20250620_OCEANS.png" class="card-img-top" alt="Talking at OCEANS Brest 2025">
+										<div class="card-body text-white">
+											<p class="card-text mb-0">In which a talk about encouraging smarter and more effective machine learning was given.</p>
+										</div>
+									</div>
+								</div>
+								<div class="col">
+									<div class="card border-light">
+										<img src="./media/20250802_Solar.png" class="card-img-top" alt="A solar panel">
+										<div class="card-body text-white">
+											<p class="card-text mb-0">In which solar was self-installed, aiming to connect with the old batteries.</p>
+										</div>
+									</div>
+								</div>
+								<div class="col">
+									<div class="card border-light">
+										<img src="./media/20251207_LBNL.png" class="card-img-top" alt="The best speed limit sign">
+										<div class="card-body text-white">
+											<p class="card-text mb-0">In which a long-term migration to the University of California, Berkeley was undertaken.</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="journey-entry" data-journey-year="2026" style="display: none;">
+							<div class="row row-cols-3 g-3 justify-content-center">
+								<div class="col">
+									<div class="card border-light">
+										<img src="./media/20260429_16B.jpeg" class="card-img-top" alt="A breadboard in EECS 16B">
+										<div class="card-body text-white">
+											<p class="card-text mb-0">In which more classes at Berkeley were taken.</p>
+										</div>
+									</div>
+								</div>
+								<div class="col">
+									<div class="card border-light">
+										<img src="./media/20260614_BANG.jpeg" class="card-img-top" alt="A scintillator">
+										<div class="card-body text-white">
+											<p class="card-text mb-0">In which work began on helping out with neutron scintillator software with the <a href="https://bang.berkeley.edu">Bay Area Neutron Group</a>.</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="journey-entry card border-light" data-journey-empty style="display: none;">
+							<div class="card-body text-white">
+								<p class="card-text mb-0">$$\text{Year} \in \mathbb{C}$$</p>
+							</div>
+						</div>
 					</div>
+
+					<script>
+						const rangeInput = document.getElementById('range');
+						const rangeOutput = document.getElementById('rangeValue');
+						const journeyEntryBlocks = Array.from(document.querySelectorAll('.journey-entry[data-journey-year]'));
+						const emptyJourneyEntry = document.querySelector('.journey-entry[data-journey-empty]');
+
+						function updateJourney() {
+							const year = rangeInput.value;
+							let hasEntry = false;
+
+							rangeOutput.textContent = year;
+							journeyEntryBlocks.forEach(function(entryBlock) {
+								const isCurrentYear = entryBlock.dataset.journeyYear === year;
+								entryBlock.style.display = isCurrentYear ? "block" : "none";
+								hasEntry = hasEntry || isCurrentYear;
+							});
+
+							emptyJourneyEntry.style.display = hasEntry ? "none" : "block";
+							}
+
+							rangeInput.addEventListener("input", function() {
+								updateJourney();
+							});
+
+							updateJourney();
+						</script>
+				</div>
 
 				<div id="projects" style="display: none;" class="transient">
 					<br>

@@ -575,7 +575,23 @@ pre mark {
 }
 
 .card {
-	background-color: rgba(255, 255, 255, 0.2);
+	background-color: rgba(139, 139, 139, 0.6);
+}
+
+/* Carousel and image sizing */
+
+.card .carousel-inner {
+	aspect-ratio: 4 / 3;
+}
+
+.card .carousel-item,
+.card .carousel-item > img {
+	height: 100%;
+}
+
+.card .carousel-item > img {
+	object-fit: cover;
+	width: 100%;
 }
 
 /* Slider */
