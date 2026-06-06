@@ -29,6 +29,15 @@
 		<!-- Favicon -->
 		<link rel="icon" type="image/x-icon" href="ico.jpeg">
 
+		<!-- KaTeX -->
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.17.0/dist/katex.min.css" integrity="sha384-vlBdW0r3AcZO/HboRPznQNowvexd3fY8qHOWkBi5q7KGgqJ+F48+DceybYmrVbmB" crossorigin="anonymous">
+
+		<!-- The loading of KaTeX is deferred to speed up page rendering -->
+		<script defer src="https://cdn.jsdelivr.net/npm/katex@0.17.0/dist/katex.min.js" integrity="sha384-AtrdNsnxl/75rvBneBVH7DtOvCxSVahR2zWqle1coBKd8DEmLoviqNeJSx64gNAs" crossorigin="anonymous"></script>
+
+		<!-- To automatically render math in text elements, include the auto-render extension: -->
+		<script defer src="https://cdn.jsdelivr.net/npm/katex@0.17.0/dist/contrib/auto-render.min.js" integrity="sha384-bjyGPfbij8/NDKJhSGZNP/khQVgtHUE5exjm4Ydllo42FwIgYsdLO2lXGmRBf5Mz" crossorigin="anonymous"
+			onload="renderMathInElement(document.body);"></script>
 	</head>
 	<body>
 		<video class="background-video" autoplay muted loop playsinline aria-hidden="true">
@@ -195,7 +204,7 @@
 					<hr>
 					<figure>
 						<blockquote class="blockquote">
-							<p>I used to want to know what I didn't know. I still do, but I used to, too.</p>
+							<p>I used to want to know what I didn't know. I still do, but I used to, too<a href="https://jiang.people.caltech.edu/new-updates-coming-when-you-least-expect-them">.</a></p>
 						</blockquote>
 						<figcaption class="blockquote-footer">
 							Me, just now
@@ -275,41 +284,103 @@
 					<div class="form-text text-light protected-document-message" aria-live="polite"></div>
 				</div>
 
-				<div id="journey" style="display: none;" class="transient">
-					<br>
-					<h2><label for="range" class="form-label">Where I've been</label></h2>
-					<input type="range" class="form-range journey-range" min="2020" max="2026" value="2026" id="range">
-					<h2><output for="range" id="rangeValue" aria-hidden="true"></output></h2>
-					<h4 id="journey-description" aria-live="polite"></h4>
+					<div id="journey" style="display: none;" class="transient">
+						<br>
+						<h2><label for="range" class="form-label">Where I've been</label></h2>
+						<input type="range" class="form-range journey-range" min="2020" max="2026" value="2026" id="range">
+						<h2><output for="range" id="rangeValue" aria-hidden="true"></output></h2>
+						<div id="journey-entries" class="d-grid gap-3" aria-live="polite">
+							<div class="journey-entry" data-journey-year="2020" style="display: none;">
+								<div class="card border-light" style="width: 18rem;">
+									<img src="./media/20200606_Jonas Clarke 3.jpg" class="card-img-top" alt="A screenshot of me on Zoom during the 2020 Science Bowl Finals.">
+									<div class="card-body text-white">
+										<p class="card-text mb-0">In which I participated in the 2020 Science Bowl Finals (online due to pandemic) and got 2nd place.</p>
+									</div>
+								</div>
+								<div class="card border-light" style="width: 18rem;">
+									<img src="./media/20200606_Jonas Clarke 3.jpg" class="card-img-top" alt="A screenshot of me on Zoom during the 2020 Science Bowl Finals.">
+									<div class="card-body text-white">
+										<p class="card-text mb-0">In which I helped create summer Zoom sessions to keep our wits and knowledge sharp, in preparation for Science Bowl Nationals.</p>
+									</div>
+								</div>
+							</div>
+							<div class="journey-entry" data-journey-year="2021" style="display: none;">
+								<div class="card border-light" style="width: 18rem;">
+									<img src="./media/20210510_Jonas Clarke 2.jpg" class="card-img-top" alt="A screenshot of me on Zoom during the 2021 Science Bowl Finals.">
+									<div class="card-body text-white">
+										<p class="card-text mb-0">In which I participated in the 2021 Science Bowl Finals (online due to pandemic) and got 1st place!</p>
+									</div>
+								</div>
+							</div>
+							<div class="journey-entry" data-journey-year="2022" style="display: none;">
+								<div class="card border-light" style="width: 18rem;">
+									<div class="card-body text-white">
+										<p class="card-text mb-0">Coming soon</p>
+									</div>
+								</div>
+							</div>
+							<div class="journey-entry" data-journey-year="2023" style="display: none;">
+								<div class="card border-light" style="width: 18rem;">
+									<div class="card-body text-white">
+										<p class="card-text mb-0">Coming soon</p>
+									</div>
+								</div>
+							</div>
+							<div class="journey-entry" data-journey-year="2024" style="display: none;">
+								<div class="card border-light" style="width: 18rem;">
+									<div class="card-body text-white">
+										<p class="card-text mb-0">Coming soon</p>
+									</div>
+								</div>
+							</div>
+							<div class="journey-entry" data-journey-year="2025" style="display: none;">
+								<div class="card border-light" style="width: 18rem;">
+									<div class="card-body text-white">
+										<p class="card-text mb-0">Coming soon</p>
+									</div>
+								</div>
+							</div>
+							<div class="journey-entry" data-journey-year="2026" style="display: none;">
+								<div class="card border-light" style="width: 18rem;">
+									<div class="card-body text-white">
+										<p class="card-text mb-0">Coming soon</p>
+									</div>
+								</div>
+							</div>
+							<div class="journey-entry card border-light" data-journey-empty style="display: none;">
+								<div class="card-body text-white">
+									<p class="card-text mb-0">$$\text{Year} \in \mathbb{C}$$</p>
+								</div>
+							</div>
+						</div>
 
-					<script>
-						const rangeInput = document.getElementById('range');
-						const rangeOutput = document.getElementById('rangeValue');
-						const journeyDescription = document.getElementById('journey-description');
-						const journeyEntries = {
-							2020: "Coming soon",
-							2021: "Coming soon",
-							2022: "Coming soon",
-							2023: "Coming soon",
-							2024: "Coming soon",
-							2025: "Coming soon",
-							2026: "Coming soon",
-						};
+						<script>
+							const rangeInput = document.getElementById('range');
+							const rangeOutput = document.getElementById('rangeValue');
+							const journeyEntryBlocks = Array.from(document.querySelectorAll('.journey-entry[data-journey-year]'));
+							const emptyJourneyEntry = document.querySelector('.journey-entry[data-journey-empty]');
 
-						function updateJourney() {
-							const year = rangeInput.value;
+							function updateJourney() {
+								const year = rangeInput.value;
+								let hasEntry = false;
 
-							rangeOutput.textContent = year;
-							journeyDescription.textContent = journeyEntries[year] || "Can't know yet...";
-						}
+								rangeOutput.textContent = year;
+								journeyEntryBlocks.forEach(function(entryBlock) {
+									const isCurrentYear = entryBlock.dataset.journeyYear === year;
+									entryBlock.style.display = isCurrentYear ? "block" : "none";
+									hasEntry = hasEntry || isCurrentYear;
+								});
 
-						rangeInput.addEventListener('input', function() {
-							updateJourney();
-						});
+								emptyJourneyEntry.style.display = hasEntry ? "none" : "block";
+								}
 
-						updateJourney();
-					</script>
-				</div>
+								rangeInput.addEventListener("input", function() {
+									updateJourney();
+								});
+
+								updateJourney();
+							</script>
+					</div>
 
 				<div id="projects" style="display: none;" class="transient">
 					<br>
@@ -440,12 +511,12 @@
 				about: {
 					button: aboutButton,
 					panel: about,
-					title: "About"
+					title: "About "
 				},
 				contact: {
 					button: contactButton,
 					panel: contact,
-					title: "Contact"
+					title: "Contact "
 				}
 			};
 			const houseViews = {
@@ -453,7 +524,7 @@
 					panel: document.getElementById("resume"),
 					buttonIds: ["resume-button", "resume-touch-button"],
 					directory: "Resume",
-					title: "Resume",
+					title: "Resume ",
 					titleTheme: "resume",
 					key: "g"
 				},
@@ -461,7 +532,7 @@
 					panel: document.getElementById("cv"),
 					buttonIds: ["cv-button", "cv-touch-button"],
 					directory: "CV",
-					title: "CV",
+					title: "CV ",
 					titleTheme: "cv",
 					key: "h"
 				},
@@ -469,7 +540,7 @@
 					panel: document.getElementById("journey"),
 					buttonIds: ["journey-button", "journey-touch-button"],
 					directory: "Journey",
-					title: "Journey",
+					title: "Journey ",
 					titleTheme: "journey",
 					key: "j"
 				},
@@ -477,7 +548,7 @@
 					panel: document.getElementById("projects"),
 					buttonIds: ["projects-button", "projects-touch-button"],
 					directory: "Projects",
-					title: "Projects",
+					title: "Projects ",
 					titleTheme: "projects",
 					key: "k"
 				},
@@ -485,7 +556,7 @@
 					panel: document.getElementById("thoughts"),
 					buttonIds: ["thoughts-button", "thoughts-touch-button"],
 					directory: "Thoughts",
-					title: "Thoughts",
+					title: "Thoughts ",
 					titleTheme: "thoughts",
 					key: "l"
 				}
