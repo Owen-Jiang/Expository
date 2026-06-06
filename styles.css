@@ -584,12 +584,28 @@ pre mark {
 	aspect-ratio: 4 / 3;
 }
 
+.journey-entry .card > a {
+	display: block;
+	aspect-ratio: 4 / 3;
+}
+
+.journey-entry .card > a > .card-img-top {
+	height: 100%;
+	object-fit: cover;
+	width: 100%;
+}
+
 .card .carousel-item,
-.card .carousel-item > img {
+.card .carousel-item > a,
+.card .carousel-item > a > img {
 	height: 100%;
 }
 
-.card .carousel-item > img {
+.card .carousel-item > a {
+	display: block;
+}
+
+.card .carousel-item > a > img {
 	object-fit: cover;
 	width: 100%;
 }
