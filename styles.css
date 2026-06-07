@@ -316,7 +316,7 @@ body > :not(nav) {
 	width: 120vw;
 	height: 120vh;
 	object-fit: cover;
-	opacity: 1;
+	opacity: 0.5;
 	pointer-events: none;
 	transform: perspective(900px) rotateX(var(--background-tilt-y, 0deg)) rotateY(var(--background-tilt-x, 0deg)) scale(1.1);
 	transition: transform 120ms ease-out;
