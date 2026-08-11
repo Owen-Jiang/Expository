@@ -180,74 +180,76 @@
 	--title-gradient-entrance: repeating-linear-gradient(
 		135deg,
 		#ffffff 0%,
-		#a3a3a3 16.7%,
-		#262626 33.3%,
-		#800080 50%,
-		#262626 66.7%,
-		#a3a3a3 83.3%,
+		#a3a3a3 25%,
+		#262626 50%,
+		#800080 75%,
 		#ffffff 100%
 	);
 	--title-gradient-about: repeating-linear-gradient(
 		90deg,
 		#fcf434 0%,
-		#ffffff 16.7%,
-		#9c59d1 33.3%,
-		#2c2c2c 50%,
-		#9c59d1 66.7%,
-		#ffffff 83.3%,
+		#ffffff 25%,
+		#9c59d1 50%,
+		#2c2c2c 75%,
 		#fcf434 100%
 	);
 	--title-gradient-contact: repeating-linear-gradient(
 		90deg,
 		#3da542 0%,
-		#a7d379 12.5%,
-		#ffffff 25%,
-		#a9a9a9 37.5%,
-		#000000 50%,
-		#a9a9a9 62.5%,
-		#ffffff 75%,
-		#a7d379 87.5%,
+		#a7d379 20%,
+		#ffffff 40%,
+		#a9a9a9 60%,
+		#000000 80%,
 		#3da542 100%
 	);
 	--title-gradient-house: repeating-linear-gradient(
 		45deg,
 		#003262 0%,
-		#bc9b6a 25%,
-		#fdb515 50%,
-		#bc9b6a 75%,
+		#bc9b6a 33.3%,
+		#fdb515 66.7%,
 		#003262 100%
 	);
 	--title-gradient-resume: repeating-linear-gradient(
 		45deg,
 		rgb(0, 0, 255) 0%,
-		rgb(255, 215, 0) 50%,
+		rgb(255, 215, 0) 33.3%,
+		#1a1d20 66.7%,
 		rgb(0, 0, 255) 100%
 	);
 	--title-gradient-cv: repeating-linear-gradient(
 		45deg,
 		#8c1515 0%,
-		#ffffff 50%,
+		#ffffff 33.3%,
+		#1a1d20 66.7%,
 		#8c1515 100%
 	);
 	--title-gradient-journey: repeating-linear-gradient(
 		45deg,
 		#0000ff 0%,
-		#ffffff 50%,
+		#ffffff 33.3%,
+		#1a1d20 66.7%,
 		#0000ff 100%
 	);
 	--title-gradient-projects: repeating-linear-gradient(
 		45deg,
 		#a31f36 0%,
-		#ffffff 25%,
-		#2c2a29 50%,
-		#ffffff 75%,
+		#ffffff 33.3%,
+		#2c2a29 66.7%,
 		#a31f36 100%
 	);
 	--title-gradient-thoughts: repeating-linear-gradient(
 		45deg,
 		#a31f34 0%,
-		#8a8b8c 50%,
+		#8a8b8c 33.3%,
+		#ffffff 66.7%,
 		#a31f34 100%
+	);
+	--title-gradient-music: repeating-linear-gradient(
+		45deg,
+		#ffffff 0%,
+		#d6b896 33.3%,
+		#ebab67 66.7%,
+		#552e04 100%
 	);
 	--title-gradient: var(--title-gradient-entrance);
 	--title-animation: flicker 10s steps(1, end) infinite, gradient-left 8s linear infinite;
@@ -576,6 +578,12 @@ pre mark {
 
 .card {
 	background-color: rgba(139, 139, 139, 0.6);
+}
+
+.quote-box {
+	background-color: rgba(0, 0, 0, 0.35);
+	border-radius: 0.75rem;
+	padding: 1.5rem;
 }
 
 /* Carousel and image sizing */
