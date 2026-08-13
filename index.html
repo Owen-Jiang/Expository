@@ -38,6 +38,7 @@
 		<!-- To automatically render math in text elements, include the auto-render extension: -->
 		<script defer src="https://cdn.jsdelivr.net/npm/katex@0.17.0/dist/contrib/auto-render.min.js" integrity="sha384-bjyGPfbij8/NDKJhSGZNP/khQVgtHUE5exjm4Ydllo42FwIgYsdLO2lXGmRBf5Mz" crossorigin="anonymous"
 			onload="renderMathInElement(document.body);"></script>
+		<script defer src="https://cdnjs.cloudflare.com/ajax/libs/marked/16.3.0/lib/marked.umd.min.js" integrity="sha512-V6rGY7jjOEUc7q5Ews8mMlretz1Vn2wLdMW/qgABLWunzsLfluM0FwHuGjGQ1lc8jO5vGpGIGFE+rTzB+63HdA==" crossorigin="anonymous"></script>
 	</head>
 	<body>
 		<video class="background-video" autoplay muted loop playsinline aria-hidden="true">
@@ -256,6 +257,9 @@
 							<li class="nav-item">
 								<button type="button" class="btn touch-button" id="music-touch-button" aria-pressed="false">Music</button>
 							</li>
+							<li class="nav-item">
+								<button type="button" class="btn touch-button" id="blog-touch-button" aria-pressed="false">Blog</button>
+							</li>
 						</ul>
 					</nav>
 					<br>
@@ -267,6 +271,7 @@
 							<span class="keyboard" data-bs-toggle="tooltip" data-bs-title="Press Ctrl+K to toggle Projects"><mark>^K</mark> </span><button type="button" id="projects-button" class="btn btn-link shortcut-button keyboard" aria-pressed="false">Projects</button>
 							<span class="keyboard" data-bs-toggle="tooltip" data-bs-title="Press Ctrl+L to toggle Thoughts"><mark>^L</mark> </span><button type="button" id="thoughts-button" class="btn btn-link shortcut-button keyboard" aria-pressed="false">Thoughts</button>
 							<span class="keyboard" data-bs-toggle="tooltip" data-bs-title="Press Ctrl+M to toggle Music"><mark>^M</mark> </span><button type="button" id="music-button" class="btn btn-link shortcut-button keyboard" aria-pressed="false">Music</button>
+							<span class="keyboard" data-bs-toggle="tooltip" data-bs-title="Press Ctrl+B to toggle Blog"><mark>^B</mark> </span><button type="button" id="blog-button" class="btn btn-link shortcut-button keyboard" aria-pressed="false">Blog</button>
 						</pre>
 					</div>
 				</div>
@@ -627,7 +632,7 @@
 						We all have lots of thoughts and ideas and opinions and viewpoints. Every day, we make choices based on these factors, and they occasionally lead to interesting events and novel things.
 					</p>
 					<p class="lead">
-						I think that's worth it. Won't you come along?
+						I don't know, that's sounds pretty cool to me.
 					</p>
 					<hr>
 					<figure class="text-center quote-box">
@@ -657,6 +662,12 @@
 						</button>
 					</div>
 				</div>
+
+				<div id="blog" style="display: none;" class="transient">
+					<br>
+					<div id="blog-list" class="list-group"></div>
+					<div id="blog-post" style="display: none;"></div>
+				</div>
 			</div>
 		</div>
 		<footer>
@@ -670,7 +681,6 @@
 				<br>
 				Website design accelerated with the assistance of <a href="https://getbootstrap.com">Bootstrap</a>, <a href="https://animate.style/">Animate.style</a>, and <a href="https://v2.jasoncameron.dev/abacus/">Abacus</a>
 				<br>
-				Nota bene: various words on this website have been intentionally obfuscated to hinder web-scraping efforts, while still maintaining comprehension. It's also more interesting that way.
 			</div>
 		</footer>
 
@@ -764,6 +774,14 @@
 					title: "Music ",
 					titleTheme: "music",
 					key: "m"
+				},
+				blog: {
+					panel: document.getElementById("blog"),
+					buttonIds: ["blog-button", "blog-touch-button"],
+					directory: "Blog",
+					title: "Blog ",
+					titleTheme: "blog",
+					key: "b"
 				}
 			};
 			const titleThemes = {
@@ -832,6 +850,13 @@
 				},
 				music: {
 					gradient: "var(--title-gradient-music)",
+					animation: "gradient-right 8s linear infinite",
+					shadow: "0 2px 8px rgba(0, 0, 0, 0.5)",
+					fontFamily: "ITC",
+					fontStyle: "normal"
+				},
+				blog: {
+					gradient: "var(--title-gradient-blog)",
 					animation: "gradient-right 8s linear infinite",
 					shadow: "0 2px 8px rgba(0, 0, 0, 0.5)",
 					fontFamily: "ITC",
@@ -1462,6 +1487,79 @@
 			}
 
 			buildMusicCarousel();
+
+			const blogPostSlugs = ["hello-world"];
+			let blogPosts = null;
+
+			function parseFrontMatter(text) {
+				const match = /^---\n([\s\S]*?)\n---\n([\s\S]*)$/.exec(text);
+				const meta = {};
+
+				(match ? match[1] : "").split("\n").forEach(function(line) {
+					const i = line.indexOf(":");
+
+					if (i > -1) {
+						meta[line.slice(0, i).trim()] = line.slice(i + 1).trim();
+					}
+				});
+
+				return { meta: meta, body: match ? match[2] : text };
+			}
+
+			function showBlogPost(post) {
+				const blogPost = document.getElementById("blog-post");
+
+				document.getElementById("blog-list").style.display = "none";
+				blogPost.innerHTML = "<button type=\"button\" id=\"blog-back\" class=\"btn btn-outline-light mb-3\">&larr; Back</button>" +
+					"<h1>" + post.meta.title + "</h1>" +
+					"<p class=\"text-white-50\">" + post.meta.date + "</p>" +
+					marked.parse(post.body);
+				blogPost.style.display = "block";
+
+				if (window.renderMathInElement) {
+					renderMathInElement(blogPost);
+				}
+
+				document.getElementById("blog-back").addEventListener("click", function() {
+					blogPost.style.display = "none";
+					document.getElementById("blog-list").style.display = "block";
+				});
+			}
+
+			function buildBlogList() {
+				if (blogPosts) {
+					return;
+				}
+
+				blogPosts = [];
+
+				Promise.all(blogPostSlugs.map(function(slug) {
+					return fetch("posts/" + slug + ".md").then(function(response) {
+						return response.text();
+					}).then(parseFrontMatter);
+				})).then(function(posts) {
+					posts.sort(function(a, b) {
+						return new Date(b.meta.date) - new Date(a.meta.date);
+					});
+
+					const blogList = document.getElementById("blog-list");
+
+					posts.forEach(function(post) {
+						const item = document.createElement("button");
+						item.type = "button";
+						item.className = "list-group-item list-group-item-action";
+						item.innerHTML = "<div class=\"fw-bold\">" + post.meta.title + "</div><small>" + post.meta.date + "</small>";
+						item.addEventListener("click", function() {
+							showBlogPost(post);
+						});
+						blogList.appendChild(item);
+					});
+
+					blogPosts = posts;
+				});
+			}
+
+			buildBlogList();
 
 			function copyTextToClipboard(text) {
 				if (navigator.clipboard && window.isSecureContext) {

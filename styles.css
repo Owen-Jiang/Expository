@@ -161,6 +161,12 @@
 }
 
 /* Body requirements */
+@property --title-phase {
+	syntax: "<percentage>";
+	inherits: true;
+	initial-value: 0%;
+}
+
 :root {
 
 	--gold: #cbd4c2;
@@ -179,77 +185,84 @@
 
 	--title-gradient-entrance: repeating-linear-gradient(
 		135deg,
-		#ffffff 0%,
-		#a3a3a3 25%,
-		#262626 50%,
-		#800080 75%,
-		#ffffff 100%
+		#ffffff calc(0% + var(--title-phase)),
+		#a3a3a3 calc(25% + var(--title-phase)),
+		#262626 calc(50% + var(--title-phase)),
+		#800080 calc(75% + var(--title-phase)),
+		#ffffff calc(100% + var(--title-phase))
 	);
 	--title-gradient-about: repeating-linear-gradient(
 		90deg,
-		#fcf434 0%,
-		#ffffff 25%,
-		#9c59d1 50%,
-		#2c2c2c 75%,
-		#fcf434 100%
+		#fcf434 calc(0% + var(--title-phase)),
+		#ffffff calc(25% + var(--title-phase)),
+		#9c59d1 calc(50% + var(--title-phase)),
+		#2c2c2c calc(75% + var(--title-phase)),
+		#fcf434 calc(100% + var(--title-phase))
 	);
 	--title-gradient-contact: repeating-linear-gradient(
 		90deg,
-		#3da542 0%,
-		#a7d379 20%,
-		#ffffff 40%,
-		#a9a9a9 60%,
-		#000000 80%,
-		#3da542 100%
+		#3da542 calc(0% + var(--title-phase)),
+		#a7d379 calc(20% + var(--title-phase)),
+		#ffffff calc(40% + var(--title-phase)),
+		#a9a9a9 calc(60% + var(--title-phase)),
+		#000000 calc(80% + var(--title-phase)),
+		#3da542 calc(100% + var(--title-phase))
 	);
 	--title-gradient-house: repeating-linear-gradient(
 		45deg,
-		#003262 0%,
-		#bc9b6a 33.3%,
-		#fdb515 66.7%,
-		#003262 100%
+		#003262 calc(0% + var(--title-phase)),
+		#bc9b6a calc(33.3% + var(--title-phase)),
+		#fdb515 calc(66.7% + var(--title-phase)),
+		#003262 calc(100% + var(--title-phase))
 	);
 	--title-gradient-resume: repeating-linear-gradient(
 		45deg,
-		rgb(0, 0, 255) 0%,
-		rgb(255, 215, 0) 33.3%,
-		#1a1d20 66.7%,
-		rgb(0, 0, 255) 100%
+		rgb(0, 0, 255) calc(0% + var(--title-phase)),
+		rgb(255, 215, 0) calc(33.3% + var(--title-phase)),
+		#1a1d20 calc(66.7% + var(--title-phase)),
+		rgb(0, 0, 255) calc(100% + var(--title-phase))
 	);
 	--title-gradient-cv: repeating-linear-gradient(
 		45deg,
-		#8c1515 0%,
-		#ffffff 33.3%,
-		#1a1d20 66.7%,
-		#8c1515 100%
+		#8c1515 calc(0% + var(--title-phase)),
+		#ffffff calc(33.3% + var(--title-phase)),
+		#1a1d20 calc(66.7% + var(--title-phase)),
+		#8c1515 calc(100% + var(--title-phase))
 	);
 	--title-gradient-journey: repeating-linear-gradient(
 		45deg,
-		#0000ff 0%,
-		#ffffff 33.3%,
-		#1a1d20 66.7%,
-		#0000ff 100%
+		#0000ff calc(0% + var(--title-phase)),
+		#ffffff calc(33.3% + var(--title-phase)),
+		#1a1d20 calc(66.7% + var(--title-phase)),
+		#0000ff calc(100% + var(--title-phase))
 	);
 	--title-gradient-projects: repeating-linear-gradient(
 		45deg,
-		#a31f36 0%,
-		#ffffff 33.3%,
-		#2c2a29 66.7%,
-		#a31f36 100%
+		#a31f36 calc(0% + var(--title-phase)),
+		#ffffff calc(33.3% + var(--title-phase)),
+		#2c2a29 calc(66.7% + var(--title-phase)),
+		#a31f36 calc(100% + var(--title-phase))
 	);
 	--title-gradient-thoughts: repeating-linear-gradient(
 		45deg,
-		#a31f34 0%,
-		#8a8b8c 33.3%,
-		#ffffff 66.7%,
-		#a31f34 100%
+		#a31f34 calc(0% + var(--title-phase)),
+		#8a8b8c calc(33.3% + var(--title-phase)),
+		#ffffff calc(66.7% + var(--title-phase)),
+		#a31f34 calc(100% + var(--title-phase))
 	);
 	--title-gradient-music: repeating-linear-gradient(
 		45deg,
-		#ffffff 0%,
-		#d6b896 33.3%,
-		#ebab67 66.7%,
-		#552e04 100%
+		#ffffff calc(0% + var(--title-phase)),
+		#d6b896 calc(33.3% + var(--title-phase)),
+		#552e04 calc(66.7% + var(--title-phase)),
+		#ffffff calc(100% + var(--title-phase))
+	);
+	--title-gradient-blog: repeating-linear-gradient(
+		45deg,
+		#ffffff calc(0% + var(--title-phase)),
+		#000000 calc(33.3% + var(--title-phase)),
+		#888888 calc(66.7% + var(--title-phase)),
+		#ffffff calc(100% + var(--title-phase))
 	);
 	--title-gradient: var(--title-gradient-entrance);
 	--title-animation: flicker 10s steps(1, end) infinite, gradient-left 8s linear infinite;
@@ -364,10 +377,7 @@ nav {
 	animation: var(--title-animation);
 
 	background-image: var(--title-gradient);
-	background-size: 200% 100%;
-	background-position: 0% 50%;
-	background-repeat: repeat-x;
-	
+
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 	background-clip: text;
@@ -411,19 +421,19 @@ nav {
 /* Gradient directions */
 @keyframes gradient-left {
 	0% {
-		background-position: 0% 50%;
+		--title-phase: 0%;
 	}
 	100% {
-		background-position: 200% 50%;
+		--title-phase: 100%;
 	}
 }
 
 @keyframes gradient-right {
 	0% {
-		background-position: 200% 50%;
+		--title-phase: 100%;
 	}
 	100% {
-		background-position: 0% 50%;
+		--title-phase: 0%;
 	}
 }
 
@@ -732,6 +742,10 @@ footer {
 .list-group-item-action:not(.active):hover {
 	background-color: #fdb515;
 	border-color: #fdb515;
+}
+
+.small.active {
+	color: black;
 }
 
 .fade {
