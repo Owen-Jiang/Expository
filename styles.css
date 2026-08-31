@@ -590,7 +590,7 @@ pre mark {
 	background-color: rgba(139, 139, 139, 0.6);
 }
 
-.quote-box {
+.darkened-box {
 	background-color: rgba(0, 0, 0, 0.35);
 	border-radius: 0.75rem;
 	padding: 1.5rem;
