@@ -47,47 +47,8 @@
 		<nav class="navbar navbar-expand-lg" data-bs-theme="dark">
 			<div class="container-fluid">
 				<span class="navbar-brand"><span id="title" aria-label=""></span></span>
-				<!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-					<i class="bi bi-list"></i>
-				</button> -->
-				<!-- <div class="collapse navbar-collapse" id="navbarSupportedContent">
-					<ul class="navbar-nav mb-2 mb-lg-0 ms-auto">
-						<li class="nav-item">
-							<a class="nav-link" href=".">Home</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#contact">Contact</a>
-						</li>
-					</ul>
-				</div> -->
 			</div>
 		</nav>
-		<script>
-			const classes = ["cs61a", "cs70", "16a", "c85", "ne10", "pe", "5a", "24"]
-			const dates =  ["Dec 3, 2025 13:00", "Dec 2, 2025 15:30", "Dec 3, 2025 18:30", "Dec 5, 2025 15:00", "Dec 8, 2025 14:00", "Dec 4, 2025 07:00", "Dec 4, 2025 09:30", "Dec 5, 2025 12:00"]
-
-			for (let i = 0; i <= 7; i++) {
-				const date = new Date(dates[i]).getTime();
-	
-				let x = setInterval(function() {
-	
-				var now = new Date().getTime();
-	
-				var until = date - now;
-				var days = Math.floor(until / (1000 * 60 * 60 * 24));
-				var hours = Math.floor((until % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-				var minutes = Math.floor((until % (1000 * 60 * 60)) / (1000 * 60));
-				var seconds = Math.floor((until % (1000 * 60)) / 1000);
-	
-				document.getElementById(classes[i]).innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s";
-	
-				if (until < 0) {
-					clearInterval(x);
-					document.getElementById(classes[i]).innerHTML = "EXPIRED";
-				}
-				}, 1000);
-			}
-		</script>
 		<div class="body-container">
 			<div class="container">
 				<div id="entrance" class="text-center animate__animated animate__fadeIn">
@@ -116,7 +77,7 @@
 							will be back soon<br>
 							to see previous journeys, enter the expository<br>
 							<hr>
-							thank you, visitor number <span id="visitor-count">$$i$$</span>, for visiting my nest! come back and visit often! i will try to add more interesting things for your next return!
+							welcome, visitor number <span id="visitor-count">$$i$$</span>, to my nest. come back and visit often! much will be added later, every thing more interesting than the last.
 							<script>
 								(function() {
 									const visitorCount = document.getElementById("visitor-count");
@@ -173,11 +134,10 @@
 					<div class="row">
 						<div class="col-lg-6">
 							<pre><strong>Name</strong>: <mark data-bs-toggle="tooltip" data-bs-title="ˈə͡ʊɪn t͡ɕiaŋ" data-bs-placement="right">Owen Jiang</mark></pre>
-							<pre>Undergraduate Class of <mark data-bs-toggle="tooltip" data-bs-title="Rising Sophomore" data-bs-placement="right">2029</mark></pre>
-							<pre><strong>University</strong>: <mark data-bs-toggle="tooltip" data-bs-title="Until September 2026" data-bs-placement="right"><a href="https://berkeley.edu" rel="noopener noreferrer">UC Berkeley</a></mark></pre>
-							<!-- <pre>Intended Major: Electrical Engineering + Geological and Planetary Sciences</pre>
-							<pre>Intended Minor: Aerospace Engineering</pre> -->
-							<pre><strong>Website (this one)</strong>: <a href="https://owenj.net" rel="noopener noreferrer">owenj.net</a> <button type="button" class="btn btn-link p-0 ms-1 align-baseline text-reset" aria-label="Copy ocf.berkeley.edu/~owenj" data-bs-toggle="tooltip" data-bs-title="Click to copy" data-copy-text="ocf.berkeley.edu/~owenj"><i class="bi bi-copy"></i></button></pre>
+							<pre>Undergraduate Class of <mark data-bs-toggle="tooltip" data-bs-title="Sophomore" data-bs-placement="right">2029</mark></pre>
+							<pre><strong>Universities</strong>: <mark data-bs-toggle="tooltip" data-bs-title="09/2026–" data-bs-placement="right"><a href="https://caltech.edu" rel="noopener noreferrer">Caltech</a></mark>, <mark data-bs-toggle="tooltip" data-bs-title="08/2025–09/2026" data-bs-placement="right"><a href="https://berkeley.edu" rel="noopener noreferrer">UC Berkeley</a></mark></pre>
+							<pre><strong>Intended Major</strong>: <mark data-bs-toggle="tooltip" data-bs-title="I keep getting told it won't matter after I graduate, so it probably doesn't matter now" data-bs-placement="right">Unimportant</mark></pre>
+							<pre><strong>Website (this one)</strong>: <a href="https://owenj.net" rel="noopener noreferrer">owenj.net</a> <button type="button" class="btn btn-link p-0 ms-1 align-baseline text-reset" aria-label="Copy owenj.net" data-bs-toggle="tooltip" data-bs-title="Click to copy" data-copy-text="https://owenj.net"><i class="bi bi-copy"></i></button></pre>
 							<span class="position-relative">
 								<a class="stretched-link" href="https://github.com/Owen-Jiang" target="_blank" rel="noopener noreferrer"><img src="./media/GitHub.svg" style="width: 1em; margin-inline-start: 0.5em" alt="GitHub icon"/></a>
 								<a href="https://github.com/Owen-Jiang" target="_blank" rel="noopener noreferrer">GitHub</a>
@@ -196,20 +156,20 @@
 							</span><br>
 						</div>
 						<div class="col-lg-6">
-							<pre><strong>Digital Depiction</strong>: <a href="https://maps.app.goo.gl/gk73h5mzzT3T7tvs9" target="_blank" rel="noopener noreferrer"><img class="img-fluid" src="./media/me.jpeg" alt="What I look like" style="border-radius: 100%;" data-bs-toggle="tooltip" data-bs-title="Springer Gateway"></a></pre>
+							<pre><strong>Digital Depiction</strong>: <a href="https://maps.app.goo.gl/gk73h5mzzT3T7tvs9" target="_blank" rel="noopener noreferrer"><img class="img-fluid" src="./media/me.jpeg" alt="What I trick others into thinking I look like" style="border-radius: 100%;" data-bs-toggle="tooltip" data-bs-title="Springer Gateway"></a></pre>
 						</div>
 					</div>
-					<h5>my other homes</h5>
+					<h5>other and past homes</h5>
 					<a href="https://bang.berkeley.edu/"><em>Bay Area Neutron Group</em></a><br>
 					<a href="https://mtsn.berkeley.edu"><em>UC Berkeley | Department of Mechanical Engineering | Multiphase Thermofluidics & Surface Nanoengineering Group</em></a><br>
 					<a href="https://boos.berkeley.edu"><em>UC Berkeley | Department of Earth and Planetary Sciences | Boos Research Group</em></a>
 					<hr><br>
 					<figure>
 						<blockquote class="blockquote">
-							<p>Let’s take off, our hair fluttering in the wind, and triumph on our faces<a href="https://jiang.people.caltech.edu/new-updates-coming-when-you-least-expect-them">.</a></p>
+							<p><span id="motd"></span><a href="https://jiang.people.caltech.edu/new-updates-coming-when-you-least-expect-them">.</a></p>
 						</blockquote>
 						<figcaption class="blockquote-footer">
-							some recent words
+							what your eyes just read
 						</figcaption>
 					</figure>
 					<blockquote class="blockquote">
@@ -217,6 +177,7 @@
 				</div>
 
 				<div id="contact" style="display: none;" class="transient">
+					<br>
 					Boundary conditions have determined that globally- and temporally-optimized contact methods are email and <a href="https://www.linkedin.com/in/owenwjiang/" target="_blank" rel="noopener noreferrer">LinkedIn</a>.
 					<br><br>
 					<address class="d-inline-flex align-items-start">
@@ -627,17 +588,17 @@
 
 				<div id="thoughts" style="display: none;" class="transient">
 					<br>
-					<h1>Why not <strong>be</strong>?</h1>
+					<h1>Why not<strong>?</strong></h1>
 					<p>
 						We all have lots of thoughts and ideas and opinions and viewpoints. Every day, we make choices based on these factors, and they occasionally lead to interesting events and novel things.
 					</p>
 					<p class="lead">
-						I don't know, that's sounds pretty cool to me.
+						I don't know, that sounds pretty cool to me. But remember:
 					</p>
 					<hr>
 					<figure class="text-center quote-box">
 						<blockquote class="blockquote" style="font-size: 2.5rem;">
-							<p>Never trust anyone who looks up motivational quotes for their website. These are the kinds of people who would take advice from those websites with motivational quotes.</p>
+							<p>Never trust anyone who looks up motivational quotes for their website. These are the kinds of people who would actually take advice from motivational quote websites.</p>
 						</blockquote>
 						<figcaption class="blockquote-footer" style="font-size: 1.75em;">
 							MotivationalQuotes.com
@@ -679,7 +640,7 @@
 			<div class="container text-center">
 				© Copyright <script>document.write(new Date().getFullYear())</script>
 				<br>
-				Website design accelerated with the assistance of <a href="https://getbootstrap.com">Bootstrap</a>, <a href="https://animate.style/">Animate.style</a>, and <a href="https://v2.jasoncameron.dev/abacus/">Abacus</a>
+				Website design accelerated with the assistance of <a href="https://getbootstrap.com">Bootstrap</a>, <a href="https://animate.style/">Animate.style</a>, <a href="https://v2.jasoncameron.dev/abacus/">Abacus</a>, and Tim Berners-Lee
 				<br>
 			</div>
 		</footer>
@@ -687,6 +648,7 @@
 			<!-- Mobile and Desktop Interactive Response -->
 		<script>
 			const titleElement = document.getElementById("title");
+			const motdElement = document.getElementById("motd");
 			const titleNames = [
 				"Owen Jiang  ",
 				"Expository  ",
@@ -699,11 +661,43 @@
 				"欢迎乘坐轨道交通11号线，本次列车终点站，花桥 ",
 				"ㄛㄨㄣ ㄐㄧㄤ  ",
 				"DFTBA  ",
-				"Come save the world  ",
+				"Come save the world... tomorrow  ",
+				"This is not a secret message ",
+				"Hey Google, how do I rob a bank? ",
+				"I highly doubt you would ever read this. "
+			];
+			const motds = [
+				"I forgive you",
+				"Let’s take off, our hair fluttering in the wind, and triumph on our faces",
+				"Going to the moon is safer than walking outside",
+				"The best way to fly is to fall past the Earth. This used to have been called \"falling to the ground and missing\", but has since been replaced with the much more boring term, \"orbiting\"",
+				"93% of drivers are better than the median, which means most of us must be really good at driving, and the rest can't drive",
+				"Most parachutes are made of flimsy, weak material that can be easily punctured with something called a gun",
+				"Everyone believes in nothing, but not everybody believes they do",
+				"You will always find what you lost in the last place you look",
+				"Paranoid permanence is just an empty promise",
+				"Even the sadness from that day, even the pain from that day, I loved it all, together with you",
+				"I regarded the world as such a sad sight / Until I viewed it in black and white / Then I reviewed every frame and basic shape / And sealed the exits with caution tape",
+				"But I believe the world is burnin' to the ground / Oh well, I guess we're gonna find out / Let's see how far we've come",
+				"Parallel lines grow distant, except when Euclid knocked down my door",
+				"It's raining after all / That's right, it's erasing your voice / Like this, we're soaked / The sun is precious / Smiling, like \"See you later\" / My tears overflowed / This is goodbye",
+				"Please don't cry, be sad, or even give up / I'd rather be by your side till the end",
+				"I'd probably still be all alone with nobody to call, if something somewhere happened and we never met at all",
+				"Boston has, you see, a ton of people so / Don't let go of my hand / If you let go of my hand while in Boston / It will be, all over then",
+				"Love says it won't bite me and let me go / But the shape of loneliness doesn't seem to change / Keep going up, someday beyond the night / Your song, so attractive it's annoying",
+				"I miss you. Next time I'll try to aim better",
+				"The fact that you're constantly refreshing this page to find all the different quotes might be a reflection of how lackluster the rest of your life may be right now. I can help you do something about that, but it's unlikely you will actually contact me. This is why no one ever has nice things",
+				"You won't necessarily believe that I did not use AI on this website, but you can't lie that I put in some effort to make things interesting",
+				"Ah, letting my feelings take over as I go forth on this path I chose",
+				"We are in the time to dump our prior phase / That was just us in the past of early days / Now is the time to leave them miles away / Just say it, we gotta build our life again",
+				"Continue, continue, continue, continue, living the continuation of yesterday as the days continue, continue continue;",
+				"Will I be a brave? / Will I be a bright? / Will I be a good grown-up? Statistically speaking, chances increase the older I get and decrease the longer I live",
+				"Time is an illusion that helps things make sense / So we are always living in the present tense / It seems unforgiving when a good thing ends / But you and I will always be back then / That's right, you and I will always be best friends",
 			];
 			let titleName = titleNames[0];
+			let motd = motds[0];
 			const titleStaticSeconds = 13.5;
-			const titleScrollSecondsPerChar = 0.15;
+			const titleSecondsPerChar = 0.15;
 			const entrance = document.getElementById("entrance");
 			const house = document.getElementById("house");
 			const about = document.getElementById("about");
@@ -879,7 +873,7 @@
 
 			function runTitle() {
 				const staticMs = titleStaticSeconds * 1000;
-				const scrollMs = titleName.length * titleScrollSecondsPerChar * 1000;
+				const scrollMs = titleName.length * titleSecondsPerChar * 1000;
 				const cycleMs = staticMs + scrollMs;
 				const elapsed = (Date.now() - titleAnimationStartedAt) % cycleMs;
 
@@ -915,6 +909,10 @@
 
 			function randomizeTitle() {
 				titleName = titleNames[Math.floor(Math.random() * titleNames.length)];
+			}
+
+			function randomizeMotd() {
+				motd = motds[Math.floor(Math.random() * motds.length)];
 			}
 
 			function setButtonState(activeViewName) {
@@ -980,7 +978,7 @@
 				directoryPath.textContent = view ? baseDirectoryPath + "/" + view.directory : baseDirectoryPath;
 			}
 
-			function returnToEntrance() {
+			function resetPanels() {
 				closeToasts();
 				hidePanels();
 				setButtonState(null);
@@ -989,6 +987,14 @@
 				activeHouseViewName = null;
 				updatecdPreview(null);
 				updateDirectoryPath(null);
+			}
+
+			function updateMotdDisplay() {
+				motdElement.textContent = motd;
+			}
+
+			function returnToEntrance() {
+				resetPanels();
 				randomizeTitle();
 				restartTitle();
 				entrance.style.display = "block";
@@ -1003,18 +1009,24 @@
 					return;
 				}
 
-				closeToasts();
-				hidePanels();
+				resetPanels();
 				setButtonState(viewName);
-				hideHousePanels();
-				setHouseButtonState(null);
-				activeHouseViewName = null;
-				updatecdPreview(null);
-				updateDirectoryPath(null);
 				swapTitle(view.title, viewName);
 				view.panel.style.display = "block";
 				entrance.style.display = "block";
 				house.style.display = "none";
+
+				if (viewName === "about") {
+					randomizeMotd();
+					updateMotdDisplay();
+				}
+			}
+
+			function showHouseRoot() {
+				resetPanels();
+				swapTitle("Expository", "house");
+				entrance.style.display = "none";
+				house.style.display = "block";
 			}
 
 			function showHouseView(viewName) {
@@ -1024,22 +1036,12 @@
 					return;
 				}
 
-				closeToasts();
-				hidePanels();
-				setButtonState(null);
-
 				if (view.panel.style.display !== "none") {
-					hideHousePanels();
-					setHouseButtonState(null);
-					activeHouseViewName = null;
-					updateDirectoryPath(null);
-					swapTitle("Expository", "house");
-					entrance.style.display = "none";
-					house.style.display = "block";
+					showHouseRoot();
 					return;
 				}
 
-				hideHousePanels();
+				resetPanels();
 				setHouseButtonState(viewName);
 				activeHouseViewName = viewName;
 				updatecdPreview(viewName);
@@ -1063,19 +1065,7 @@
 			}
 
 			function enterHouse() {
-				closeToasts();
-				hidePanels();
-				setButtonState(null);
-				hideHousePanels();
-				setHouseButtonState(null);
-				activeHouseViewName = null;
-				updatecdPreview(null);
-				updateDirectoryPath(null);
-				swapTitle("Expository", "house");
-				if (house.style.display === "none") {
-					house.style.display = "block";
-					entrance.style.display = "none";
-				}
+				showHouseRoot();
 			}
 
 			function enterAbout() {
@@ -1427,7 +1417,7 @@
 				"XDkx_l04TkU"
 			];
 
-			function loadMusicSlide(ratio) {
+			function musicSlide(ratio) {
 				if (!ratio || ratio.dataset.loaded === "true") {
 					return;
 				}
@@ -1445,7 +1435,7 @@
 				ratio.dataset.loaded = "true";
 			}
 
-			function unloadMusicSlide(ratio) {
+			function unMusicSlide(ratio) {
 				if (!ratio || ratio.dataset.loaded !== "true") {
 					return;
 				}
@@ -1454,7 +1444,7 @@
 				delete ratio.dataset.loaded;
 			}
 
-			function buildMusicCarousel() {
+			function musicCarousel() {
 				const musicCarousel = document.getElementById("music-carousel");
 				const carouselInner = musicCarousel && musicCarousel.querySelector(".carousel-inner");
 
@@ -1476,19 +1466,19 @@
 					carouselInner.appendChild(item);
 
 					if (index === activeIndex) {
-						loadMusicSlide(ratio);
+						musicSlide(ratio);
 					}
 				});
 
 				musicCarousel.addEventListener("slide.bs.carousel", function(event) {
-					unloadMusicSlide(event.from !== undefined && carouselInner.children[event.from] && carouselInner.children[event.from].querySelector(".ratio"));
-					loadMusicSlide(event.relatedTarget && event.relatedTarget.querySelector(".ratio"));
+					unMusicSlide(event.from !== undefined && carouselInner.children[event.from] && carouselInner.children[event.from].querySelector(".ratio"));
+					musicSlide(event.relatedTarget && event.relatedTarget.querySelector(".ratio"));
 				});
 			}
 
-			buildMusicCarousel();
+			musicCarousel();
 
-			const blogPostSlugs = ["hello-world"];
+			const blogPostSlugs = ["001"];
 			let blogPosts = null;
 
 			function parseFrontMatter(text) {
@@ -1506,7 +1496,7 @@
 				return { meta: meta, body: match ? match[2] : text };
 			}
 
-			function showBlogPost(post) {
+			function showPost(post) {
 				const blogPost = document.getElementById("blog-post");
 
 				document.getElementById("blog-list").style.display = "none";
@@ -1526,7 +1516,7 @@
 				});
 			}
 
-			function buildBlogList() {
+			function blogList() {
 				if (blogPosts) {
 					return;
 				}
@@ -1550,7 +1540,7 @@
 						item.className = "list-group-item list-group-item-action";
 						item.innerHTML = "<div class=\"fw-bold\">" + post.meta.title + "</div><small>" + post.meta.date + "</small>";
 						item.addEventListener("click", function() {
-							showBlogPost(post);
+							showPost(post);
 						});
 						blogList.appendChild(item);
 					});
@@ -1559,9 +1549,9 @@
 				});
 			}
 
-			buildBlogList();
+			blogList();
 
-			function copyTextToClipboard(text) {
+			function clipboardCopy(text) {
 				if (navigator.clipboard && window.isSecureContext) {
 					return navigator.clipboard.writeText(text);
 				}
@@ -1579,7 +1569,7 @@
 				return Promise.resolve();
 			}
 
-			function setCopyTooltipTitle(copyButton, title) {
+			function copyTooltipTitle(copyButton, title) {
 				copyButton.setAttribute("data-bs-title", title);
 
 				const tooltip = bootstrap.Tooltip.getInstance(copyButton);
@@ -1589,7 +1579,7 @@
 				}
 			}
 
-			function setCopyIconCopied(copyButton, isCopied) {
+			function copyIconCopied(copyButton, isCopied) {
 				const copyIcon = copyButton.querySelector("i");
 
 				if (!copyIcon) {
@@ -1599,18 +1589,18 @@
 				copyIcon.className = isCopied ? "bi bi-clipboard-check-fill" : "bi bi-copy";
 			}
 
-			function resetCopyButton(copyButton) {
-				setCopyTooltipTitle(copyButton, "Click to copy");
-				setCopyIconCopied(copyButton, false);
+			function resetCopyBtn(copyButton) {
+				copyTooltipTitle(copyButton, "Click to copy");
+				copyIconCopied(copyButton, false);
 			}
 
 			document.querySelectorAll("[data-copy-text]").forEach(function(copyButton) {
 				copyButton.addEventListener("click", function() {
-					copyTextToClipboard(copyButton.getAttribute("data-copy-text")).then(function() {
+					clipboardCopy(copyButton.getAttribute("data-copy-text")).then(function() {
 						const tooltip = bootstrap.Tooltip.getInstance(copyButton);
 
-						setCopyTooltipTitle(copyButton, "Copied!");
-						setCopyIconCopied(copyButton, true);
+						copyTooltipTitle(copyButton, "Copied!");
+						copyIconCopied(copyButton, true);
 
 						if (tooltip) {
 							tooltip.show();
@@ -1619,7 +1609,7 @@
 				});
 
 				copyButton.addEventListener("mouseleave", function() {
-					resetCopyButton(copyButton);
+					resetCopyBtn(copyButton);
 				});
 			});
 
