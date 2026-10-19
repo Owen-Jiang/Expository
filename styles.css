@@ -744,6 +744,16 @@ footer {
 	border-color: #fdb515;
 }
 
+.blog-tag {
+	margin: 0 0.5rem 0.5rem 0;
+}
+
+.blog-tag.active, .blog-tag.active:hover {
+	background-color: #fdb515;
+	border-color: #fdb515;
+	color: black;
+}
+
 .small.active {
 	color: black;
 }
