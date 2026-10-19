@@ -78,6 +78,53 @@
 							to see previous journeys, enter the expository<br>
 							<hr>
 							welcome, visitor number <span id="visitor-count">$$i$$</span>, to the nest.
+							<script>
+								(function() {
+									const visitorCount = document.getElementById("visitor-count");
+									const visitorCountCacheKey = "expositoryVisitorCount";
+
+									function getCachedVisitorCount() {
+										try {
+											return sessionStorage.getItem(visitorCountCacheKey);
+										} catch (error) {
+											return null;
+										}
+									}
+
+									function setCachedVisitorCount(count) {
+										try {
+											sessionStorage.setItem(visitorCountCacheKey, count);
+										} catch (error) {
+										}
+									}
+
+									if (!visitorCount) {
+										return;
+									}
+
+									const cachedVisitorCount = getCachedVisitorCount();
+
+									if (cachedVisitorCount) {
+										visitorCount.textContent = cachedVisitorCount;
+										return;
+									}
+
+									fetch("https://abacus.jasoncameron.dev/hit/ocf.berkeley.edu/owenj", {
+										cache: "no-store"
+									})
+										.then(function(response) {
+											return response.ok ? response.json() : Promise.reject();
+										})
+										.then(function(data) {
+											const count = Number(data.value).toLocaleString();
+											setCachedVisitorCount(count);
+											visitorCount.textContent = count;
+										})
+										.catch(function() {
+											visitorCount.textContent = "unknown";
+										});
+								})();
+							</script>
 						</div>
 					</div>
 				</div>
@@ -444,6 +491,33 @@
 							</div>
 						</div>
 					</div>
+
+					<script>
+						const rangeInput = document.getElementById('range');
+						const rangeOutput = document.getElementById('rangeValue');
+						const journeyEntryBlocks = Array.from(document.querySelectorAll('.journey-entry[data-journey-year]'));
+						const emptyJourneyEntry = document.querySelector('.journey-entry[data-journey-empty]');
+
+						function updateJourney() {
+							const year = rangeInput.value;
+							let hasEntry = false;
+
+							rangeOutput.textContent = year;
+							journeyEntryBlocks.forEach(function(entryBlock) {
+								const isCurrentYear = entryBlock.dataset.journeyYear === year;
+								entryBlock.style.display = isCurrentYear ? "block" : "none";
+								hasEntry = hasEntry || isCurrentYear;
+							});
+
+							emptyJourneyEntry.style.display = hasEntry ? "none" : "block";
+							}
+
+							rangeInput.addEventListener("input", function() {
+								updateJourney();
+							});
+
+							updateJourney();
+						</script>
 				</div>
 
 				<div id="projects" style="display: none;" class="transient">
@@ -564,47 +638,15 @@
 				</div>
 			</div>
 			<div class="container text-center">
-				© Copyright <span id="copyright-year"></span>
+				© Copyright <script>document.write(new Date().getFullYear())</script>
 				<br>
 				Website design accelerated with the assistance of <a href="https://getbootstrap.com">Bootstrap</a>, <a href="https://animate.style/">Animate.style</a>, <a href="https://v2.jasoncameron.dev/abacus/">Abacus</a>, and Tim Berners-Lee
 				<br>
 			</div>
 		</footer>
 
-		<!-- Bootstrap JS/Popper -->
-		<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js" integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y" crossorigin="anonymous"></script>
-
-		<!-- Site behavior -->
+			<!-- Mobile and Desktop Interactive Response -->
 		<script>
-			/* ---------- Helpers ---------- */
-
-			function randomItem(items) {
-				return items[Math.floor(Math.random() * items.length)];
-			}
-
-			// An empty display falls back to the stylesheet (block for panels, flex for list groups)
-			function setShown(element, isShown) {
-				element.style.display = isShown ? "" : "none";
-			}
-
-			function setPressed(button, isPressed) {
-				button.classList.toggle("active", isPressed);
-				button.setAttribute("aria-pressed", String(isPressed));
-			}
-
-			function setTooltipTitle(element, title) {
-				element.setAttribute("data-bs-title", title);
-
-				const tooltip = bootstrap.Tooltip.getInstance(element);
-
-				if (tooltip) {
-					tooltip.setContent({ ".tooltip-inner": title });
-				}
-			}
-
-			/* ---------- Title and message of the day ---------- */
-
 			const titleElement = document.getElementById("title");
 			const motdElement = document.getElementById("motd");
 			const titleNames = [
@@ -643,263 +685,481 @@
 				"If there is anything that I can do to increase shareholder value, consider asking yourself why you're asking me in the first place",
 				"If you have suggestions for other variable text that goes on this page, please email me with your suggestions"
 			];
-			// Each theme uses the --title-gradient-<name> CSS variable; shadow and font fall back to the defaults below
-			const titleThemes = {
-				entrance: { animation: "flicker 10s steps(1, end) infinite, gradient-left 4s linear infinite", shadow: "0 2px 8px rgba(0, 0, 0, 0.01)", fontFamily: "HelveticaNL" },
-				about: { animation: "gradient-left 4s linear infinite", fontFamily: "Inter" },
-				contact: { animation: "gradient-right 4s linear infinite", fontFamily: "Inter" },
-				house: { animation: "gradient-right 4s linear infinite", fontFamily: "Inter" },
-				resume: { animation: "gradient-right 4s linear infinite" },
-				cv: { animation: "gradient-left 4s linear infinite" },
-				journey: { animation: "gradient-right 6s linear infinite" },
-				projects: { animation: "gradient-left 3s linear infinite" },
-				thoughts: { animation: "gradient-right 8s linear infinite" },
-				music: { animation: "gradient-right 8s linear infinite" },
-				blog: { animation: "gradient-right 8s linear infinite" }
-			};
-			const defaultTitleShadow = "0 2px 8px rgba(0, 0, 0, 0.5)";
-			const defaultTitleFont = "ITC";
-			const titleStaticMs = 13500;
-			const titleScrollMsPerChar = 150;
 			let titleName = titleNames[0];
-			let titleIntervalId = null;
-			let titleStartedAt;
+			let motd = motds[0];
+			const titleStaticSeconds = 13.5;
+			const titleSecondsPerChar = 0.15;
+			const entrance = document.getElementById("entrance");
+			const house = document.getElementById("house");
+			const about = document.getElementById("about");
+			const contact = document.getElementById("contact");
+			const directoryPath = document.getElementById("directory-path");
+			const cdPath = document.getElementById("cd-path");
+			const baseDirectoryPath = directoryPath.textContent;
+			const cdCommand = "cd";
+			const aboutButton = document.getElementById("about-button");
+			const contactButton = document.getElementById("contact-button");
+			const infoViews = {
+				about: {
+					button: aboutButton,
+					panel: about,
+					title: "About "
+				},
+				contact: {
+					button: contactButton,
+					panel: contact,
+					title: "Contact "
+				}
+			};
+			const houseViews = {
+				resume: {
+					panel: document.getElementById("resume"),
+					buttonIds: ["resume-button", "resume-touch-button"],
+					directory: "Resume",
+					title: "Resume ",
+					titleTheme: "resume",
+					key: "g"
+				},
+				cv: {
+					panel: document.getElementById("cv"),
+					buttonIds: ["cv-button", "cv-touch-button"],
+					directory: "CV",
+					title: "CV ",
+					titleTheme: "cv",
+					key: "h"
+				},
+				journey: {
+					panel: document.getElementById("journey"),
+					buttonIds: ["journey-button", "journey-touch-button"],
+					directory: "Journey",
+					title: "Journey ",
+					titleTheme: "journey",
+					key: "j"
+				},
+				projects: {
+					panel: document.getElementById("projects"),
+					buttonIds: ["projects-button", "projects-touch-button"],
+					directory: "Projects",
+					title: "Projects ",
+					titleTheme: "projects",
+					key: "k"
+				},
+				thoughts: {
+					panel: document.getElementById("thoughts"),
+					buttonIds: ["thoughts-button", "thoughts-touch-button"],
+					directory: "Thoughts",
+					title: "Some thoughts ",
+					titleTheme: "thoughts",
+					key: "l"
+				},
+				music: {
+					panel: document.getElementById("music"),
+					buttonIds: ["music-button", "music-touch-button"],
+					directory: "Music",
+					title: "Music ",
+					titleTheme: "music",
+					key: "m"
+				},
+				blog: {
+					panel: document.getElementById("blog"),
+					buttonIds: ["blog-button", "blog-touch-button"],
+					directory: "Blog",
+					title: "Blog ",
+					titleTheme: "blog",
+					key: "b"
+				}
+			};
+			const titleThemes = {
+				entrance: {
+					gradient: "var(--title-gradient-entrance)",
+					animation: "flicker 10s steps(1, end) infinite, gradient-left 4s linear infinite",
+					shadow: "0 2px 8px rgba(0, 0, 0, 0.01)",
+					fontFamily: "HelveticaNL",
+					fontStyle: "normal"
+				},
+				about: {
+					gradient: "var(--title-gradient-about)",
+					animation: "gradient-left 4s linear infinite",
+					shadow: "0 2px 8px rgba(0, 0, 0, 0.5)",
+					fontFamily: "Inter",
+					fontStyle: "bold"
+				},
+				contact: {
+					gradient: "var(--title-gradient-contact)",
+					animation: "gradient-right 4s linear infinite",
+					shadow: "0 2px 8px rgba(0, 0, 0, 0.5)",
+					fontFamily: "Inter",
+					fontStyle: "normal"
+				},
+				house: {
+					gradient: "var(--title-gradient-house)",
+					animation: "gradient-right 4s linear infinite",
+					shadow: "0 2px 8px rgba(0, 0, 0, 0.5)",
+					fontFamily: "Inter",
+					fontStyle: "bold"
+				},
+				resume: {
+					gradient: "var(--title-gradient-resume)",
+					animation: "gradient-right 4s linear infinite",
+					shadow: "0 2px 8px rgba(0, 0, 0, 0.5)",
+					fontFamily: "ITC",
+					fontStyle: "normal"
+				},
+				cv: {
+					gradient: "var(--title-gradient-cv)",
+					animation: "gradient-left 4s linear infinite",
+					shadow: "0 2px 8px rgba(0, 0, 0, 0.5)",
+					fontFamily: "ITC",
+					fontStyle: "normal"
+				},
+				journey: {
+					gradient: "var(--title-gradient-journey)",
+					animation: "gradient-right 6s linear infinite",
+					shadow: "0 2px 8px rgba(0, 0, 0, 0.5)",
+					fontFamily: "ITC",
+					fontStyle: "normal"
+				},
+				projects: {
+					gradient: "var(--title-gradient-projects)",
+					animation: "gradient-left 3s linear infinite",
+					shadow: "0 2px 8px rgba(0, 0, 0, 0.5)",
+					fontFamily: "ITC",
+					fontStyle: "normal"
+				},
+				thoughts: {
+					gradient: "var(--title-gradient-thoughts)",
+					animation: "gradient-right 8s linear infinite",
+					shadow: "0 2px 8px rgba(0, 0, 0, 0.5)",
+					fontFamily: "ITC",
+					fontStyle: "normal"
+				},
+				music: {
+					gradient: "var(--title-gradient-music)",
+					animation: "gradient-right 8s linear infinite",
+					shadow: "0 2px 8px rgba(0, 0, 0, 0.5)",
+					fontFamily: "ITC",
+					fontStyle: "normal"
+				},
+				blog: {
+					gradient: "var(--title-gradient-blog)",
+					animation: "gradient-right 8s linear infinite",
+					shadow: "0 2px 8px rgba(0, 0, 0, 0.5)",
+					fontFamily: "ITC",
+					fontStyle: "normal"
+				}
+			};
+			let titleIntervalId;
+			let titleAnimationStartedAt;
+			let activeHouseViewName = null;
 
-			function applyTitleTheme(themeName) {
-				const theme = titleThemes[themeName];
+			function applyTitle(themeName) {
+				const theme = titleThemes[themeName] || titleThemes.entrance;
 
-				titleElement.style.setProperty("--title-gradient", "var(--title-gradient-" + themeName + ")");
+				titleElement.style.setProperty("--title-gradient", theme.gradient);
 				titleElement.style.setProperty("--title-animation", theme.animation);
-				titleElement.style.setProperty("--title-shadow", theme.shadow || defaultTitleShadow);
-				titleElement.style.fontFamily = theme.fontFamily || defaultTitleFont;
+				titleElement.style.setProperty("--title-shadow", theme.shadow);
+				titleElement.style.fontFamily = theme.fontFamily;
+				titleElement.style.fontStyle = theme.fontStyle;
 			}
 
-			// Hold the title still, then rotate it one full lap, and repeat
-			function scrollTitle() {
-				const scrollMs = titleName.length * titleScrollMsPerChar;
-				const elapsed = (Date.now() - titleStartedAt) % (titleStaticMs + scrollMs);
+			function runTitle() {
+				const staticMs = titleStaticSeconds * 1000;
+				const scrollMs = titleName.length * titleSecondsPerChar * 1000;
+				const cycleMs = staticMs + scrollMs;
+				const elapsed = (Date.now() - titleAnimationStartedAt) % cycleMs;
 
-				if (elapsed < titleStaticMs) {
+				if (elapsed < staticMs) {
 					titleElement.textContent = titleName;
 					return;
 				}
 
-				const offset = Math.round((elapsed - titleStaticMs) / scrollMs * titleName.length) % titleName.length;
+				const scrollProgress = (elapsed - staticMs) / scrollMs;
+				const offset = Math.round(scrollProgress * titleName.length) % titleName.length;
 				titleElement.textContent = titleName.slice(offset) + titleName.slice(0, offset);
 			}
 
-			function startScrollingTitle() {
+			function restartTitle(themeName = "entrance") {
 				if (titleIntervalId) {
 					return;
 				}
 
-				applyTitleTheme("entrance");
-				titleStartedAt = Date.now();
+				applyTitle(themeName);
+				titleAnimationStartedAt = Date.now();
 				titleElement.textContent = titleName;
-				titleIntervalId = setInterval(scrollTitle, 50);
+				titleIntervalId = setInterval(runTitle, 50);
 			}
 
-			function setStaticTitle(text, themeName) {
+			function swapTitle(text, themeName) {
+				applyTitle(themeName);
 				clearInterval(titleIntervalId);
 				titleIntervalId = null;
-				applyTitleTheme(themeName);
 				titleElement.textContent = text;
 			}
 
-			startScrollingTitle();
+			restartTitle();
 
-			/* ---------- Views and navigation ---------- */
+			function randomizeTitle() {
+				titleName = titleNames[Math.floor(Math.random() * titleNames.length)];
+			}
 
-			const entrance = document.getElementById("entrance");
-			const house = document.getElementById("house");
-			const directoryPath = document.getElementById("directory-path");
-			const cdPath = document.getElementById("cd-path");
-			const baseDirectoryPath = directoryPath.textContent;
-			// Each view's panel has the view's name as its id, and its buttons are #<name>-button and #<name>-touch-button.
-			// Views with a directory live inside the house and open with Ctrl+<shortcut>; the rest live on the entrance.
-			const views = {
-				about: { title: "About " },
-				contact: { title: "Contact " },
-				resume: { title: "Resume ", directory: "Resume", shortcut: "g" },
-				cv: { title: "CV ", directory: "CV", shortcut: "h" },
-				journey: { title: "Journey ", directory: "Journey", shortcut: "j" },
-				projects: { title: "Projects ", directory: "Projects", shortcut: "k" },
-				thoughts: { title: "Some thoughts ", directory: "Thoughts", shortcut: "l" },
-				music: { title: "Music ", directory: "Music", shortcut: "m" },
-				blog: { title: "Blog ", directory: "Blog", shortcut: "b" }
-			};
-			let activeViewName = null;
+			function randomizeMotd() {
+				motd = motds[Math.floor(Math.random() * motds.length)];
+			}
 
-			function showScreen(screen) {
-				setShown(entrance, screen === entrance);
-				setShown(house, screen === house);
+			function setButtonState(activeViewName) {
+				Object.entries(infoViews).forEach(function([viewName, view]) {
+					const isActive = viewName === activeViewName;
+
+					view.button.classList.toggle("active", isActive);
+					view.button.setAttribute("aria-pressed", isActive.toString());
+				});
+			}
+
+			function hidePanels() {
+				Object.values(infoViews).forEach(function(view) {
+					view.panel.style.display = "none";
+				});
+			}
+
+			function setHouseButtonState(activeViewName) {
+				Object.entries(houseViews).forEach(function([viewName, view]) {
+					const isActive = viewName === activeViewName;
+
+					view.buttonIds.forEach(function(buttonId) {
+						const button = document.getElementById(buttonId);
+
+						if (!button) {
+							return;
+						}
+
+						button.classList.toggle("active", isActive);
+						button.setAttribute("aria-pressed", isActive.toString());
+					});
+				});
+			}
+
+			function hideHousePanels() {
+				Object.values(houseViews).forEach(function(view) {
+					view.panel.style.display = "none";
+				});
 			}
 
 			function isHouseOpen() {
 				return house.style.display !== "none";
 			}
 
-			// Mark one view (or none, with null) as active and hide every other view
-			function setActiveView(viewName) {
-				const view = views[viewName];
-
-				closeToasts();
-				activeViewName = viewName;
-
-				Object.entries(views).forEach(function([name, other]) {
-					const isActive = name === viewName;
-
-					setShown(other.panel, isActive);
-					other.buttons.forEach(function(button) {
-						setPressed(button, isActive);
-					});
-				});
-
-				directoryPath.textContent = view && view.directory ? baseDirectoryPath + "/" + view.directory : baseDirectoryPath;
-				updateCdPreview(null);
-			}
-
-			// Show the `cd` command that clicking the hovered view's button would run
-			function updateCdPreview(hoveredViewName) {
-				const view = views[hoveredViewName];
+			function updatecdPreview(viewName) {
+				const view = houseViews[viewName];
 
 				if (!view) {
 					cdPath.textContent = "";
 					return;
 				}
 
-				let target = view.directory + "/";
-
-				if (activeViewName) {
-					target = activeViewName === hoveredViewName ? "../" : "../" + target;
-				}
-
-				cdPath.textContent = " cd " + target;
-			}
-
-			function returnToEntrance() {
-				setActiveView(null);
-				titleName = randomItem(titleNames);
-				startScrollingTitle();
-				showScreen(entrance);
-			}
-
-			function showHouseRoot() {
-				setActiveView(null);
-				setStaticTitle("Expository", "house");
-				showScreen(house);
-			}
-
-			// Open a view, or close it if it is already open
-			function toggleView(viewName) {
-				const view = views[viewName];
-
-				if (activeViewName === viewName) {
-					if (view.directory) {
-						showHouseRoot();
-					} else {
-						returnToEntrance();
-					}
+				if (!activeHouseViewName) {
+					cdPath.textContent = " " + cdCommand + " " + view.directory + "/";
 					return;
 				}
 
-				setActiveView(viewName);
-				setStaticTitle(view.title, viewName);
-				showScreen(view.directory ? house : entrance);
+				cdPath.textContent = " " + cdCommand + " " + (activeHouseViewName === viewName ? "../" : "../" + view.directory + "/");
+			}
+
+			function updateDirectoryPath(viewName) {
+				const view = houseViews[viewName];
+				directoryPath.textContent = view ? baseDirectoryPath + "/" + view.directory : baseDirectoryPath;
+			}
+
+			function resetPanels() {
+				closeToasts();
+				hidePanels();
+				setButtonState(null);
+				hideHousePanels();
+				setHouseButtonState(null);
+				activeHouseViewName = null;
+				updatecdPreview(null);
+				updateDirectoryPath(null);
+			}
+
+			function updateMotdDisplay() {
+				motdElement.textContent = motd;
+			}
+
+			function returnToEntrance() {
+				resetPanels();
+				randomizeTitle();
+				restartTitle();
+				entrance.style.display = "block";
+				house.style.display = "none";
+			}
+
+			function showInfoView(viewName) {
+				const view = infoViews[viewName];
+
+				if (view.button.classList.contains("active")) {
+					returnToEntrance();
+					return;
+				}
+
+				resetPanels();
+				setButtonState(viewName);
+				swapTitle(view.title, viewName);
+				view.panel.style.display = "block";
+				entrance.style.display = "block";
+				house.style.display = "none";
 
 				if (viewName === "about") {
-					motdElement.textContent = randomItem(motds);
+					randomizeMotd();
+					updateMotdDisplay();
 				}
 			}
 
-			Object.entries(views).forEach(function([viewName, view]) {
-				view.panel = document.getElementById(viewName);
-				view.buttons = document.querySelectorAll("#" + viewName + "-button, #" + viewName + "-touch-button");
+			function showHouseRoot() {
+				resetPanels();
+				swapTitle("Expository", "house");
+				entrance.style.display = "none";
+				house.style.display = "block";
+			}
 
-				view.buttons.forEach(function(button) {
-					button.addEventListener("click", function() {
-						toggleView(viewName);
-					});
+			function showHouseView(viewName) {
+				const view = houseViews[viewName];
 
-					if (view.directory) {
+				if (!view) {
+					return;
+				}
+
+				if (view.panel.style.display !== "none") {
+					showHouseRoot();
+					return;
+				}
+
+				resetPanels();
+				setHouseButtonState(viewName);
+				activeHouseViewName = viewName;
+				updatecdPreview(viewName);
+				updateDirectoryPath(viewName);
+				swapTitle(view.title, view.titleTheme);
+				view.panel.style.display = "block";
+				entrance.style.display = "none";
+				house.style.display = "block";
+			}
+
+			function closeToasts() {
+				document.querySelectorAll(".toast").forEach(function(toastElement) {
+					const toast = window.bootstrap ? bootstrap.Toast.getInstance(toastElement) : null;
+
+					if (toast) {
+						toast.hide();
+					} else {
+						toastElement.classList.remove("show");
+					}
+				});
+			}
+
+			function enterHouse() {
+				showHouseRoot();
+			}
+
+			function enterAbout() {
+				showInfoView("about");
+			}
+
+			function enterContact() {
+				showInfoView("contact");
+			}
+
+			function reloadWebsite() {
+				window.location.reload();
+			}
+
+			function exitHouse() {
+				returnToEntrance();
+			}
+
+			document.getElementById("enter-button").addEventListener("click", enterHouse);
+			document.getElementById("reload-button").addEventListener("click", reloadWebsite);
+			document.getElementById("about-button").addEventListener("click", enterAbout);
+			document.getElementById("contact-button").addEventListener("click", enterContact);
+			document.getElementById("exit-button").addEventListener("click", exitHouse);
+
+			Object.entries(houseViews).forEach(function([viewName, view]) {
+				view.buttonIds.forEach(function(buttonId) {
+					const button = document.getElementById(buttonId);
+
+					if (button) {
 						button.addEventListener("mouseenter", function() {
-							updateCdPreview(viewName);
+							updatecdPreview(viewName);
 						});
+
 						button.addEventListener("mouseleave", function() {
-							updateCdPreview(null);
+							updatecdPreview(null);
+						});
+
+						button.addEventListener("click", function() {
+							showHouseView(viewName);
 						});
 					}
 				});
 			});
 
-			document.getElementById("enter-button").addEventListener("click", showHouseRoot);
-			document.getElementById("reload-button").addEventListener("click", function() {
-				window.location.reload();
-			});
-			document.getElementById("exit-button").addEventListener("click", returnToEntrance);
-
-			/* ---------- Keyboard shortcuts ---------- */
+			function getVisibleProtectedDocumentForm() {
+				return Array.from(document.querySelectorAll(".protected-document-form")).find(function(form) {
+					return form.offsetParent !== null;
+				});
+			}
 
 			document.body.addEventListener("keydown", function(event) {
 				if (event.key === "Escape") {
 					closeToasts();
 				}
-
 				if (event.key === "Enter") {
 					event.preventDefault();
+					const protectedDocumentForm = getVisibleProtectedDocumentForm();
 
-					// Enter submits an open password form; otherwise it enters the house
-					const visibleForm = Array.from(protectedDocumentForms).find(function(form) {
-						return form.offsetParent !== null;
-					});
-
-					if (visibleForm) {
-						visibleForm.requestSubmit();
-					} else {
-						showHouseRoot();
+					if (protectedDocumentForm) {
+						protectedDocumentForm.requestSubmit(protectedDocumentForm.querySelector("button[type='submit']"));
+						return;
 					}
-					return;
+
+					enterHouse();
 				}
-
-				if (!event.ctrlKey) {
-					return;
+				if (event.ctrlKey && event.key === 'd') {
+					event.preventDefault();
+					exitHouse();
 				}
-
-				const key = event.key.toLowerCase();
-				const shortcutViewName = Object.keys(views).find(function(viewName) {
-					return views[viewName].shortcut === key;
-				});
-
-				if (key === "d") {
-					event.preventDefault();
-					returnToEntrance();
-				} else if (shortcutViewName && isHouseOpen()) {
-					event.preventDefault();
-					toggleView(shortcutViewName);
+				if (isHouseOpen()) {
+					Object.entries(houseViews).forEach(function([viewName, view]) {
+						if (event.ctrlKey && event.key.toLowerCase() === view.key) {
+							event.preventDefault();
+							showHouseView(viewName);
+						}
+					});
 				}
 			});
 
-			/* ---------- Password-protected documents ---------- */
-
-			const protectedDocumentForms = document.querySelectorAll(".protected-document-form");
 			const protectedDocumentPasswordHash = "078e56bffcd415d31044ce45cb0ad465f04be5996df1a951266b5a4cb3eaa9c9";
 			const protectedDocuments = {
 				resume: "./files/Resume_2026-06-10_2027.pdf",
 				cv: "./files/CV_2026-06-03_1933.pdf"
 			};
 
-			function sha256Hex(text) {
-				return crypto.subtle.digest("SHA-256", new TextEncoder().encode(text)).then(function(hashBuffer) {
-					return Array.from(new Uint8Array(hashBuffer)).map(function(byte) {
-						return byte.toString(16).padStart(2, "0");
-					}).join("");
+			function bytesToHex(bytes) {
+				return Array.from(bytes).map(function(byte) {
+					return byte.toString(16).padStart(2, "0");
+				}).join("");
+			}
+
+			function hashPassword(password) {
+				const encodedPassword = new TextEncoder().encode(password);
+				return crypto.subtle.digest("SHA-256", encodedPassword).then(function(hashBuffer) {
+					return bytesToHex(new Uint8Array(hashBuffer));
 				});
 			}
 
-			protectedDocumentForms.forEach(function(form) {
+			document.querySelectorAll(".protected-document-form").forEach(function(form) {
 				form.addEventListener("submit", function(event) {
 					event.preventDefault();
 
+					const documentPath = protectedDocuments[form.dataset.document];
 					const passwordInput = form.querySelector("input[type='password']");
 					const message = form.parentElement.querySelector(".protected-document-message");
 
@@ -908,310 +1168,204 @@
 						return;
 					}
 
-					// Open the window now, while still inside the user's click, so popup blockers allow it
 					const documentWindow = window.open("about:blank", "_blank");
 
-					sha256Hex(passwordInput.value).then(function(passwordHash) {
-						const isCorrect = passwordHash === protectedDocumentPasswordHash;
-
-						message.textContent = isCorrect ? "" : "Incorrect password.";
-
-						if (isCorrect) {
-							passwordInput.value = "";
-						} else {
+					hashPassword(passwordInput.value).then(function(passwordHash) {
+						if (passwordHash !== protectedDocumentPasswordHash) {
+							message.textContent = "Incorrect password.";
 							passwordInput.select();
-						}
-
-						if (!documentWindow) {
+							if (documentWindow) {
+								documentWindow.close();
+							}
 							return;
 						}
 
-						if (isCorrect) {
+						message.textContent = "";
+						passwordInput.value = "";
+						if (documentWindow) {
 							documentWindow.opener = null;
-							documentWindow.location = protectedDocuments[form.dataset.document];
-						} else {
-							documentWindow.close();
+							documentWindow.location = documentPath;
 						}
 					});
 				});
 			});
 
-			/* ---------- Background tilt ---------- */
+			const backgroundMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
 
-			const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-
-			function setBackgroundTilt(xDegrees, yDegrees) {
-				document.documentElement.style.setProperty("--background-tilt-x", xDegrees.toFixed(2) + "deg");
-				document.documentElement.style.setProperty("--background-tilt-y", yDegrees.toFixed(2) + "deg");
-			}
-
-			document.addEventListener("pointermove", function(event) {
-				if (reducedMotionQuery.matches) {
+			function updateBackgroundTilt(event) {
+				if (backgroundMotionQuery.matches) {
 					return;
 				}
 
 				const x = (event.clientX / window.innerWidth - 0.5) * 2;
 				const y = (event.clientY / window.innerHeight - 0.5) * 2;
 
-				setBackgroundTilt(x * 4, y * -4);
-			});
-			document.addEventListener("pointerleave", function() {
-				setBackgroundTilt(0, 0);
-			});
-
-			const statusTimeZone = "America/Los_Angeles";
-			const statusLatitude = 37.8715;
-			const statusLongitude = -122.2730;
-			const statusClock = document.getElementById("unix_ts");
-			const statusIcon = document.getElementById("status-icon");
-			const statusDateFormat = new Intl.DateTimeFormat("en-CA", {
-				timeZone: statusTimeZone,
-				year: "numeric",
-				month: "2-digit",
-				day: "2-digit"
-			});
-			const statusTimeFormat = new Intl.DateTimeFormat(undefined, {
-				timeZone: statusTimeZone,
-				hour: "2-digit",
-				minute: "2-digit",
-				second: "2-digit",
-				hourCycle: "h23",
-				timeZoneName: "shortOffset"
-			});
-
-			function sunTime(date, latitude, longitude) {
-				const start = Date.UTC(date.getUTCFullYear(), 0, 0);
-				const dayOfYear = Math.floor((date.getTime() - start) / 86400000);
-				const rad = Math.PI / 180;
-				const deg = 180 / Math.PI;
-				const zenith = 90.833;
-
-				function calcTime(isSunrise) {
-					const lngHour = longitude / 15;
-					const t = dayOfYear + ((isSunrise ? 6 : 18) - lngHour) / 24;
-					const M = (0.9856 * t) - 3.289;
-					let L = M + (1.916 * Math.sin(M * rad)) + (0.020 * Math.sin(2 * M * rad)) + 282.634;
-					L = (L + 360) % 360;
-					let RA = deg * Math.atan(0.91764 * Math.tan(L * rad));
-					RA = (RA + 360) % 360;
-					const Lquadrant = Math.floor(L / 90) * 90;
-					const RAquadrant = Math.floor(RA / 90) * 90;
-					RA = (RA + (Lquadrant - RAquadrant)) / 15;
-					const sinDec = 0.39782 * Math.sin(L * rad);
-					const cosDec = Math.cos(Math.asin(sinDec));
-					const cosH = (Math.cos(zenith * rad) - (sinDec * Math.sin(latitude * rad))) / (cosDec * Math.cos(latitude * rad));
-
-					if (cosH > 1 || cosH < -1) {
-						return null;
-					}
-
-					const H = (isSunrise ? 360 - deg * Math.acos(cosH) : deg * Math.acos(cosH)) / 15;
-					const T = H + RA - (0.06571 * t) - 6.622;
-
-					return (T - lngHour + 24) % 24;
-				}
-
-				return {
-					sunrise: calcTime(true),
-					sunset: calcTime(false)
-				};
+				document.documentElement.style.setProperty("--background-tilt-x", (x * 4).toFixed(2) + "deg");
+				document.documentElement.style.setProperty("--background-tilt-y", (y * -4).toFixed(2) + "deg");
 			}
 
-			function night(latitude, longitude, date) {
-				const sunTimes = sunTime(date, latitude, longitude);
-
-				if (sunTimes.sunrise === null || sunTimes.sunset === null) {
-					return false;
-				}
-
-				const utcHours = date.getUTCHours() + (date.getUTCMinutes() / 60) + (date.getUTCSeconds() / 3600);
-
-				return sunTimes.sunrise < sunTimes.sunset
-					? (utcHours < sunTimes.sunrise || utcHours > sunTimes.sunset)
-					: (utcHours > sunTimes.sunset && utcHours < sunTimes.sunrise);
+			function resetBackgroundTilt() {
+				document.documentElement.style.setProperty("--background-tilt-x", "0deg");
+				document.documentElement.style.setProperty("--background-tilt-y", "0deg");
 			}
 
-			function updateStatus() {
-				const now = new Date();
-				const night = night(statusLatitude, statusLongitude, now);
+			document.addEventListener("pointermove", updateBackgroundTilt);
+			document.addEventListener("pointerleave", resetBackgroundTilt);
+		</script>
 
-				statusClock.textContent = statusDateFormat.format(now) + " " + statusTimeFormat.format(now);
-				setTooltipTitle(statusClock, Math.floor(now.getTime() / 1000).toString());
-				statusIcon.className = "bi " + (night ? "bi-moon-stars-fill" : "bi-sun-fill");
-			}
+		<!-- Bootstrap JS/Popper -->
+		<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js" integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y" crossorigin="anonymous"></script>
 
-			updateStatus();
-			setInterval(updateStatus, 1000);
-
+		<!-- Bootstrap component initialization -->
+		<script>
 			const tooltipMediaQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
-			const tooltipSelector = "[data-bs-toggle='tooltip']";
 
-			function initializeTooltip(element) {
-				if (!tooltipMediaQuery.matches || bootstrap.Tooltip.getInstance(element)) {
+			function shouldEnableTooltips() {
+				return tooltipMediaQuery.matches;
+			}
+
+			function initializeTooltip(tooltipTriggerEl) {
+				if (!shouldEnableTooltips()) {
 					return;
 				}
 
-				new bootstrap.Tooltip(element, {
+				if (bootstrap.Tooltip.getInstance(tooltipTriggerEl)) {
+					return;
+				}
+
+				new bootstrap.Tooltip(tooltipTriggerEl, {
 					container: "body",
-					trigger: "hover"
+					trigger: "hover",
 				});
 			}
 
 			function initializeTooltips(root) {
-				if (root.matches && root.matches(tooltipSelector)) {
-					initializeTooltip(root);
-				}
-
-				root.querySelectorAll(tooltipSelector).forEach(initializeTooltip);
+				root.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(initializeTooltip);
 			}
 
-			initializeTooltips(document);
-
-			tooltipMediaQuery.addEventListener("change", function() {
-				document.querySelectorAll(tooltipSelector).forEach(function(element) {
-					const tooltip = bootstrap.Tooltip.getInstance(element);
+			function refreshTooltips() {
+				document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(function(tooltipTriggerEl) {
+					const tooltip = bootstrap.Tooltip.getInstance(tooltipTriggerEl);
 
 					if (tooltip) {
 						tooltip.dispose();
 					}
 
-					initializeTooltip(element);
+					initializeTooltip(tooltipTriggerEl);
 				});
-			});
+			}
 
-			new MutationObserver(function(mutations) {
-				mutations.forEach(function(mutation) {
-					mutation.addedNodes.forEach(function(node) {
-						if (node.nodeType === Node.ELEMENT_NODE) {
-							initializeTooltips(node);
+				const unixTSTimeZone = "America/Los_Angeles";
+
+				const statusLatitude = 37.8715;
+				const statusLongitude = -122.2730;
+
+				function getSunTimesUTC(date, latitude, longitude) {
+					const start = Date.UTC(date.getUTCFullYear(), 0, 0);
+					const dayOfYear = Math.floor((date.getTime() - start) / 86400000);
+					const rad = Math.PI / 180;
+					const deg = 180 / Math.PI;
+					const zenith = 90.833;
+
+					function calcTime(isSunrise) {
+						const lngHour = longitude / 15;
+						const t = dayOfYear + ((isSunrise ? 6 : 18) - lngHour) / 24;
+						const M = (0.9856 * t) - 3.289;
+						let L = M + (1.916 * Math.sin(M * rad)) + (0.020 * Math.sin(2 * M * rad)) + 282.634;
+						L = (L + 360) % 360;
+						let RA = deg * Math.atan(0.91764 * Math.tan(L * rad));
+						RA = (RA + 360) % 360;
+						const Lquadrant = Math.floor(L / 90) * 90;
+						const RAquadrant = Math.floor(RA / 90) * 90;
+						RA = (RA + (Lquadrant - RAquadrant)) / 15;
+						const sinDec = 0.39782 * Math.sin(L * rad);
+						const cosDec = Math.cos(Math.asin(sinDec));
+						const cosH = (Math.cos(zenith * rad) - (sinDec * Math.sin(latitude * rad))) / (cosDec * Math.cos(latitude * rad));
+
+						if (cosH > 1 || cosH < -1) {
+							return null;
 						}
-					});
-				});
-			}).observe(document.body, { childList: true, subtree: true });
 
-			(function() {
-				const visitorCount = document.getElementById("visitor-count");
-				const cacheKey = "expositoryVisitorCount";
-				let cachedCount = null;
+						const H = (isSunrise ? 360 - deg * Math.acos(cosH) : deg * Math.acos(cosH)) / 15;
+						const T = H + RA - (0.06571 * t) - 6.622;
 
-				try {
-					cachedCount = sessionStorage.getItem(cacheKey);
-				} catch (error) {
+						return (T - lngHour + 24) % 24;
+					}
+
+					return {
+						sunrise: calcTime(true),
+						sunset: calcTime(false)
+					};
 				}
 
-				if (cachedCount) {
-					visitorCount.textContent = cachedCount;
+				function isNightAt(latitude, longitude, date) {
+					const sunTimes = getSunTimesUTC(date, latitude, longitude);
+
+					if (sunTimes.sunrise === null || sunTimes.sunset === null) {
+						return false;
+					}
+
+					const utcHours = date.getUTCHours() + (date.getUTCMinutes() / 60) + (date.getUTCSeconds() / 3600);
+
+					return sunTimes.sunrise < sunTimes.sunset
+						? (utcHours < sunTimes.sunrise || utcHours > sunTimes.sunset)
+						: (utcHours > sunTimes.sunset && utcHours < sunTimes.sunrise);
+				}
+
+				function updateStatusIcon() {
+					const statusIcon = document.getElementById("status-icon");
+
+					if (!statusIcon) {
+						return;
+					}
+
+					const night = isNightAt(statusLatitude, statusLongitude, new Date());
+					statusIcon.className = "bi " + (night ? "bi-moon-stars-fill" : "bi-sun-fill");
+				}
+
+				function updateUnixTS() {
+					const element = document.getElementById("unix_ts");
+
+					if (!element) {
 					return;
 				}
 
-				fetch("https://abacus.jasoncameron.dev/hit/ocf.berkeley.edu/owenj", { cache: "no-store" })
-					.then(function(response) {
-						return response.ok ? response.json() : Promise.reject();
-					})
-					.then(function(data) {
-						const count = Number(data.value).toLocaleString();
-
-						try {
-							sessionStorage.setItem(cacheKey, count);
-						} catch (error) {
-						}
-
-						visitorCount.textContent = count;
-					})
-					.catch(function() {
-						visitorCount.textContent = "unknown";
+					const now = new Date();
+					const unixTS = Math.floor(now.getTime() / 1000).toString();
+					const dateParts = new Intl.DateTimeFormat("en-US", {
+						timeZone: unixTSTimeZone,
+						year: "numeric",
+						month: "2-digit",
+						day: "2-digit"
+					}).formatToParts(now).reduce(function(parts, part) {
+						parts[part.type] = part.value;
+						return parts;
+					}, {});
+					const dateText = dateParts.year + "-" + dateParts.month + "-" + dateParts.day;
+					const timeText = now.toLocaleTimeString(undefined, {
+						timeZone: unixTSTimeZone,
+						hour: "2-digit",
+						minute: "2-digit",
+						second: "2-digit",
+						hourCycle: "h23",
+						timeZoneName: "shortOffset"
 					});
-			})();
+					element.textContent = dateText + " " + timeText;
+				element.setAttribute("data-bs-title", unixTS);
 
-			function closeToasts() {
-				document.querySelectorAll(".toast").forEach(function(toastElement) {
-					bootstrap.Toast.getOrCreateInstance(toastElement).hide();
-				});
-			}
+				const tooltip = bootstrap.Tooltip.getInstance(element);
 
-			document.querySelectorAll("[data-bs-toggle='toast']").forEach(function(toastTrigger) {
-				toastTrigger.addEventListener("click", function() {
-					const toastElement = document.querySelector(toastTrigger.getAttribute("data-bs-target"));
-
-					if (toastElement) {
-						bootstrap.Toast.getOrCreateInstance(toastElement).show();
-					}
-				});
-			});
-
-			document.addEventListener("click", function(event) {
-				const trigger = event.target.closest("a[href], button, [data-bs-toggle='list'], [data-bs-toggle='tab'], [data-bs-toggle='pill'], [data-display-change]");
-
-				if (trigger && !trigger.closest(".toast") && trigger.getAttribute("data-bs-toggle") !== "toast") {
-					closeToasts();
+				if (tooltip) {
+					tooltip.setContent({ ".tooltip-inner": unixTS });
 				}
-			}, true);
-
-
-			function clipboardCopy(text) {
-				if (navigator.clipboard && window.isSecureContext) {
-					return navigator.clipboard.writeText(text);
-				}
-
-				const textarea = document.createElement("textarea");
-				textarea.value = text;
-				textarea.setAttribute("readonly", "");
-				textarea.style.position = "fixed";
-				textarea.style.opacity = "0";
-				document.body.appendChild(textarea);
-				textarea.select();
-				document.execCommand("copy");
-				textarea.remove();
-
-				return Promise.resolve();
 			}
 
-			function setCopied(copyButton, isCopied) {
-				setTooltipTitle(copyButton, isCopied ? "Copied!" : "Click to copy");
-				copyButton.querySelector("i").className = isCopied ? "bi bi-clipboard-check-fill" : "bi bi-copy";
-			}
-
-			document.querySelectorAll("[data-copy-text]").forEach(function(copyButton) {
-				copyButton.addEventListener("click", function() {
-					clipboardCopy(copyButton.getAttribute("data-copy-text")).then(function() {
-						const tooltip = bootstrap.Tooltip.getInstance(copyButton);
-
-						setCopied(copyButton, true);
-
-						if (tooltip) {
-							tooltip.show();
-						}
-					});
-				});
-
-				copyButton.addEventListener("mouseleave", function() {
-					setCopied(copyButton, false);
-				});
-			});
-
-
-			const journeyRange = document.getElementById("range");
-			const journeyYearOutput = document.getElementById("rangeValue");
-			const journeyEntries = document.querySelectorAll(".journey-entry[data-journey-year]");
-			const emptyJourneyEntry = document.querySelector(".journey-entry[data-journey-empty]");
-
-			function updateJourney() {
-				const year = journeyRange.value;
-				let hasEntry = false;
-
-				journeyYearOutput.textContent = year;
-				journeyEntries.forEach(function(entry) {
-					const isSelectedYear = entry.dataset.journeyYear === year;
-
-					entry.style.display = isSelectedYear ? "block" : "none";
-					hasEntry = hasEntry || isSelectedYear;
-				});
-
-				emptyJourneyEntry.style.display = hasEntry ? "none" : "block";
-			}
-
-			journeyRange.addEventListener("input", updateJourney);
-			updateJourney();
+			updateUnixTS();
+			setInterval(updateUnixTS, 1000);
+			updateStatusIcon();
+			setInterval(updateStatusIcon, 60000);
+			initializeTooltips(document);
 
 			const musicVideoIds = [
 				"rvYZ7xkyCiU",
@@ -1253,13 +1407,9 @@
 				"J_Ztjt7JuUY",
 				"XDkx_l04TkU"
 			];
-			const musicCarousel = document.getElementById("music-carousel");
-			const musicCarouselInner = musicCarousel.querySelector(".carousel-inner");
 
-			function loadVideo(slide) {
-				const ratio = slide && slide.querySelector(".ratio");
-
-				if (!ratio || ratio.childElementCount) {
+			function musicSlide(ratio) {
+				if (!ratio || ratio.dataset.loaded === "true") {
 					return;
 				}
 
@@ -1271,46 +1421,117 @@
 				iframe.setAttribute("allow", "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share");
 				iframe.setAttribute("referrerpolicy", "strict-origin-when-cross-origin");
 				iframe.allowFullscreen = true;
+
 				ratio.appendChild(iframe);
+				ratio.dataset.loaded = "true";
 			}
 
-			function unloadVideo(slide) {
-				const ratio = slide && slide.querySelector(".ratio");
-
-				if (ratio) {
-					ratio.replaceChildren();
+			function unMusicSlide(ratio) {
+				if (!ratio || ratio.dataset.loaded !== "true") {
+					return;
 				}
+
+				ratio.replaceChildren();
+				delete ratio.dataset.loaded;
 			}
 
-			const firstVideoIndex = Math.floor(Math.random() * musicVideoIds.length);
+			function musicCarousel() {
+				const musicCarousel = document.getElementById("music-carousel");
+				const carouselInner = musicCarousel && musicCarousel.querySelector(".carousel-inner");
 
-			musicVideoIds.forEach(function(videoId, index) {
-				const slide = document.createElement("div");
-				const ratio = document.createElement("div");
-
-				slide.className = "carousel-item" + (index === firstVideoIndex ? " active" : "");
-				ratio.className = "ratio ratio-16x9";
-				ratio.dataset.videoId = videoId;
-				slide.appendChild(ratio);
-				musicCarouselInner.appendChild(slide);
-
-				if (index === firstVideoIndex) {
-					loadVideo(slide);
+				if (!carouselInner || !musicVideoIds.length) {
+					return;
 				}
-			});
 
-			musicCarousel.addEventListener("slide.bs.carousel", function(event) {
-				unloadVideo(musicCarouselInner.children[event.from]);
-				loadVideo(event.relatedTarget);
-			});
+				const activeIndex = Math.floor(Math.random() * musicVideoIds.length);
 
+				musicVideoIds.forEach(function(videoId, index) {
+					const item = document.createElement("div");
+					item.className = "carousel-item" + (index === activeIndex ? " active" : "");
+
+					const ratio = document.createElement("div");
+					ratio.className = "ratio ratio-16x9";
+					ratio.dataset.videoId = videoId;
+
+					item.appendChild(ratio);
+					carouselInner.appendChild(item);
+
+					if (index === activeIndex) {
+						musicSlide(ratio);
+					}
+				});
+
+				musicCarousel.addEventListener("slide.bs.carousel", function(event) {
+					unMusicSlide(event.from !== undefined && carouselInner.children[event.from] && carouselInner.children[event.from].querySelector(".ratio"));
+					musicSlide(event.relatedTarget && event.relatedTarget.querySelector(".ratio"));
+				});
+			}
+
+			musicCarousel();
 
 			const blogPostSlugs = ["000", "001"];
 			const blogTags = ["meta"];
 			const activeBlogTags = new Set();
-			const blogTagBar = document.getElementById("blog-tags");
-			const blogList = document.getElementById("blog-list");
-			const blogPost = document.getElementById("blog-post");
+			let blogPosts = null;
+
+			function postTags(post) {
+				return (post.meta.tags || "").split(",").map(function(tag) {
+					return tag.trim();
+				}).filter(Boolean);
+			}
+
+			function filterBlogList() {
+				document.querySelectorAll("#blog-list .list-group-item").forEach(function(item) {
+					const tags = item.dataset.tags.split(",");
+					const visible = activeBlogTags.size === 0 || tags.some(function(tag) {
+						return activeBlogTags.has(tag);
+					});
+					if (visible) {
+						item.style.display = "";
+					} else {
+						item.style.display = "none";
+					}
+				});
+			}
+			
+			function orderBlogTagButtons() {
+				const container = document.getElementById("blog-tags");
+				Array.from(container.children).sort(function(a, b) {
+					return (b.classList.contains("active") - a.classList.contains("active")) ||
+						(blogTags.indexOf(a.textContent) - blogTags.indexOf(b.textContent));
+				}).forEach(function(button) {
+					container.appendChild(button);
+				});
+			}
+
+			function blogTagButtons() {
+				const container = document.getElementById("blog-tags");
+
+				blogTags.forEach(function(tag) {
+					const button = document.createElement("button");
+					button.type = "button";
+					button.className = "btn btn-outline-light btn-sm blog-tag";
+					button.textContent = tag;
+					button.setAttribute("aria-pressed", "false");
+					button.addEventListener("click", function() {
+						const on = !activeBlogTags.has(tag);
+
+						if (on) {
+							activeBlogTags.add(tag);
+						} else {
+							activeBlogTags.delete(tag);
+						}
+
+						button.classList.toggle("active", on);
+						button.setAttribute("aria-pressed", String(on));
+						orderBlogTagButtons();
+						filterBlogList();
+					});
+					container.appendChild(button);
+				});
+			}
+
+			blogTagButtons();
 
 			function parseFrontMatter(text) {
 				const match = /^---\n([\s\S]*?)\n---\n([\s\S]*)$/.exec(text);
@@ -1327,111 +1548,191 @@
 				return { meta: meta, body: match ? match[2] : text };
 			}
 
-			function filterBlogList() {
-				blogList.querySelectorAll(".list-group-item").forEach(function(item) {
-					const tags = item.dataset.tags.split(",");
+			function showPost(post) {
+				const blogPost = document.getElementById("blog-post");
 
-					setShown(item, activeBlogTags.size === 0 || tags.some(function(tag) {
-						return activeBlogTags.has(tag);
-					}));
-				});
-			}
-
-			function orderBlogTagButtons() {
-				Array.from(blogTagBar.children).sort(function(a, b) {
-					return (b.classList.contains("active") - a.classList.contains("active")) ||
-						(blogTags.indexOf(a.textContent) - blogTags.indexOf(b.textContent));
-				}).forEach(function(button) {
-					blogTagBar.appendChild(button);
-				});
-			}
-
-			function showBlogPost(post) {
-				setShown(blogTagBar, !post);
-				setShown(blogList, !post);
-				setShown(blogPost, Boolean(post));
-
-				if (!post) {
-					return;
-				}
-
-				blogPost.innerHTML = "<button type=\"button\" class=\"btn btn-outline-light mb-3\">&larr; Back</button>" +
+				document.getElementById("blog-list").style.display = "none";
+				document.getElementById("blog-tags").style.display = "none";
+				blogPost.innerHTML = "<button type=\"button\" id=\"blog-back\" class=\"btn btn-outline-light mb-3\">&larr; Back</button>" +
 					"<h1>" + post.meta.title + "</h1>" +
 					"<p class=\"text-white-50\">" + post.meta.date + "</p>" +
 					marked.parse(post.body);
+				blogPost.style.display = "block";
 
 				if (window.renderMathInElement) {
 					renderMathInElement(blogPost);
 				}
 
-				blogPost.querySelector("button").addEventListener("click", function() {
-					showBlogPost(null);
+				document.getElementById("blog-back").addEventListener("click", function() {
+					blogPost.style.display = "none";
+					document.getElementById("blog-list").style.display = "block";
+					document.getElementById("blog-tags").style.display = "block";
 				});
 			}
 
-			blogTags.forEach(function(tag) {
-				const button = document.createElement("button");
-				button.type = "button";
-				button.className = "btn btn-outline-light btn-sm blog-tag";
-				button.textContent = tag;
-				setPressed(button, false);
-				button.addEventListener("click", function() {
-					const isOn = !activeBlogTags.has(tag);
-
-					if (isOn) {
-						activeBlogTags.add(tag);
-					} else {
-						activeBlogTags.delete(tag);
-					}
-
-					setPressed(button, isOn);
-					orderBlogTagButtons();
-					filterBlogList();
-				});
-				blogTagBar.appendChild(button);
-			});
-
-			Promise.all(blogPostSlugs.map(function(slug) {
-				return fetch("posts/" + slug + ".md").then(function(response) {
-					return response.text();
-				}).then(parseFrontMatter);
-			})).then(function(posts) {
-				posts.sort(function(a, b) {
-					return new Date(b.meta.date) - new Date(a.meta.date);
-				});
-
-				posts.forEach(function(post) {
-					const item = document.createElement("button");
-					item.type = "button";
-					item.className = "list-group-item list-group-item-action";
-					item.dataset.tags = (post.meta.tags || "").split(",").map(function(tag) {
-						return tag.trim();
-					}).join(",");
-					item.innerHTML = "<div class=\"fw-bold\">" + post.meta.title + "</div><small>" + post.meta.date + "</small>";
-					item.addEventListener("click", function() {
-						showBlogPost(post);
-					});
-					blogList.appendChild(item);
-				});
-
-				filterBlogList();
-			});
-
-			document.getElementById("copyright-year").textContent = new Date().getFullYear();
-
-			document.addEventListener("error", function(event) {
-				const img = event.target;
-
-				if (img.tagName !== "IMG" || img.dataset.fallbackApplied) {
+			function blogList() {
+				if (blogPosts) {
 					return;
 				}
 
+				blogPosts = [];
+
+				Promise.all(blogPostSlugs.map(function(slug) {
+					return fetch("posts/" + slug + ".md").then(function(response) {
+						return response.text();
+					}).then(parseFrontMatter);
+				})).then(function(posts) {
+					posts.sort(function(a, b) {
+						return new Date(b.meta.date) - new Date(a.meta.date);
+					});
+
+					const blogList = document.getElementById("blog-list");
+
+					posts.forEach(function(post) {
+						const item = document.createElement("button");
+						item.type = "button";
+						item.className = "list-group-item list-group-item-action";
+						item.dataset.tags = postTags(post).join(",");
+						item.innerHTML = "<div class=\"fw-bold\">" + post.meta.title + "</div><small>" + post.meta.date + "</small>";
+						item.addEventListener("click", function() {
+							showPost(post);
+						});
+						blogList.appendChild(item);
+					});
+
+					blogPosts = posts;
+					filterBlogList();
+				});
+			}
+
+			blogList();
+
+			function clipboardCopy(text) {
+				if (navigator.clipboard && window.isSecureContext) {
+					return navigator.clipboard.writeText(text);
+				}
+
+				const textarea = document.createElement("textarea");
+				textarea.value = text;
+				textarea.setAttribute("readonly", "");
+				textarea.style.position = "fixed";
+				textarea.style.opacity = "0";
+				document.body.appendChild(textarea);
+				textarea.select();
+				document.execCommand("copy");
+				textarea.remove();
+
+				return Promise.resolve();
+			}
+
+			function copyTooltipTitle(copyButton, title) {
+				copyButton.setAttribute("data-bs-title", title);
+
+				const tooltip = bootstrap.Tooltip.getInstance(copyButton);
+
+				if (tooltip) {
+					tooltip.setContent({ ".tooltip-inner": title });
+				}
+			}
+
+			function copyIconCopied(copyButton, isCopied) {
+				const copyIcon = copyButton.querySelector("i");
+
+				if (!copyIcon) {
+					return;
+				}
+
+				copyIcon.className = isCopied ? "bi bi-clipboard-check-fill" : "bi bi-copy";
+			}
+
+			function resetCopyBtn(copyButton) {
+				copyTooltipTitle(copyButton, "Click to copy");
+				copyIconCopied(copyButton, false);
+			}
+
+			document.querySelectorAll("[data-copy-text]").forEach(function(copyButton) {
+				copyButton.addEventListener("click", function() {
+					clipboardCopy(copyButton.getAttribute("data-copy-text")).then(function() {
+						const tooltip = bootstrap.Tooltip.getInstance(copyButton);
+
+						copyTooltipTitle(copyButton, "Copied!");
+						copyIconCopied(copyButton, true);
+
+						if (tooltip) {
+							tooltip.show();
+						}
+					});
+				});
+
+				copyButton.addEventListener("mouseleave", function() {
+					resetCopyBtn(copyButton);
+				});
+			});
+
+			tooltipMediaQuery.addEventListener("change", refreshTooltips);
+
+			new MutationObserver(function(mutations) {
+				mutations.forEach(function(mutation) {
+					mutation.addedNodes.forEach(function(node) {
+						if (node.nodeType !== Node.ELEMENT_NODE) {
+							return;
+						}
+
+						if (node.matches('[data-bs-toggle="tooltip"]')) {
+							initializeTooltip(node);
+						}
+
+						initializeTooltips(node);
+					});
+				});
+			}).observe(document.body, { childList: true, subtree: true });
+
+			const toastElementList = document.querySelectorAll('.toast');
+			const toastList = [...toastElementList].map(function(toastElement) {
+				return bootstrap.Toast.getOrCreateInstance(toastElement);
+			});
+
+			document.querySelectorAll('[data-bs-toggle="toast"]').forEach(function(toastTrigger) {
+				toastTrigger.addEventListener("click", function() {
+					const targetSelector = toastTrigger.getAttribute("data-bs-target") || toastTrigger.getAttribute("href");
+					const toastElement = targetSelector ? document.querySelector(targetSelector) : null;
+
+					if (toastElement) {
+						bootstrap.Toast.getOrCreateInstance(toastElement).show();
+					}
+				});
+			});
+
+			document.addEventListener("click", function(event) {
+				const displayChangeTrigger = event.target.closest("a[href], button, [data-bs-toggle='list'], [data-bs-toggle='tab'], [data-bs-toggle='pill'], [data-display-change]");
+
+				if (
+					displayChangeTrigger &&
+					!displayChangeTrigger.closest(".toast") &&
+					displayChangeTrigger.getAttribute("data-bs-toggle") !== "toast"
+				) {
+					closeToasts();
+				}
+			}, true);
+		</script>
+		<script>
+			document.addEventListener("error", 
+			function (event) {
+				const img = event.target;
+
+				if (img.tagName !== "IMG") return;
+				if (img.dataset.fallbackApplied) return;
+
 				img.dataset.fallbackApplied = "true";
+
 				img.removeAttribute("srcset");
 				img.removeAttribute("sizes");
+
 				img.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E";
+
 				img.classList.add("img-fallback-blank");
-			}, true);
+			}, true
+			);
 		</script>
 	</body>
 </html>
