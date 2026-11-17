@@ -696,7 +696,6 @@
 			const directoryPath = document.getElementById("directory-path");
 			const cdPath = document.getElementById("cd-path");
 			const baseDirectoryPath = directoryPath.textContent;
-			const cdCommand = "cd";
 			const aboutButton = document.getElementById("about-button");
 			const contactButton = document.getElementById("contact-button");
 			const infoViews = {
@@ -957,11 +956,11 @@
 				}
 
 				if (!activeHouseViewName) {
-					cdPath.textContent = " " + cdCommand + " " + view.directory + "/";
+					cdPath.textContent = " cd " + view.directory + "/";
 					return;
 				}
 
-				cdPath.textContent = " " + cdCommand + " " + (activeHouseViewName === viewName ? "../" : "../" + view.directory + "/");
+				cdPath.textContent = " cd " + (activeHouseViewName === viewName ? "../" : "../" + view.directory + "/");
 			}
 
 			function updateDirectoryPath(viewName) {
